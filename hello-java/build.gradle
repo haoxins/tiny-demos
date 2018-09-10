@@ -1,0 +1,8 @@
+
+apply plugin: 'java'
+apply plugin: 'application'
+
+mainClassName = 'hello.Hello'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
