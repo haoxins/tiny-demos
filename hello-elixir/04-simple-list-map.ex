@@ -32,5 +32,6 @@ users = [
   hx: %{name: "haoxin", age: 22, languages: ["Javascript", "Kotlin", "Golang"]},
   ms: %{name: "mishao", age: 18, languages: ["a", "b", "c"]}
 ]
+
 IO.puts(users[:hx].age)
-users = put_in users[:hx].age, 24
+users = put_in(users[:hx].age, 24)
