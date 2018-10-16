@@ -33,11 +33,12 @@ defmodule KV.Registry do
     refs = %{}
     {:ok, {names, refs}}
   end
-
+  # sync
   def handle_call({:lookup, name}, _from, {names, _} = state) do
     {:reply, Map.fetch(names, name), state}
   end
-
+  # async
+  # not guarantee the server has received the message
   def handle_cast({:create, name}, {names, refs}) do
     if Map.has_key?(names, name) do
       {:noreply, {names, refs}}
