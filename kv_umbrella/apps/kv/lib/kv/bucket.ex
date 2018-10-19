@@ -28,6 +28,7 @@ defmodule KV.Bucket do
   """
   def delete(bucket, key) do
     Process.sleep(200)
+
     Agent.get_and_update(bucket, fn dict ->
       Map.pop(dict, key)
     end)

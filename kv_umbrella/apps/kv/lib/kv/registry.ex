@@ -38,12 +38,14 @@ defmodule KV.Registry do
     refs = %{}
     {:ok, {names, refs}}
   end
+
   # async
   # not guarantee the server has received the message
   def handle_call({:create, name}, _from, {names, refs}) do
     case lookup(names, name) do
       {:ok, pid} ->
         {:reply, pid, {names, refs}}
+
       :error ->
         {:ok, pid} = DynamicSupervisor.start_child(KV.BucketSupervisor, KV.Bucket)
         ref = Process.monitor(pid)

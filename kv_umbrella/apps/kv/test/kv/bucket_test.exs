@@ -1,5 +1,6 @@
 defmodule KV.BucketTest do
-  use ExUnit.Case, async: true # run test parallel
+  # run test parallel
+  use ExUnit.Case, async: true
   # runs before every test
   setup do
     {:ok, bucket} = KV.Bucket.start_link([])
