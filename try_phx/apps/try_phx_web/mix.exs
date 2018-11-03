@@ -43,7 +43,7 @@ defmodule TryPhxWeb.MixProject do
       {:gettext, "~> 0.11"},
       {:try_phx, in_umbrella: true},
       {:jason, "~> 1.0"},
-      {:cowboy, "~> 1.0"}
+      {:plug_cowboy, "~> 2.0"}
     ]
   end
 
