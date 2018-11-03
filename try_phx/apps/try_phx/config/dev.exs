@@ -6,8 +6,9 @@ use Mix.Config
 
 # Configure your database
 config :try_phx, TryPhx.Repo,
-  username: "root",
-  password: "root",
+  username: "phx",
+  password: "phx",
   database: "try_phx_dev",
   hostname: "localhost",
+  port: "16002",
   pool_size: 10

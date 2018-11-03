@@ -6,8 +6,9 @@ use Mix.Config
 
 # Configure your database
 config :try_phx, TryPhx.Repo,
-  username: "root",
-  password: "root",
+  username: "phx",
+  password: "phx",
   database: "try_phx_test",
   hostname: "localhost",
+  port: "16002",
   pool: Ecto.Adapters.SQL.Sandbox

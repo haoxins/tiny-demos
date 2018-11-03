@@ -36,7 +36,7 @@ defmodule TryPhxWeb.Endpoint do
   plug Plug.Session,
     store: :cookie,
     key: "_try_phx_web_key",
-    signing_salt: "jMkxfiHt"
+    signing_salt: "k62bvqa9"
 
   plug TryPhxWeb.Router
 end

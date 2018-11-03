@@ -8,7 +8,7 @@ config :try_phx_web,
 # Configures the endpoint
 config :try_phx_web, TryPhxWeb.Endpoint,
   url: [host: "localhost"],
-  secret_key_base: "LwvRX2DpweLoOvHe2NPrCfgmeoLUw1XIN44wYVExcDJGlH5fgAitKTOddmYyfxqX",
+  secret_key_base: "2uX9ZBLkPjBHoKAha0Sm6ksPTRLgZlDfXr5ztFtLuqr7boKozOCPJPt9GkMeH4Qm",
   render_errors: [view: TryPhxWeb.ErrorView, accepts: ~w(json)],
   pubsub: [name: TryPhxWeb.PubSub,
            adapter: Phoenix.PubSub.PG2]

@@ -9,7 +9,6 @@ mix archive.install \
 
 mix phx.new PROJECT_NAME \
   --umbrella \
-  --database mysql \
   --no-webpack \
   --no-html
 

@@ -29,7 +29,7 @@ defmodule TryPhx.MixProject do
 
   defp deps do
     [
-      {:mariaex, ">= 0.0.0"},
+      {:postgrex, ">= 0.0.0"},
       {:ecto, "~> 2.2"}
     ]
   end
