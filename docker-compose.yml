@@ -1,0 +1,14 @@
+version: '3'
+services:
+  redis:
+    image: redis:5
+    ports:
+      - 16001:6379
+  postgres:
+    image: postgres:11
+    ports:
+      - 16002:5432
+    environment:
+      - POSTGRES_PASSWORD=phx
+      - POSTGRES_USER=phx
+      - POSTGRES_DB=phx
