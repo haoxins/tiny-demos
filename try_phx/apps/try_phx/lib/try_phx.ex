@@ -1,2 +1,0 @@
-defmodule TryPhx do
-end
