@@ -1,12 +1,10 @@
 {
   "name": "hi-nest",
   "version": "0.0.1",
-  "description": "",
-  "author": "",
-  "license": "MIT",
+  "private": true,
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
-    "format": "prettier --write \"src/**/*.ts\"",
+    "fmt": "prettier --write \"src/**/*.ts\"",
     "start": "ts-node -r tsconfig-paths/register src/main.ts",
     "start:dev": "concurrently --handle-input \"wait-on dist/main.js && nodemon\" \"tsc -w -p tsconfig.build.json\" ",
     "start:debug": "nodemon --config nodemon-debug.json",
