@@ -31,11 +31,7 @@ fn main() {
             Ok(())
         })
         .map_err(|err| {
-            // Handle error by printing to STDOUT.
-            println!("accept error = {:?}", err);
         });
-
-    println!("server running on localhost:8765");
 
     tokio::run(server);
 }
