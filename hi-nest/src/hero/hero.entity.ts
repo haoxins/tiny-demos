@@ -1,8 +1,11 @@
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm'
 
+import { MaxLength } from 'class-validator'
 @Entity()
 export class Hero {
   @PrimaryGeneratedColumn() id: number
 
-  @Column() name: string
+  @MaxLength(255, { always: true })
+  @Column()
+  name: string
 }
