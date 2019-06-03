@@ -1,10 +1,6 @@
 
 ## Installation
 
-```bash
-$ npm install
-```
-
 ## Running the app
 
 ```bash
@@ -29,4 +25,10 @@ $ npm run test:e2e
 
 # test coverage
 $ npm run test:cov
+```
+
+## CLI
+
+```bash
+$ nest g controller some
 ```
