@@ -19,8 +19,10 @@ pub fn establish_connection() -> PgConnection {
     PgConnection::establish(&database_url).expect(&format!("Error connecting to {}", database_url))
 }
 
-pub fn create_post<'a>(conn: &PgConnection, title: &'a str, body: &'a str) -> Post {
+pub fn create_post<'a>(title: &'a str, body: &'a str) -> Post {
     use schema::posts;
+
+    let conn = establish_connection();
 
     let new_post = NewPost {
         title: title,
@@ -29,28 +31,32 @@ pub fn create_post<'a>(conn: &PgConnection, title: &'a str, body: &'a str) -> Po
 
     diesel::insert_into(posts::table)
         .values(&new_post)
-        .get_result(conn)
+        .get_result(&conn)
         .expect("Error saving new post")
 }
 
-pub fn query_post<'a>(conn: &PgConnection) -> Vec<Post> {
+pub fn query_post<'a>() -> Vec<Post> {
     use self::schema::posts::dsl::*;
+
+    let conn = establish_connection();
 
     let results = posts
         .filter(published.eq(true))
         .limit(5)
-        .load::<Post>(conn)
+        .load::<Post>(&conn)
         .expect("Error loading posts");
 
     return results;
 }
 
-pub fn publish_post<'a>(conn: &PgConnection, id: i32) -> Post {
+pub fn publish_post<'a>(id: i32) -> Post {
     use self::schema::posts::dsl::*;
+
+    let conn = establish_connection();
 
     let post = diesel::update(posts.find(id))
         .set(published.eq(true))
-        .get_result::<Post>(conn)
+        .get_result::<Post>(&conn)
         .expect("Unable to find post");
 
     return post;
