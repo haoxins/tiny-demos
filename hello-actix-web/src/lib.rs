@@ -32,3 +32,26 @@ pub fn create_post<'a>(conn: &PgConnection, title: &'a str, body: &'a str) -> Po
         .get_result(conn)
         .expect("Error saving new post")
 }
+
+pub fn query_post<'a>(conn: &PgConnection) -> Vec<Post> {
+    use self::schema::posts::dsl::*;
+
+    let results = posts
+        .filter(published.eq(true))
+        .limit(5)
+        .load::<Post>(conn)
+        .expect("Error loading posts");
+
+    return results;
+}
+
+pub fn publish_post<'a>(conn: &PgConnection, id: i32) -> Post {
+    use self::schema::posts::dsl::*;
+
+    let post = diesel::update(posts.find(id))
+        .set(published.eq(true))
+        .get_result::<Post>(conn)
+        .expect("Unable to find post");
+
+    return post;
+}
