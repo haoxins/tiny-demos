@@ -2,6 +2,7 @@ extern crate actix_web;
 use actix_web::{web, App, HttpRequest, HttpServer, Responder};
 
 mod main_handler;
+mod post;
 
 fn main() {
     HttpServer::new(|| {
