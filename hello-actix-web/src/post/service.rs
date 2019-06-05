@@ -7,10 +7,10 @@ use diesel::prelude::*;
 use dotenv::dotenv;
 use std::env;
 
-use self::models::{NewPost, Post};
+mod models;
+mod schema;
 
-pub mod models;
-pub mod schema;
+use models::{NewPost, Post};
 
 pub fn establish_connection() -> PgConnection {
     dotenv().ok();
@@ -36,7 +36,7 @@ pub fn create_post<'a>(title: &'a str, body: &'a str) -> Post {
 }
 
 pub fn query_post<'a>() -> Vec<Post> {
-    use self::schema::posts::dsl::*;
+    use schema::posts::dsl::*;
 
     let conn = establish_connection();
 
@@ -50,7 +50,7 @@ pub fn query_post<'a>() -> Vec<Post> {
 }
 
 pub fn publish_post<'a>(id: i32) -> Post {
-    use self::schema::posts::dsl::*;
+    use schema::posts::dsl::*;
 
     let conn = establish_connection();
 
