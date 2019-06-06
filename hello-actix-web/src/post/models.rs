@@ -1,3 +1,5 @@
+use crate::post::schema::posts;
+
 #[derive(Queryable)]
 pub struct Post {
     pub id: i32,

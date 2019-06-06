@@ -4,8 +4,6 @@ use dotenv::dotenv;
 use std::env;
 
 use crate::post::models::{NewPost, Post};
-use crate::post::schema::posts;
-use crate::post::schema::posts::dsl::*;
 
 pub fn establish_connection() -> PgConnection {
     dotenv().ok();
@@ -15,6 +13,8 @@ pub fn establish_connection() -> PgConnection {
 }
 
 pub fn create_post<'a>(title: &'a str, body: &'a str) -> Post {
+    use crate::post::schema::posts;
+
     let conn = establish_connection();
 
     let new_post = NewPost {
@@ -29,6 +29,8 @@ pub fn create_post<'a>(title: &'a str, body: &'a str) -> Post {
 }
 
 pub fn query_post<'a>() -> Vec<Post> {
+    use crate::post::schema::posts::dsl::{posts, published};
+
     let conn = establish_connection();
 
     let results = posts
@@ -41,6 +43,8 @@ pub fn query_post<'a>() -> Vec<Post> {
 }
 
 pub fn publish_post<'a>(id: i32) -> Post {
+    use crate::post::schema::posts::dsl::{posts, published};
+
     let conn = establish_connection();
 
     let post = diesel::update(posts.find(id))
