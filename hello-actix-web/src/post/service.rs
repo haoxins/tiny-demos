@@ -1,16 +1,11 @@
-#[macro_use]
-extern crate diesel;
-extern crate dotenv;
-
 use diesel::pg::PgConnection;
 use diesel::prelude::*;
 use dotenv::dotenv;
 use std::env;
 
-mod models;
-mod schema;
-
-use models::{NewPost, Post};
+use crate::post::models::{NewPost, Post};
+use crate::post::schema::posts;
+use crate::post::schema::posts::dsl::*;
 
 pub fn establish_connection() -> PgConnection {
     dotenv().ok();
@@ -20,8 +15,6 @@ pub fn establish_connection() -> PgConnection {
 }
 
 pub fn create_post<'a>(title: &'a str, body: &'a str) -> Post {
-    use schema::posts;
-
     let conn = establish_connection();
 
     let new_post = NewPost {
@@ -36,8 +29,6 @@ pub fn create_post<'a>(title: &'a str, body: &'a str) -> Post {
 }
 
 pub fn query_post<'a>() -> Vec<Post> {
-    use schema::posts::dsl::*;
-
     let conn = establish_connection();
 
     let results = posts
@@ -50,8 +41,6 @@ pub fn query_post<'a>() -> Vec<Post> {
 }
 
 pub fn publish_post<'a>(id: i32) -> Post {
-    use schema::posts::dsl::*;
-
     let conn = establish_connection();
 
     let post = diesel::update(posts.find(id))

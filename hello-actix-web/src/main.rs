@@ -1,13 +1,18 @@
+extern crate dotenv;
+
+#[macro_use]
+extern crate diesel;
+
 extern crate actix_web;
 use actix_web::{web, App, HttpRequest, HttpServer, Responder};
 
-mod main_handler;
+mod handler;
 mod post;
 
 fn main() {
     HttpServer::new(|| {
         App::new()
-            .service(web::resource("/").route(web::get().to(main_handler::greet)))
+            .service(web::resource("/").route(web::get().to(handler::greet)))
             .service(
                 web::resource("/posts")
                     .route(web::get().to(post::handler::query))

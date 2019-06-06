@@ -1,18 +1,21 @@
 use actix_web::{HttpRequest, Responder};
 use bytes::Bytes;
 
-// mod post;
+use crate::post::service;
 
-
-  query_post();
 pub fn query((_body, req): (Bytes, HttpRequest)) -> impl Responder {
+    service::query_post();
+    return "OK";
 }
 
-  create_post("hi", "cool")
 pub fn create((_body, req): (Bytes, HttpRequest)) -> impl Responder {
+    service::create_post("hi", "cool");
+    return "OK";
 }
 
 pub fn publish((_body, req): (Bytes, HttpRequest)) -> impl Responder {
     let id = req.match_info().get("id").unwrap();
-    publish_post(id);
+    let n: i32 = id.parse().unwrap();
+    service::publish_post(n);
+    return "OK";
 }
