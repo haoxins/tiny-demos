@@ -3,7 +3,6 @@ import { Module } from '@nestjs/common'
 import { TypeOrmModule } from '@nestjs/typeorm'
 
 import { AppController } from './app.controller'
-import { AppService } from './app.service'
 
 import { HeroController } from './hero/hero.controller'
 import { HeroService } from './hero/hero.service'
@@ -22,6 +21,7 @@ import { HeroService } from './hero/hero.service'
     }),
   ],
   controllers: [AppController, HeroController],
-  providers: [AppService, HeroService],
+  providers: [HeroService],
 })
+
 export class AppModule {}
