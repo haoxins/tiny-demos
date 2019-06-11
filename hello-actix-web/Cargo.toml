@@ -5,8 +5,9 @@ authors = ["\"haoxin\" <\"haoxinst@gmail.com\">"]
 edition = "2018"
 
 [dependencies]
-actix-web = "1.0.0"
 diesel = { version = "1.0.0", features = ["postgres"] }
+actix-web = "1.0.0"
+fluent = "0.6.0"
 dotenv = "0.9.0"
 bytes = "0.4"
 cargo-expand = "0.4"
