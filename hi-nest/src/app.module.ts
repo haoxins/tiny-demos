@@ -1,6 +1,8 @@
 import { Module } from '@nestjs/common'
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { AppController } from './app.controller'
+import { StoryModule } from './story/story.module'
+import { HeroModule } from './hero/hero.module'
 
 @Module({
   imports: [
@@ -14,9 +16,8 @@ import { AppController } from './app.controller'
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: true,
     }),
+    StoryModule,
+    HeroModule,
   ],
-  controllers: [AppController, HeroController, StoryController],
-  providers: [HeroService, StoryService],
 })
-
 export class AppModule {}
