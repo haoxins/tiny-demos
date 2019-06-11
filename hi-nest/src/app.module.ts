@@ -3,6 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm'
 import { AppController } from './app.controller'
 import { StoryModule } from './story/story.module'
 import { HeroModule } from './hero/hero.module'
+import { TopicModule } from './topic/topic.module'
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { HeroModule } from './hero/hero.module'
     }),
     StoryModule,
     HeroModule,
+    TopicModule,
   ],
 })
 export class AppModule {}
