@@ -5,8 +5,8 @@ import { RepositoryService } from '@nestjsx/crud/typeorm'
 import { Hero } from './hero.entity'
 
 @Injectable()
-export class HeroService /*extends RepositoryService<Hero>*/ {
-  // constructor(@InjectRepository(Hero) repo) {
-  //   super(repo)
-  // }
+export class HeroService extends RepositoryService<Hero> {
+  constructor(@InjectRepository(Hero) repo) {
+    super(repo)
+  }
 }

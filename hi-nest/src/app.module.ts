@@ -1,10 +1,6 @@
 import { Module } from '@nestjs/common'
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { AppController } from './app.controller'
-import { HeroController } from './hero/hero.controller'
-import { HeroService } from './hero/hero.service'
-import { StoryController } from './story/story.controller';
-import { StoryService } from './story/story.service';
 
 @Module({
   imports: [

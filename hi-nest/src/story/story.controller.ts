@@ -1,4 +1,12 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common'
 
-@Controller('story')
-export class StoryController {}
+import { StoryService } from './story.service'
+@Controller('stories')
+export class StoryController {
+  constructor(private readonly storyService: StoryService) {}
+
+  @Get()
+  async getStories(): Promise<Story[]> {
+    return await this.storyService.find()
+  }
+}
