@@ -2,7 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import * as request from 'supertest';
 import { AppModule } from './../src/app.module';
 
-describe('AppController (e2e)', () => {
+describe('App Controller (e2e)', () => {
   let app;
 
   beforeEach(async () => {
@@ -14,10 +14,10 @@ describe('AppController (e2e)', () => {
     await app.init();
   });
 
-  it('/ (GET)', () => {
+  it('/heroes', () => {
     return request(app.getHttpServer())
-      .get('/')
+      .get('/heroes')
       .expect(200)
-      .expect('Hello World!');
+      .expect([]);
   });
 });
