@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common'
 import { TypeOrmModule } from '@nestjs/typeorm'
-import { AppController } from './app.controller'
 import { StoryModule } from './story/story.module'
 import { HeroModule } from './hero/hero.module'
 import { TopicModule } from './topic/topic.module'
+import { BindingModule } from './binding/binding.module'
 
 @Module({
   imports: [
@@ -17,9 +17,10 @@ import { TopicModule } from './topic/topic.module'
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: true,
     }),
-    StoryModule,
     HeroModule,
+    StoryModule,
     TopicModule,
+    BindingModule,
   ],
 })
 export class AppModule {}
