@@ -28,6 +28,7 @@
     "class-validator": "^0.9.1",
     "helmet": "^3.18.0",
     "pg": "^7.11.0",
+    "prisma-binding": "^2.3.13",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^2.6.3",
     "rxjs": "^6.5.2",
