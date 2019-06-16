@@ -16,5 +16,10 @@
     "object-literal-sort-keys": false,
     "experimental-decorators": true
   },
-  "rulesDirectory": []
+  "rulesDirectory": [],
+  "linterOptions": {
+    "exclude": [
+      "src/generated/**/*"
+    ]
+  }
 }

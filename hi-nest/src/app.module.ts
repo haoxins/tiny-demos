@@ -4,6 +4,7 @@ import { StoryModule } from './story/story.module'
 import { HeroModule } from './hero/hero.module'
 import { TopicModule } from './topic/topic.module'
 import { BindingModule } from './binding/binding.module'
+import { UserModule } from './user/user.module'
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { BindingModule } from './binding/binding.module'
     StoryModule,
     TopicModule,
     BindingModule,
+    UserModule,
   ],
 })
 export class AppModule {}
