@@ -2,177 +2,177 @@
 // Please don't change this file manually but run `prisma generate` to update it.
 // For more information, please read the docs: https://www.prisma.io/docs/prisma-client/
 
-import { DocumentNode } from 'graphql'
+import { DocumentNode } from "graphql";
 import {
   makePrismaClientClass,
   BaseClientOptions,
-  Model,
-} from 'prisma-client-lib'
-import { typeDefs } from './prisma-schema'
+  Model
+} from "prisma-client-lib";
+import { typeDefs } from "./prisma-schema";
 
 export type AtLeastOne<T, U = { [K in keyof T]: Pick<T, K> }> = Partial<T> &
-  U[keyof U]
+  U[keyof U];
 
-export type Maybe<T> = T | undefined | null
+export type Maybe<T> = T | undefined | null;
 
 export interface Exists {
-  hero: (where?: HeroWhereInput) => Promise<boolean>
-  story: (where?: StoryWhereInput) => Promise<boolean>
-  topic: (where?: TopicWhereInput) => Promise<boolean>
+  hero: (where?: HeroWhereInput) => Promise<boolean>;
+  story: (where?: StoryWhereInput) => Promise<boolean>;
+  topic: (where?: TopicWhereInput) => Promise<boolean>;
 }
 
 export interface Node {}
 
-export type FragmentableArray<T> = Promise<Array<T>> & Fragmentable
+export type FragmentableArray<T> = Promise<Array<T>> & Fragmentable;
 
 export interface Fragmentable {
-  $fragment<T>(fragment: string | DocumentNode): Promise<T>
+  $fragment<T>(fragment: string | DocumentNode): Promise<T>;
 }
 
 export interface Prisma {
-  $exists: Exists
+  $exists: Exists;
   $graphql: <T = any>(
     query: string,
-    variables?: { [key: string]: any },
-  ) => Promise<T>
+    variables?: { [key: string]: any }
+  ) => Promise<T>;
 
   /**
    * Queries
    */
 
-  hero: (where: HeroWhereUniqueInput) => HeroNullablePromise
+  hero: (where: HeroWhereUniqueInput) => HeroNullablePromise;
   heroes: (args?: {
-    where?: HeroWhereInput
-    orderBy?: HeroOrderByInput
-    skip?: Int
-    after?: String
-    before?: String
-    first?: Int
-    last?: Int
-  }) => FragmentableArray<Hero>
+    where?: HeroWhereInput;
+    orderBy?: HeroOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => FragmentableArray<Hero>;
   heroesConnection: (args?: {
-    where?: HeroWhereInput
-    orderBy?: HeroOrderByInput
-    skip?: Int
-    after?: String
-    before?: String
-    first?: Int
-    last?: Int
-  }) => HeroConnectionPromise
-  story: (where: StoryWhereUniqueInput) => StoryNullablePromise
+    where?: HeroWhereInput;
+    orderBy?: HeroOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => HeroConnectionPromise;
+  story: (where: StoryWhereUniqueInput) => StoryNullablePromise;
   stories: (args?: {
-    where?: StoryWhereInput
-    orderBy?: StoryOrderByInput
-    skip?: Int
-    after?: String
-    before?: String
-    first?: Int
-    last?: Int
-  }) => FragmentableArray<Story>
+    where?: StoryWhereInput;
+    orderBy?: StoryOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => FragmentableArray<Story>;
   storiesConnection: (args?: {
-    where?: StoryWhereInput
-    orderBy?: StoryOrderByInput
-    skip?: Int
-    after?: String
-    before?: String
-    first?: Int
-    last?: Int
-  }) => StoryConnectionPromise
-  topic: (where: TopicWhereUniqueInput) => TopicNullablePromise
+    where?: StoryWhereInput;
+    orderBy?: StoryOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => StoryConnectionPromise;
+  topic: (where: TopicWhereUniqueInput) => TopicNullablePromise;
   topics: (args?: {
-    where?: TopicWhereInput
-    orderBy?: TopicOrderByInput
-    skip?: Int
-    after?: String
-    before?: String
-    first?: Int
-    last?: Int
-  }) => FragmentableArray<Topic>
+    where?: TopicWhereInput;
+    orderBy?: TopicOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => FragmentableArray<Topic>;
   topicsConnection: (args?: {
-    where?: TopicWhereInput
-    orderBy?: TopicOrderByInput
-    skip?: Int
-    after?: String
-    before?: String
-    first?: Int
-    last?: Int
-  }) => TopicConnectionPromise
-  node: (args: { id: ID_Output }) => Node
+    where?: TopicWhereInput;
+    orderBy?: TopicOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => TopicConnectionPromise;
+  node: (args: { id: ID_Output }) => Node;
 
   /**
    * Mutations
    */
 
-  createHero: (data: HeroCreateInput) => HeroPromise
+  createHero: (data: HeroCreateInput) => HeroPromise;
   updateHero: (args: {
-    data: HeroUpdateInput
-    where: HeroWhereUniqueInput
-  }) => HeroPromise
+    data: HeroUpdateInput;
+    where: HeroWhereUniqueInput;
+  }) => HeroPromise;
   updateManyHeroes: (args: {
-    data: HeroUpdateManyMutationInput
-    where?: HeroWhereInput
-  }) => BatchPayloadPromise
+    data: HeroUpdateManyMutationInput;
+    where?: HeroWhereInput;
+  }) => BatchPayloadPromise;
   upsertHero: (args: {
-    where: HeroWhereUniqueInput
-    create: HeroCreateInput
-    update: HeroUpdateInput
-  }) => HeroPromise
-  deleteHero: (where: HeroWhereUniqueInput) => HeroPromise
-  deleteManyHeroes: (where?: HeroWhereInput) => BatchPayloadPromise
-  createStory: (data: StoryCreateInput) => StoryPromise
+    where: HeroWhereUniqueInput;
+    create: HeroCreateInput;
+    update: HeroUpdateInput;
+  }) => HeroPromise;
+  deleteHero: (where: HeroWhereUniqueInput) => HeroPromise;
+  deleteManyHeroes: (where?: HeroWhereInput) => BatchPayloadPromise;
+  createStory: (data: StoryCreateInput) => StoryPromise;
   updateStory: (args: {
-    data: StoryUpdateInput
-    where: StoryWhereUniqueInput
-  }) => StoryPromise
+    data: StoryUpdateInput;
+    where: StoryWhereUniqueInput;
+  }) => StoryPromise;
   updateManyStories: (args: {
-    data: StoryUpdateManyMutationInput
-    where?: StoryWhereInput
-  }) => BatchPayloadPromise
+    data: StoryUpdateManyMutationInput;
+    where?: StoryWhereInput;
+  }) => BatchPayloadPromise;
   upsertStory: (args: {
-    where: StoryWhereUniqueInput
-    create: StoryCreateInput
-    update: StoryUpdateInput
-  }) => StoryPromise
-  deleteStory: (where: StoryWhereUniqueInput) => StoryPromise
-  deleteManyStories: (where?: StoryWhereInput) => BatchPayloadPromise
-  createTopic: (data: TopicCreateInput) => TopicPromise
+    where: StoryWhereUniqueInput;
+    create: StoryCreateInput;
+    update: StoryUpdateInput;
+  }) => StoryPromise;
+  deleteStory: (where: StoryWhereUniqueInput) => StoryPromise;
+  deleteManyStories: (where?: StoryWhereInput) => BatchPayloadPromise;
+  createTopic: (data: TopicCreateInput) => TopicPromise;
   updateTopic: (args: {
-    data: TopicUpdateInput
-    where: TopicWhereUniqueInput
-  }) => TopicPromise
+    data: TopicUpdateInput;
+    where: TopicWhereUniqueInput;
+  }) => TopicPromise;
   updateManyTopics: (args: {
-    data: TopicUpdateManyMutationInput
-    where?: TopicWhereInput
-  }) => BatchPayloadPromise
+    data: TopicUpdateManyMutationInput;
+    where?: TopicWhereInput;
+  }) => BatchPayloadPromise;
   upsertTopic: (args: {
-    where: TopicWhereUniqueInput
-    create: TopicCreateInput
-    update: TopicUpdateInput
-  }) => TopicPromise
-  deleteTopic: (where: TopicWhereUniqueInput) => TopicPromise
-  deleteManyTopics: (where?: TopicWhereInput) => BatchPayloadPromise
+    where: TopicWhereUniqueInput;
+    create: TopicCreateInput;
+    update: TopicUpdateInput;
+  }) => TopicPromise;
+  deleteTopic: (where: TopicWhereUniqueInput) => TopicPromise;
+  deleteManyTopics: (where?: TopicWhereInput) => BatchPayloadPromise;
 
   /**
    * Subscriptions
    */
 
-  $subscribe: Subscription
+  $subscribe: Subscription;
 }
 
 export interface Subscription {
   hero: (
-    where?: HeroSubscriptionWhereInput,
-  ) => HeroSubscriptionPayloadSubscription
+    where?: HeroSubscriptionWhereInput
+  ) => HeroSubscriptionPayloadSubscription;
   story: (
-    where?: StorySubscriptionWhereInput,
-  ) => StorySubscriptionPayloadSubscription
+    where?: StorySubscriptionWhereInput
+  ) => StorySubscriptionPayloadSubscription;
   topic: (
-    where?: TopicSubscriptionWhereInput,
-  ) => TopicSubscriptionPayloadSubscription
+    where?: TopicSubscriptionWhereInput
+  ) => TopicSubscriptionPayloadSubscription;
 }
 
 export interface ClientConstructor<T> {
-  new (options?: BaseClientOptions): T
+  new (options?: BaseClientOptions): T;
 }
 
 /**
@@ -180,828 +180,828 @@ export interface ClientConstructor<T> {
  */
 
 export type HeroOrderByInput =
-  | 'id_ASC'
-  | 'id_DESC'
-  | 'name_ASC'
-  | 'name_DESC'
-  | 'createdAt_ASC'
-  | 'createdAt_DESC'
-  | 'updatedAt_ASC'
-  | 'updatedAt_DESC'
+  | "id_ASC"
+  | "id_DESC"
+  | "name_ASC"
+  | "name_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC"
+  | "updatedAt_ASC"
+  | "updatedAt_DESC";
 
 export type StoryOrderByInput =
-  | 'id_ASC'
-  | 'id_DESC'
-  | 'title_ASC'
-  | 'title_DESC'
-  | 'createdAt_ASC'
-  | 'createdAt_DESC'
-  | 'updatedAt_ASC'
-  | 'updatedAt_DESC'
+  | "id_ASC"
+  | "id_DESC"
+  | "title_ASC"
+  | "title_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC"
+  | "updatedAt_ASC"
+  | "updatedAt_DESC";
 
-export type MutationType = 'CREATED' | 'UPDATED' | 'DELETED'
+export type MutationType = "CREATED" | "UPDATED" | "DELETED";
 
-export type BindingType = 'HERO' | 'STORY' | 'TOPIC'
+export type BindingType = "HERO" | "STORY" | "TOPIC";
 
 export type TopicOrderByInput =
-  | 'id_ASC'
-  | 'id_DESC'
-  | 'title_ASC'
-  | 'title_DESC'
-  | 'sourceType_ASC'
-  | 'sourceType_DESC'
-  | 'source_ASC'
-  | 'source_DESC'
-  | 'targetType_ASC'
-  | 'targetType_DESC'
-  | 'target_ASC'
-  | 'target_DESC'
-  | 'createdAt_ASC'
-  | 'createdAt_DESC'
-  | 'updatedAt_ASC'
-  | 'updatedAt_DESC'
+  | "id_ASC"
+  | "id_DESC"
+  | "title_ASC"
+  | "title_DESC"
+  | "sourceType_ASC"
+  | "sourceType_DESC"
+  | "source_ASC"
+  | "source_DESC"
+  | "targetType_ASC"
+  | "targetType_DESC"
+  | "target_ASC"
+  | "target_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC"
+  | "updatedAt_ASC"
+  | "updatedAt_DESC";
 
 export type StoryWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>
-}>
+  id: Maybe<ID_Input>;
+}>;
 
 export interface HeroWhereInput {
-  id?: Maybe<ID_Input>
-  id_not?: Maybe<ID_Input>
-  id_in?: Maybe<ID_Input[] | ID_Input>
-  id_not_in?: Maybe<ID_Input[] | ID_Input>
-  id_lt?: Maybe<ID_Input>
-  id_lte?: Maybe<ID_Input>
-  id_gt?: Maybe<ID_Input>
-  id_gte?: Maybe<ID_Input>
-  id_contains?: Maybe<ID_Input>
-  id_not_contains?: Maybe<ID_Input>
-  id_starts_with?: Maybe<ID_Input>
-  id_not_starts_with?: Maybe<ID_Input>
-  id_ends_with?: Maybe<ID_Input>
-  id_not_ends_with?: Maybe<ID_Input>
-  name?: Maybe<String>
-  name_not?: Maybe<String>
-  name_in?: Maybe<String[] | String>
-  name_not_in?: Maybe<String[] | String>
-  name_lt?: Maybe<String>
-  name_lte?: Maybe<String>
-  name_gt?: Maybe<String>
-  name_gte?: Maybe<String>
-  name_contains?: Maybe<String>
-  name_not_contains?: Maybe<String>
-  name_starts_with?: Maybe<String>
-  name_not_starts_with?: Maybe<String>
-  name_ends_with?: Maybe<String>
-  name_not_ends_with?: Maybe<String>
-  createdAt?: Maybe<DateTimeInput>
-  createdAt_not?: Maybe<DateTimeInput>
-  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>
-  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>
-  createdAt_lt?: Maybe<DateTimeInput>
-  createdAt_lte?: Maybe<DateTimeInput>
-  createdAt_gt?: Maybe<DateTimeInput>
-  createdAt_gte?: Maybe<DateTimeInput>
-  updatedAt?: Maybe<DateTimeInput>
-  updatedAt_not?: Maybe<DateTimeInput>
-  updatedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>
-  updatedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>
-  updatedAt_lt?: Maybe<DateTimeInput>
-  updatedAt_lte?: Maybe<DateTimeInput>
-  updatedAt_gt?: Maybe<DateTimeInput>
-  updatedAt_gte?: Maybe<DateTimeInput>
-  AND?: Maybe<HeroWhereInput[] | HeroWhereInput>
-  OR?: Maybe<HeroWhereInput[] | HeroWhereInput>
-  NOT?: Maybe<HeroWhereInput[] | HeroWhereInput>
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  name?: Maybe<String>;
+  name_not?: Maybe<String>;
+  name_in?: Maybe<String[] | String>;
+  name_not_in?: Maybe<String[] | String>;
+  name_lt?: Maybe<String>;
+  name_lte?: Maybe<String>;
+  name_gt?: Maybe<String>;
+  name_gte?: Maybe<String>;
+  name_contains?: Maybe<String>;
+  name_not_contains?: Maybe<String>;
+  name_starts_with?: Maybe<String>;
+  name_not_starts_with?: Maybe<String>;
+  name_ends_with?: Maybe<String>;
+  name_not_ends_with?: Maybe<String>;
+  createdAt?: Maybe<DateTimeInput>;
+  createdAt_not?: Maybe<DateTimeInput>;
+  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_lt?: Maybe<DateTimeInput>;
+  createdAt_lte?: Maybe<DateTimeInput>;
+  createdAt_gt?: Maybe<DateTimeInput>;
+  createdAt_gte?: Maybe<DateTimeInput>;
+  updatedAt?: Maybe<DateTimeInput>;
+  updatedAt_not?: Maybe<DateTimeInput>;
+  updatedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_lt?: Maybe<DateTimeInput>;
+  updatedAt_lte?: Maybe<DateTimeInput>;
+  updatedAt_gt?: Maybe<DateTimeInput>;
+  updatedAt_gte?: Maybe<DateTimeInput>;
+  AND?: Maybe<HeroWhereInput[] | HeroWhereInput>;
+  OR?: Maybe<HeroWhereInput[] | HeroWhereInput>;
+  NOT?: Maybe<HeroWhereInput[] | HeroWhereInput>;
 }
 
 export type HeroWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>
-}>
+  id: Maybe<ID_Input>;
+}>;
 
 export interface HeroUpdateManyMutationInput {
-  name?: Maybe<String>
+  name?: Maybe<String>;
 }
 
 export interface HeroSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>
-  updatedFields_contains?: Maybe<String>
-  updatedFields_contains_every?: Maybe<String[] | String>
-  updatedFields_contains_some?: Maybe<String[] | String>
-  node?: Maybe<HeroWhereInput>
-  AND?: Maybe<HeroSubscriptionWhereInput[] | HeroSubscriptionWhereInput>
-  OR?: Maybe<HeroSubscriptionWhereInput[] | HeroSubscriptionWhereInput>
-  NOT?: Maybe<HeroSubscriptionWhereInput[] | HeroSubscriptionWhereInput>
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<HeroWhereInput>;
+  AND?: Maybe<HeroSubscriptionWhereInput[] | HeroSubscriptionWhereInput>;
+  OR?: Maybe<HeroSubscriptionWhereInput[] | HeroSubscriptionWhereInput>;
+  NOT?: Maybe<HeroSubscriptionWhereInput[] | HeroSubscriptionWhereInput>;
 }
 
 export interface HeroUpdateInput {
-  name?: Maybe<String>
+  name?: Maybe<String>;
 }
 
 export interface TopicUpdateInput {
-  title?: Maybe<String>
-  sourceType?: Maybe<BindingType>
-  source?: Maybe<Int>
-  targetType?: Maybe<BindingType>
-  target?: Maybe<Int>
+  title?: Maybe<String>;
+  sourceType?: Maybe<BindingType>;
+  source?: Maybe<Int>;
+  targetType?: Maybe<BindingType>;
+  target?: Maybe<Int>;
 }
 
 export interface HeroCreateInput {
-  id?: Maybe<ID_Input>
-  name: String
+  id?: Maybe<ID_Input>;
+  name: String;
 }
 
 export interface StoryUpdateManyMutationInput {
-  title?: Maybe<String>
+  title?: Maybe<String>;
 }
 
 export interface TopicSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>
-  updatedFields_contains?: Maybe<String>
-  updatedFields_contains_every?: Maybe<String[] | String>
-  updatedFields_contains_some?: Maybe<String[] | String>
-  node?: Maybe<TopicWhereInput>
-  AND?: Maybe<TopicSubscriptionWhereInput[] | TopicSubscriptionWhereInput>
-  OR?: Maybe<TopicSubscriptionWhereInput[] | TopicSubscriptionWhereInput>
-  NOT?: Maybe<TopicSubscriptionWhereInput[] | TopicSubscriptionWhereInput>
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<TopicWhereInput>;
+  AND?: Maybe<TopicSubscriptionWhereInput[] | TopicSubscriptionWhereInput>;
+  OR?: Maybe<TopicSubscriptionWhereInput[] | TopicSubscriptionWhereInput>;
+  NOT?: Maybe<TopicSubscriptionWhereInput[] | TopicSubscriptionWhereInput>;
 }
 
 export interface TopicWhereInput {
-  id?: Maybe<ID_Input>
-  id_not?: Maybe<ID_Input>
-  id_in?: Maybe<ID_Input[] | ID_Input>
-  id_not_in?: Maybe<ID_Input[] | ID_Input>
-  id_lt?: Maybe<ID_Input>
-  id_lte?: Maybe<ID_Input>
-  id_gt?: Maybe<ID_Input>
-  id_gte?: Maybe<ID_Input>
-  id_contains?: Maybe<ID_Input>
-  id_not_contains?: Maybe<ID_Input>
-  id_starts_with?: Maybe<ID_Input>
-  id_not_starts_with?: Maybe<ID_Input>
-  id_ends_with?: Maybe<ID_Input>
-  id_not_ends_with?: Maybe<ID_Input>
-  title?: Maybe<String>
-  title_not?: Maybe<String>
-  title_in?: Maybe<String[] | String>
-  title_not_in?: Maybe<String[] | String>
-  title_lt?: Maybe<String>
-  title_lte?: Maybe<String>
-  title_gt?: Maybe<String>
-  title_gte?: Maybe<String>
-  title_contains?: Maybe<String>
-  title_not_contains?: Maybe<String>
-  title_starts_with?: Maybe<String>
-  title_not_starts_with?: Maybe<String>
-  title_ends_with?: Maybe<String>
-  title_not_ends_with?: Maybe<String>
-  sourceType?: Maybe<BindingType>
-  sourceType_not?: Maybe<BindingType>
-  sourceType_in?: Maybe<BindingType[] | BindingType>
-  sourceType_not_in?: Maybe<BindingType[] | BindingType>
-  source?: Maybe<Int>
-  source_not?: Maybe<Int>
-  source_in?: Maybe<Int[] | Int>
-  source_not_in?: Maybe<Int[] | Int>
-  source_lt?: Maybe<Int>
-  source_lte?: Maybe<Int>
-  source_gt?: Maybe<Int>
-  source_gte?: Maybe<Int>
-  targetType?: Maybe<BindingType>
-  targetType_not?: Maybe<BindingType>
-  targetType_in?: Maybe<BindingType[] | BindingType>
-  targetType_not_in?: Maybe<BindingType[] | BindingType>
-  target?: Maybe<Int>
-  target_not?: Maybe<Int>
-  target_in?: Maybe<Int[] | Int>
-  target_not_in?: Maybe<Int[] | Int>
-  target_lt?: Maybe<Int>
-  target_lte?: Maybe<Int>
-  target_gt?: Maybe<Int>
-  target_gte?: Maybe<Int>
-  createdAt?: Maybe<DateTimeInput>
-  createdAt_not?: Maybe<DateTimeInput>
-  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>
-  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>
-  createdAt_lt?: Maybe<DateTimeInput>
-  createdAt_lte?: Maybe<DateTimeInput>
-  createdAt_gt?: Maybe<DateTimeInput>
-  createdAt_gte?: Maybe<DateTimeInput>
-  updatedAt?: Maybe<DateTimeInput>
-  updatedAt_not?: Maybe<DateTimeInput>
-  updatedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>
-  updatedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>
-  updatedAt_lt?: Maybe<DateTimeInput>
-  updatedAt_lte?: Maybe<DateTimeInput>
-  updatedAt_gt?: Maybe<DateTimeInput>
-  updatedAt_gte?: Maybe<DateTimeInput>
-  AND?: Maybe<TopicWhereInput[] | TopicWhereInput>
-  OR?: Maybe<TopicWhereInput[] | TopicWhereInput>
-  NOT?: Maybe<TopicWhereInput[] | TopicWhereInput>
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  title?: Maybe<String>;
+  title_not?: Maybe<String>;
+  title_in?: Maybe<String[] | String>;
+  title_not_in?: Maybe<String[] | String>;
+  title_lt?: Maybe<String>;
+  title_lte?: Maybe<String>;
+  title_gt?: Maybe<String>;
+  title_gte?: Maybe<String>;
+  title_contains?: Maybe<String>;
+  title_not_contains?: Maybe<String>;
+  title_starts_with?: Maybe<String>;
+  title_not_starts_with?: Maybe<String>;
+  title_ends_with?: Maybe<String>;
+  title_not_ends_with?: Maybe<String>;
+  sourceType?: Maybe<BindingType>;
+  sourceType_not?: Maybe<BindingType>;
+  sourceType_in?: Maybe<BindingType[] | BindingType>;
+  sourceType_not_in?: Maybe<BindingType[] | BindingType>;
+  source?: Maybe<Int>;
+  source_not?: Maybe<Int>;
+  source_in?: Maybe<Int[] | Int>;
+  source_not_in?: Maybe<Int[] | Int>;
+  source_lt?: Maybe<Int>;
+  source_lte?: Maybe<Int>;
+  source_gt?: Maybe<Int>;
+  source_gte?: Maybe<Int>;
+  targetType?: Maybe<BindingType>;
+  targetType_not?: Maybe<BindingType>;
+  targetType_in?: Maybe<BindingType[] | BindingType>;
+  targetType_not_in?: Maybe<BindingType[] | BindingType>;
+  target?: Maybe<Int>;
+  target_not?: Maybe<Int>;
+  target_in?: Maybe<Int[] | Int>;
+  target_not_in?: Maybe<Int[] | Int>;
+  target_lt?: Maybe<Int>;
+  target_lte?: Maybe<Int>;
+  target_gt?: Maybe<Int>;
+  target_gte?: Maybe<Int>;
+  createdAt?: Maybe<DateTimeInput>;
+  createdAt_not?: Maybe<DateTimeInput>;
+  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_lt?: Maybe<DateTimeInput>;
+  createdAt_lte?: Maybe<DateTimeInput>;
+  createdAt_gt?: Maybe<DateTimeInput>;
+  createdAt_gte?: Maybe<DateTimeInput>;
+  updatedAt?: Maybe<DateTimeInput>;
+  updatedAt_not?: Maybe<DateTimeInput>;
+  updatedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_lt?: Maybe<DateTimeInput>;
+  updatedAt_lte?: Maybe<DateTimeInput>;
+  updatedAt_gt?: Maybe<DateTimeInput>;
+  updatedAt_gte?: Maybe<DateTimeInput>;
+  AND?: Maybe<TopicWhereInput[] | TopicWhereInput>;
+  OR?: Maybe<TopicWhereInput[] | TopicWhereInput>;
+  NOT?: Maybe<TopicWhereInput[] | TopicWhereInput>;
 }
 
 export interface StorySubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>
-  updatedFields_contains?: Maybe<String>
-  updatedFields_contains_every?: Maybe<String[] | String>
-  updatedFields_contains_some?: Maybe<String[] | String>
-  node?: Maybe<StoryWhereInput>
-  AND?: Maybe<StorySubscriptionWhereInput[] | StorySubscriptionWhereInput>
-  OR?: Maybe<StorySubscriptionWhereInput[] | StorySubscriptionWhereInput>
-  NOT?: Maybe<StorySubscriptionWhereInput[] | StorySubscriptionWhereInput>
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<StoryWhereInput>;
+  AND?: Maybe<StorySubscriptionWhereInput[] | StorySubscriptionWhereInput>;
+  OR?: Maybe<StorySubscriptionWhereInput[] | StorySubscriptionWhereInput>;
+  NOT?: Maybe<StorySubscriptionWhereInput[] | StorySubscriptionWhereInput>;
 }
 
 export type TopicWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>
-}>
+  id: Maybe<ID_Input>;
+}>;
 
 export interface StoryCreateInput {
-  id?: Maybe<ID_Input>
-  title?: Maybe<String>
+  id?: Maybe<ID_Input>;
+  title?: Maybe<String>;
 }
 
 export interface StoryUpdateInput {
-  title?: Maybe<String>
+  title?: Maybe<String>;
 }
 
 export interface TopicCreateInput {
-  id?: Maybe<ID_Input>
-  title: String
-  sourceType: BindingType
-  source: Int
-  targetType: BindingType
-  target: Int
+  id?: Maybe<ID_Input>;
+  title: String;
+  sourceType: BindingType;
+  source: Int;
+  targetType: BindingType;
+  target: Int;
 }
 
 export interface TopicUpdateManyMutationInput {
-  title?: Maybe<String>
-  sourceType?: Maybe<BindingType>
-  source?: Maybe<Int>
-  targetType?: Maybe<BindingType>
-  target?: Maybe<Int>
+  title?: Maybe<String>;
+  sourceType?: Maybe<BindingType>;
+  source?: Maybe<Int>;
+  targetType?: Maybe<BindingType>;
+  target?: Maybe<Int>;
 }
 
 export interface StoryWhereInput {
-  id?: Maybe<ID_Input>
-  id_not?: Maybe<ID_Input>
-  id_in?: Maybe<ID_Input[] | ID_Input>
-  id_not_in?: Maybe<ID_Input[] | ID_Input>
-  id_lt?: Maybe<ID_Input>
-  id_lte?: Maybe<ID_Input>
-  id_gt?: Maybe<ID_Input>
-  id_gte?: Maybe<ID_Input>
-  id_contains?: Maybe<ID_Input>
-  id_not_contains?: Maybe<ID_Input>
-  id_starts_with?: Maybe<ID_Input>
-  id_not_starts_with?: Maybe<ID_Input>
-  id_ends_with?: Maybe<ID_Input>
-  id_not_ends_with?: Maybe<ID_Input>
-  title?: Maybe<String>
-  title_not?: Maybe<String>
-  title_in?: Maybe<String[] | String>
-  title_not_in?: Maybe<String[] | String>
-  title_lt?: Maybe<String>
-  title_lte?: Maybe<String>
-  title_gt?: Maybe<String>
-  title_gte?: Maybe<String>
-  title_contains?: Maybe<String>
-  title_not_contains?: Maybe<String>
-  title_starts_with?: Maybe<String>
-  title_not_starts_with?: Maybe<String>
-  title_ends_with?: Maybe<String>
-  title_not_ends_with?: Maybe<String>
-  createdAt?: Maybe<DateTimeInput>
-  createdAt_not?: Maybe<DateTimeInput>
-  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>
-  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>
-  createdAt_lt?: Maybe<DateTimeInput>
-  createdAt_lte?: Maybe<DateTimeInput>
-  createdAt_gt?: Maybe<DateTimeInput>
-  createdAt_gte?: Maybe<DateTimeInput>
-  updatedAt?: Maybe<DateTimeInput>
-  updatedAt_not?: Maybe<DateTimeInput>
-  updatedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>
-  updatedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>
-  updatedAt_lt?: Maybe<DateTimeInput>
-  updatedAt_lte?: Maybe<DateTimeInput>
-  updatedAt_gt?: Maybe<DateTimeInput>
-  updatedAt_gte?: Maybe<DateTimeInput>
-  AND?: Maybe<StoryWhereInput[] | StoryWhereInput>
-  OR?: Maybe<StoryWhereInput[] | StoryWhereInput>
-  NOT?: Maybe<StoryWhereInput[] | StoryWhereInput>
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  title?: Maybe<String>;
+  title_not?: Maybe<String>;
+  title_in?: Maybe<String[] | String>;
+  title_not_in?: Maybe<String[] | String>;
+  title_lt?: Maybe<String>;
+  title_lte?: Maybe<String>;
+  title_gt?: Maybe<String>;
+  title_gte?: Maybe<String>;
+  title_contains?: Maybe<String>;
+  title_not_contains?: Maybe<String>;
+  title_starts_with?: Maybe<String>;
+  title_not_starts_with?: Maybe<String>;
+  title_ends_with?: Maybe<String>;
+  title_not_ends_with?: Maybe<String>;
+  createdAt?: Maybe<DateTimeInput>;
+  createdAt_not?: Maybe<DateTimeInput>;
+  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_lt?: Maybe<DateTimeInput>;
+  createdAt_lte?: Maybe<DateTimeInput>;
+  createdAt_gt?: Maybe<DateTimeInput>;
+  createdAt_gte?: Maybe<DateTimeInput>;
+  updatedAt?: Maybe<DateTimeInput>;
+  updatedAt_not?: Maybe<DateTimeInput>;
+  updatedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_lt?: Maybe<DateTimeInput>;
+  updatedAt_lte?: Maybe<DateTimeInput>;
+  updatedAt_gt?: Maybe<DateTimeInput>;
+  updatedAt_gte?: Maybe<DateTimeInput>;
+  AND?: Maybe<StoryWhereInput[] | StoryWhereInput>;
+  OR?: Maybe<StoryWhereInput[] | StoryWhereInput>;
+  NOT?: Maybe<StoryWhereInput[] | StoryWhereInput>;
 }
 
 export interface NodeNode {
-  id: ID_Output
+  id: ID_Output;
 }
 
 export interface TopicConnection {
-  pageInfo: PageInfo
-  edges: TopicEdge[]
+  pageInfo: PageInfo;
+  edges: TopicEdge[];
 }
 
 export interface TopicConnectionPromise
   extends Promise<TopicConnection>,
     Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T
-  edges: <T = FragmentableArray<TopicEdge>>() => T
-  aggregate: <T = AggregateTopicPromise>() => T
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<TopicEdge>>() => T;
+  aggregate: <T = AggregateTopicPromise>() => T;
 }
 
 export interface TopicConnectionSubscription
   extends Promise<AsyncIterator<TopicConnection>>,
     Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T
-  edges: <T = Promise<AsyncIterator<TopicEdgeSubscription>>>() => T
-  aggregate: <T = AggregateTopicSubscription>() => T
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<TopicEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateTopicSubscription>() => T;
 }
 
 export interface AggregateHero {
-  count: Int
+  count: Int;
 }
 
 export interface AggregateHeroPromise
   extends Promise<AggregateHero>,
     Fragmentable {
-  count: () => Promise<Int>
+  count: () => Promise<Int>;
 }
 
 export interface AggregateHeroSubscription
   extends Promise<AsyncIterator<AggregateHero>>,
     Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>
+  count: () => Promise<AsyncIterator<Int>>;
 }
 
 export interface StorySubscriptionPayload {
-  mutation: MutationType
-  node: Story
-  updatedFields: String[]
-  previousValues: StoryPreviousValues
+  mutation: MutationType;
+  node: Story;
+  updatedFields: String[];
+  previousValues: StoryPreviousValues;
 }
 
 export interface StorySubscriptionPayloadPromise
   extends Promise<StorySubscriptionPayload>,
     Fragmentable {
-  mutation: () => Promise<MutationType>
-  node: <T = StoryPromise>() => T
-  updatedFields: () => Promise<String[]>
-  previousValues: <T = StoryPreviousValuesPromise>() => T
+  mutation: () => Promise<MutationType>;
+  node: <T = StoryPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = StoryPreviousValuesPromise>() => T;
 }
 
 export interface StorySubscriptionPayloadSubscription
   extends Promise<AsyncIterator<StorySubscriptionPayload>>,
     Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>
-  node: <T = StorySubscription>() => T
-  updatedFields: () => Promise<AsyncIterator<String[]>>
-  previousValues: <T = StoryPreviousValuesSubscription>() => T
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = StorySubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = StoryPreviousValuesSubscription>() => T;
 }
 
 export interface HeroEdge {
-  node: Hero
-  cursor: String
+  node: Hero;
+  cursor: String;
 }
 
 export interface HeroEdgePromise extends Promise<HeroEdge>, Fragmentable {
-  node: <T = HeroPromise>() => T
-  cursor: () => Promise<String>
+  node: <T = HeroPromise>() => T;
+  cursor: () => Promise<String>;
 }
 
 export interface HeroEdgeSubscription
   extends Promise<AsyncIterator<HeroEdge>>,
     Fragmentable {
-  node: <T = HeroSubscription>() => T
-  cursor: () => Promise<AsyncIterator<String>>
+  node: <T = HeroSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
 }
 
 export interface TopicPreviousValues {
-  id: ID_Output
-  title: String
-  sourceType: BindingType
-  source: Int
-  targetType: BindingType
-  target: Int
-  createdAt: DateTimeOutput
-  updatedAt: DateTimeOutput
+  id: ID_Output;
+  title: String;
+  sourceType: BindingType;
+  source: Int;
+  targetType: BindingType;
+  target: Int;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
 }
 
 export interface TopicPreviousValuesPromise
   extends Promise<TopicPreviousValues>,
     Fragmentable {
-  id: () => Promise<ID_Output>
-  title: () => Promise<String>
-  sourceType: () => Promise<BindingType>
-  source: () => Promise<Int>
-  targetType: () => Promise<BindingType>
-  target: () => Promise<Int>
-  createdAt: () => Promise<DateTimeOutput>
-  updatedAt: () => Promise<DateTimeOutput>
+  id: () => Promise<ID_Output>;
+  title: () => Promise<String>;
+  sourceType: () => Promise<BindingType>;
+  source: () => Promise<Int>;
+  targetType: () => Promise<BindingType>;
+  target: () => Promise<Int>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
 }
 
 export interface TopicPreviousValuesSubscription
   extends Promise<AsyncIterator<TopicPreviousValues>>,
     Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>
-  title: () => Promise<AsyncIterator<String>>
-  sourceType: () => Promise<AsyncIterator<BindingType>>
-  source: () => Promise<AsyncIterator<Int>>
-  targetType: () => Promise<AsyncIterator<BindingType>>
-  target: () => Promise<AsyncIterator<Int>>
-  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>
-  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  title: () => Promise<AsyncIterator<String>>;
+  sourceType: () => Promise<AsyncIterator<BindingType>>;
+  source: () => Promise<AsyncIterator<Int>>;
+  targetType: () => Promise<AsyncIterator<BindingType>>;
+  target: () => Promise<AsyncIterator<Int>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
 export interface TopicEdge {
-  node: Topic
-  cursor: String
+  node: Topic;
+  cursor: String;
 }
 
 export interface TopicEdgePromise extends Promise<TopicEdge>, Fragmentable {
-  node: <T = TopicPromise>() => T
-  cursor: () => Promise<String>
+  node: <T = TopicPromise>() => T;
+  cursor: () => Promise<String>;
 }
 
 export interface TopicEdgeSubscription
   extends Promise<AsyncIterator<TopicEdge>>,
     Fragmentable {
-  node: <T = TopicSubscription>() => T
-  cursor: () => Promise<AsyncIterator<String>>
+  node: <T = TopicSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
 }
 
 export interface Topic {
-  id: ID_Output
-  title: String
-  sourceType: BindingType
-  source: Int
-  targetType: BindingType
-  target: Int
-  createdAt: DateTimeOutput
-  updatedAt: DateTimeOutput
+  id: ID_Output;
+  title: String;
+  sourceType: BindingType;
+  source: Int;
+  targetType: BindingType;
+  target: Int;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
 }
 
 export interface TopicPromise extends Promise<Topic>, Fragmentable {
-  id: () => Promise<ID_Output>
-  title: () => Promise<String>
-  sourceType: () => Promise<BindingType>
-  source: () => Promise<Int>
-  targetType: () => Promise<BindingType>
-  target: () => Promise<Int>
-  createdAt: () => Promise<DateTimeOutput>
-  updatedAt: () => Promise<DateTimeOutput>
+  id: () => Promise<ID_Output>;
+  title: () => Promise<String>;
+  sourceType: () => Promise<BindingType>;
+  source: () => Promise<Int>;
+  targetType: () => Promise<BindingType>;
+  target: () => Promise<Int>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
 }
 
 export interface TopicSubscription
   extends Promise<AsyncIterator<Topic>>,
     Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>
-  title: () => Promise<AsyncIterator<String>>
-  sourceType: () => Promise<AsyncIterator<BindingType>>
-  source: () => Promise<AsyncIterator<Int>>
-  targetType: () => Promise<AsyncIterator<BindingType>>
-  target: () => Promise<AsyncIterator<Int>>
-  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>
-  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  title: () => Promise<AsyncIterator<String>>;
+  sourceType: () => Promise<AsyncIterator<BindingType>>;
+  source: () => Promise<AsyncIterator<Int>>;
+  targetType: () => Promise<AsyncIterator<BindingType>>;
+  target: () => Promise<AsyncIterator<Int>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
 export interface TopicNullablePromise
   extends Promise<Topic | null>,
     Fragmentable {
-  id: () => Promise<ID_Output>
-  title: () => Promise<String>
-  sourceType: () => Promise<BindingType>
-  source: () => Promise<Int>
-  targetType: () => Promise<BindingType>
-  target: () => Promise<Int>
-  createdAt: () => Promise<DateTimeOutput>
-  updatedAt: () => Promise<DateTimeOutput>
+  id: () => Promise<ID_Output>;
+  title: () => Promise<String>;
+  sourceType: () => Promise<BindingType>;
+  source: () => Promise<Int>;
+  targetType: () => Promise<BindingType>;
+  target: () => Promise<Int>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
 }
 
 export interface PageInfo {
-  hasNextPage: Boolean
-  hasPreviousPage: Boolean
-  startCursor?: String
-  endCursor?: String
+  hasNextPage: Boolean;
+  hasPreviousPage: Boolean;
+  startCursor?: String;
+  endCursor?: String;
 }
 
 export interface PageInfoPromise extends Promise<PageInfo>, Fragmentable {
-  hasNextPage: () => Promise<Boolean>
-  hasPreviousPage: () => Promise<Boolean>
-  startCursor: () => Promise<String>
-  endCursor: () => Promise<String>
+  hasNextPage: () => Promise<Boolean>;
+  hasPreviousPage: () => Promise<Boolean>;
+  startCursor: () => Promise<String>;
+  endCursor: () => Promise<String>;
 }
 
 export interface PageInfoSubscription
   extends Promise<AsyncIterator<PageInfo>>,
     Fragmentable {
-  hasNextPage: () => Promise<AsyncIterator<Boolean>>
-  hasPreviousPage: () => Promise<AsyncIterator<Boolean>>
-  startCursor: () => Promise<AsyncIterator<String>>
-  endCursor: () => Promise<AsyncIterator<String>>
+  hasNextPage: () => Promise<AsyncIterator<Boolean>>;
+  hasPreviousPage: () => Promise<AsyncIterator<Boolean>>;
+  startCursor: () => Promise<AsyncIterator<String>>;
+  endCursor: () => Promise<AsyncIterator<String>>;
 }
 
 export interface StoryEdge {
-  node: Story
-  cursor: String
+  node: Story;
+  cursor: String;
 }
 
 export interface StoryEdgePromise extends Promise<StoryEdge>, Fragmentable {
-  node: <T = StoryPromise>() => T
-  cursor: () => Promise<String>
+  node: <T = StoryPromise>() => T;
+  cursor: () => Promise<String>;
 }
 
 export interface StoryEdgeSubscription
   extends Promise<AsyncIterator<StoryEdge>>,
     Fragmentable {
-  node: <T = StorySubscription>() => T
-  cursor: () => Promise<AsyncIterator<String>>
+  node: <T = StorySubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
 }
 
 export interface HeroConnection {
-  pageInfo: PageInfo
-  edges: HeroEdge[]
+  pageInfo: PageInfo;
+  edges: HeroEdge[];
 }
 
 export interface HeroConnectionPromise
   extends Promise<HeroConnection>,
     Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T
-  edges: <T = FragmentableArray<HeroEdge>>() => T
-  aggregate: <T = AggregateHeroPromise>() => T
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<HeroEdge>>() => T;
+  aggregate: <T = AggregateHeroPromise>() => T;
 }
 
 export interface HeroConnectionSubscription
   extends Promise<AsyncIterator<HeroConnection>>,
     Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T
-  edges: <T = Promise<AsyncIterator<HeroEdgeSubscription>>>() => T
-  aggregate: <T = AggregateHeroSubscription>() => T
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<HeroEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateHeroSubscription>() => T;
 }
 
 export interface BatchPayload {
-  count: Long
+  count: Long;
 }
 
 export interface BatchPayloadPromise
   extends Promise<BatchPayload>,
     Fragmentable {
-  count: () => Promise<Long>
+  count: () => Promise<Long>;
 }
 
 export interface BatchPayloadSubscription
   extends Promise<AsyncIterator<BatchPayload>>,
     Fragmentable {
-  count: () => Promise<AsyncIterator<Long>>
+  count: () => Promise<AsyncIterator<Long>>;
 }
 
 export interface Story {
-  id: ID_Output
-  title?: String
-  createdAt: DateTimeOutput
-  updatedAt: DateTimeOutput
+  id: ID_Output;
+  title?: String;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
 }
 
 export interface StoryPromise extends Promise<Story>, Fragmentable {
-  id: () => Promise<ID_Output>
-  title: () => Promise<String>
-  createdAt: () => Promise<DateTimeOutput>
-  updatedAt: () => Promise<DateTimeOutput>
+  id: () => Promise<ID_Output>;
+  title: () => Promise<String>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
 }
 
 export interface StorySubscription
   extends Promise<AsyncIterator<Story>>,
     Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>
-  title: () => Promise<AsyncIterator<String>>
-  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>
-  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  title: () => Promise<AsyncIterator<String>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
 export interface StoryNullablePromise
   extends Promise<Story | null>,
     Fragmentable {
-  id: () => Promise<ID_Output>
-  title: () => Promise<String>
-  createdAt: () => Promise<DateTimeOutput>
-  updatedAt: () => Promise<DateTimeOutput>
+  id: () => Promise<ID_Output>;
+  title: () => Promise<String>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
 }
 
 export interface HeroPreviousValues {
-  id: ID_Output
-  name: String
-  createdAt: DateTimeOutput
-  updatedAt: DateTimeOutput
+  id: ID_Output;
+  name: String;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
 }
 
 export interface HeroPreviousValuesPromise
   extends Promise<HeroPreviousValues>,
     Fragmentable {
-  id: () => Promise<ID_Output>
-  name: () => Promise<String>
-  createdAt: () => Promise<DateTimeOutput>
-  updatedAt: () => Promise<DateTimeOutput>
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
 }
 
 export interface HeroPreviousValuesSubscription
   extends Promise<AsyncIterator<HeroPreviousValues>>,
     Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>
-  name: () => Promise<AsyncIterator<String>>
-  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>
-  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  name: () => Promise<AsyncIterator<String>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
 export interface HeroSubscriptionPayload {
-  mutation: MutationType
-  node: Hero
-  updatedFields: String[]
-  previousValues: HeroPreviousValues
+  mutation: MutationType;
+  node: Hero;
+  updatedFields: String[];
+  previousValues: HeroPreviousValues;
 }
 
 export interface HeroSubscriptionPayloadPromise
   extends Promise<HeroSubscriptionPayload>,
     Fragmentable {
-  mutation: () => Promise<MutationType>
-  node: <T = HeroPromise>() => T
-  updatedFields: () => Promise<String[]>
-  previousValues: <T = HeroPreviousValuesPromise>() => T
+  mutation: () => Promise<MutationType>;
+  node: <T = HeroPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = HeroPreviousValuesPromise>() => T;
 }
 
 export interface HeroSubscriptionPayloadSubscription
   extends Promise<AsyncIterator<HeroSubscriptionPayload>>,
     Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>
-  node: <T = HeroSubscription>() => T
-  updatedFields: () => Promise<AsyncIterator<String[]>>
-  previousValues: <T = HeroPreviousValuesSubscription>() => T
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = HeroSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = HeroPreviousValuesSubscription>() => T;
 }
 
 export interface StoryPreviousValues {
-  id: ID_Output
-  title?: String
-  createdAt: DateTimeOutput
-  updatedAt: DateTimeOutput
+  id: ID_Output;
+  title?: String;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
 }
 
 export interface StoryPreviousValuesPromise
   extends Promise<StoryPreviousValues>,
     Fragmentable {
-  id: () => Promise<ID_Output>
-  title: () => Promise<String>
-  createdAt: () => Promise<DateTimeOutput>
-  updatedAt: () => Promise<DateTimeOutput>
+  id: () => Promise<ID_Output>;
+  title: () => Promise<String>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
 }
 
 export interface StoryPreviousValuesSubscription
   extends Promise<AsyncIterator<StoryPreviousValues>>,
     Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>
-  title: () => Promise<AsyncIterator<String>>
-  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>
-  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  title: () => Promise<AsyncIterator<String>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
 export interface Hero {
-  id: ID_Output
-  name: String
-  createdAt: DateTimeOutput
-  updatedAt: DateTimeOutput
+  id: ID_Output;
+  name: String;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
 }
 
 export interface HeroPromise extends Promise<Hero>, Fragmentable {
-  id: () => Promise<ID_Output>
-  name: () => Promise<String>
-  createdAt: () => Promise<DateTimeOutput>
-  updatedAt: () => Promise<DateTimeOutput>
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
 }
 
 export interface HeroSubscription
   extends Promise<AsyncIterator<Hero>>,
     Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>
-  name: () => Promise<AsyncIterator<String>>
-  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>
-  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  name: () => Promise<AsyncIterator<String>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
 export interface HeroNullablePromise
   extends Promise<Hero | null>,
     Fragmentable {
-  id: () => Promise<ID_Output>
-  name: () => Promise<String>
-  createdAt: () => Promise<DateTimeOutput>
-  updatedAt: () => Promise<DateTimeOutput>
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
 }
 
 export interface AggregateTopic {
-  count: Int
+  count: Int;
 }
 
 export interface AggregateTopicPromise
   extends Promise<AggregateTopic>,
     Fragmentable {
-  count: () => Promise<Int>
+  count: () => Promise<Int>;
 }
 
 export interface AggregateTopicSubscription
   extends Promise<AsyncIterator<AggregateTopic>>,
     Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>
+  count: () => Promise<AsyncIterator<Int>>;
 }
 
 export interface TopicSubscriptionPayload {
-  mutation: MutationType
-  node: Topic
-  updatedFields: String[]
-  previousValues: TopicPreviousValues
+  mutation: MutationType;
+  node: Topic;
+  updatedFields: String[];
+  previousValues: TopicPreviousValues;
 }
 
 export interface TopicSubscriptionPayloadPromise
   extends Promise<TopicSubscriptionPayload>,
     Fragmentable {
-  mutation: () => Promise<MutationType>
-  node: <T = TopicPromise>() => T
-  updatedFields: () => Promise<String[]>
-  previousValues: <T = TopicPreviousValuesPromise>() => T
+  mutation: () => Promise<MutationType>;
+  node: <T = TopicPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = TopicPreviousValuesPromise>() => T;
 }
 
 export interface TopicSubscriptionPayloadSubscription
   extends Promise<AsyncIterator<TopicSubscriptionPayload>>,
     Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>
-  node: <T = TopicSubscription>() => T
-  updatedFields: () => Promise<AsyncIterator<String[]>>
-  previousValues: <T = TopicPreviousValuesSubscription>() => T
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = TopicSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = TopicPreviousValuesSubscription>() => T;
 }
 
 export interface StoryConnection {
-  pageInfo: PageInfo
-  edges: StoryEdge[]
+  pageInfo: PageInfo;
+  edges: StoryEdge[];
 }
 
 export interface StoryConnectionPromise
   extends Promise<StoryConnection>,
     Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T
-  edges: <T = FragmentableArray<StoryEdge>>() => T
-  aggregate: <T = AggregateStoryPromise>() => T
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<StoryEdge>>() => T;
+  aggregate: <T = AggregateStoryPromise>() => T;
 }
 
 export interface StoryConnectionSubscription
   extends Promise<AsyncIterator<StoryConnection>>,
     Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T
-  edges: <T = Promise<AsyncIterator<StoryEdgeSubscription>>>() => T
-  aggregate: <T = AggregateStorySubscription>() => T
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<StoryEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateStorySubscription>() => T;
 }
 
 export interface AggregateStory {
-  count: Int
+  count: Int;
 }
 
 export interface AggregateStoryPromise
   extends Promise<AggregateStory>,
     Fragmentable {
-  count: () => Promise<Int>
+  count: () => Promise<Int>;
 }
 
 export interface AggregateStorySubscription
   extends Promise<AsyncIterator<AggregateStory>>,
     Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>
+  count: () => Promise<AsyncIterator<Int>>;
 }
 
 /*
 The `Boolean` scalar type represents `true` or `false`.
 */
-export type Boolean = boolean
+export type Boolean = boolean;
 
 /*
 The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"4"`) or integer (such as `4`) input value will be accepted as an ID.
 */
-export type ID_Input = string | number
-export type ID_Output = string
+export type ID_Input = string | number;
+export type ID_Output = string;
 
-export type Long = string
+export type Long = string;
 
 /*
 The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. 
 */
-export type Int = number
+export type Int = number;
 
 /*
 DateTime scalar input type, allowing Date
 */
-export type DateTimeInput = Date | string
+export type DateTimeInput = Date | string;
 
 /*
 DateTime scalar output type, which is always a string
 */
-export type DateTimeOutput = string
+export type DateTimeOutput = string;
 
 /*
 The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
 */
-export type String = string
+export type String = string;
 
 /**
  * Model Metadata
@@ -1009,22 +1009,22 @@ export type String = string
 
 export const models: Model[] = [
   {
-    name: 'BindingType',
-    embedded: false,
+    name: "BindingType",
+    embedded: false
   },
   {
-    name: 'Topic',
-    embedded: false,
+    name: "Topic",
+    embedded: false
   },
   {
-    name: 'Story',
-    embedded: false,
+    name: "Story",
+    embedded: false
   },
   {
-    name: 'Hero',
-    embedded: false,
-  },
-]
+    name: "Hero",
+    embedded: false
+  }
+];
 
 /**
  * Type Defs
@@ -1033,6 +1033,6 @@ export const models: Model[] = [
 export const Prisma = makePrismaClientClass<ClientConstructor<Prisma>>({
   typeDefs,
   models,
-  endpoint: `http://localhost:4466`,
-})
-export const prisma = new Prisma()
+  endpoint: `http://localhost:4466`
+});
+export const prisma = new Prisma();

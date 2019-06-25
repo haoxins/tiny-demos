@@ -4,6 +4,8 @@
 ## Running the app
 
 ```bash
+prisma deploy
+
 # development
 $ npm run start
 

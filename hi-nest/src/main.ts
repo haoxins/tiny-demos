@@ -8,6 +8,7 @@ async function bootstrap() {
 
   app.use(helmet())
 
+  console.info('Listening on: 3000')
   await app.listen(3000)
 }
 bootstrap()
