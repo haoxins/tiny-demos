@@ -4,10 +4,8 @@ import { prisma } from '../generated/prisma-client'
 
 @Controller('stories')
 export class StoryController {
-  constructor(private readonly storyService: StoryService) {}
-
   @Get()
-  async getStories(): Promise<Story[]> {
-    return await this.storyService.find()
+  async getStories(): Promise<any[]> {
+    return await prisma.stories()
   }
 }
