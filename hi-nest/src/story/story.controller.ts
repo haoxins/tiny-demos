@@ -1,7 +1,6 @@
 import { Controller, Get } from '@nestjs/common'
 
-import { StoryService } from './story.service'
-import { Story } from './story.entity'
+import { prisma } from '../generated/prisma-client'
 
 @Controller('stories')
 export class StoryController {

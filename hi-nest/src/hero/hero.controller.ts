@@ -1,6 +1,6 @@
 import { Controller } from '@nestjs/common'
 
-import { HeroService } from './hero.service'
+import { prisma } from '../generated/prisma-client'
 
 @Controller('heroes')
 export class HeroController {

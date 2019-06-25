@@ -5,11 +5,6 @@ import { TopicModule } from './topic/topic.module'
 import { BindingModule } from './binding/binding.module'
 
 @Module({
-  imports: [
-    HeroModule,
-    StoryModule,
-    TopicModule,
-    BindingModule,
-  ],
+  imports: [HeroModule, StoryModule, TopicModule, BindingModule],
 })
 export class AppModule {}

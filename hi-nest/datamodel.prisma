@@ -30,7 +30,7 @@ type Topic {
 type Story {
   id: ID! @id
 
-  title: string
+  title: String
 
   createdAt: DateTime! @createdAt
 
