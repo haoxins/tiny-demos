@@ -1,4 +1,3 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm'
 
 import { MaxLength } from 'class-validator'
 
