@@ -1,0 +1,4 @@
+datasource db {
+  provider = "postgresql"
+  url      = "postgresql://prisma2:prisma2@localhost:8300/prisma2?schema=public"
+}
