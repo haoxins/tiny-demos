@@ -1,0 +1,14 @@
+{
+  "name": "hi-prisma2",
+  "version": "1.0.0",
+  "main": "main.ts",
+  "scripts": {
+    "start": "ts-node main.ts",
+    "postinstall": "prisma2 generate"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "ts-node": "^8.3.0",
+    "typescript": "^3.5.3"
+  }
+}
