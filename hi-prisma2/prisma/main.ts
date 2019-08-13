@@ -8,7 +8,10 @@ async function main() {
   const newUser = await photon.users.create({
     data: {
       name: "Alice",
-      email: `alice_${Math.random()}@prisma.io`
+      email: `alice_${Math.random()}@prisma.io`,
+      posts: {
+        create: [{ title: "Hello Prisma 2" }]
+      }
     }
   });
   console.log(newUser);
@@ -17,13 +20,12 @@ async function main() {
   console.log(allUsers);
 
   const newPost = await photon.posts.create({
-    data: { title: 'Hello Prisma 2' }
-  })
-  console.log(newPost)
+    data: { title: "Hello Prisma 2" }
+  });
+  console.log(newPost);
 
-  const allPosts = await photon.posts.findMany()
-  console.log(allPosts)
-
+  const allPosts = await photon.posts.findMany();
+  console.log(allPosts);
 
   await photon.disconnect();
 }
