@@ -1,9 +1,12 @@
 .DS_Store
 
-npm-debug.log
-node_modules
-
 target
 Cargo.lock
 
 __pycache__
+
+build
+.gradle
+.idea
+
+node_modules
