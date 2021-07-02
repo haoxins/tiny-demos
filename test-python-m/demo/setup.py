@@ -1,15 +1,6 @@
-from setuptools import find_packages, setup
+#!/usr/bin/env python3
 
-setup(
-    name="hi",
-    packages=find_packages(include=["hi"]),
-    version="0.1.2",
-    author="haoxin",
-    author_email="",
-    description="",
-    url="",
-    license="MIT",
-    platforms=["Linux"],
-    install_requires=[],
-    setup_requires=[],
-)
+from setuptools import setup
+
+if __name__ == "__main__":
+  setup()
