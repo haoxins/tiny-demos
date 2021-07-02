@@ -1,4 +1,7 @@
 #!/usr/bin/env zsh
 
-python3 setup.py sdist bdist_wheel
+# pip install -q build
+
+python -m build
+
 rm -r build
