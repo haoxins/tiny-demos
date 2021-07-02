@@ -1,7 +1,5 @@
 #!/usr/bin/env zsh
 
-# pip install -q build
+rm -r dist
 
-python -m build
-
-rm -r build
+poetry build

@@ -1,1 +1,0 @@
-hi @ file:///Users/xin.hao/github/haoxins/tiny-demos/test-python-m/demo/dist/hi-0.1.2-py3-none-any.whl
