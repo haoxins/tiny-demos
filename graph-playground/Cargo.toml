@@ -1,5 +1,5 @@
 [package]
-name = "randomized-algorithm"
+name = "graph-playground"
 version = "0.1.0"
 edition = "2018"
 
