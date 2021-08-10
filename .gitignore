@@ -5,8 +5,8 @@ Cargo.lock
 
 __pycache__
 
-build
 .gradle
 .idea
+build
 
 node_modules
