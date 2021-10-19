@@ -4,11 +4,16 @@ version = "0.1.0"
 description = "Python demo: gRPC and Avro"
 authors = ["Hao Xin <haoxinst@gmail.com>"]
 
+[tool.poetry.scripts]
+main = "grpcdemo.main:main"
+
 [tool.poetry.dependencies]
 python = "^3.9"
+fastavro="^1.4"
 
 [tool.poetry.dev-dependencies]
 grpcio-tools="^1.41"
+black="^21.9b0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
