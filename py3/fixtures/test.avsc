@@ -1,0 +1,17 @@
+{
+  "type" : "record",
+  "name" : "test",
+  "fields" : [{
+    "name" : "feat1",
+    "type" : [ "null", "long" ]
+  }, {
+    "name" : "feat2",
+    "type" : [ "null", "long" ]
+  }, {
+    "name" : "feat3",
+    "type" : [ "null", "long" ]
+  }, {
+    "name" : "label",
+    "type" : [ "null", "long" ]
+  }]
+}
