@@ -4,9 +4,5 @@ target
 Cargo.lock
 
 __pycache__
-
-.gradle
-.idea
-build
-
-node_modules
+dist
+.venv
