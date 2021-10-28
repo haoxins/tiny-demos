@@ -4,7 +4,7 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-diesel = "1.4"
+sea-orm = "0.3"
 prost = "0.9"
 rkyv = "0.7"
 tonic = "0.6"
