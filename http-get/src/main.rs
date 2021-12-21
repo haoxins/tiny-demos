@@ -1,14 +1,13 @@
 use std::error::Error;
-use std::io;
 
 async fn http_get(url: &str) -> Result<(), Box<dyn Error>> {
-    let mut resp = reqwest::get(url).await?;
+    let resp = reqwest::get(url).await?;
     if !resp.status().is_success() {
         Err(format!("{}", resp.status()))?;
     }
 
-    let stdout = io::stdout();
-    io::copy(&mut resp, &mut stdout.lock())?;
+    let text = resp.text().await?;
+    println!("body: {}", text);
 
     Ok(())
 }
@@ -24,7 +23,7 @@ async fn main() {
     let url = &args[1];
     println!("The request URL is {}", url);
 
-    if let Err(err) = http_get(url) {
+    if let Err(err) = http_get(url).await {
         eprintln!("error: {}", err);
     }
 }
