@@ -1,8 +1,6 @@
 mod my_ascii {
     #[derive(Debug, Eq, PartialEq)]
-    pub struct Ascii(
-        Vec<u8>,
-    );
+    pub struct Ascii(Vec<u8>);
 
     impl Ascii {
         pub fn from_bytes(bytes: Vec<u8>) -> Result<Ascii, NotAsciiError> {
@@ -23,23 +21,12 @@ mod my_ascii {
     }
 
     impl Ascii {
-        /// Construct an `Ascii` value from `bytes`, without checking
-        /// whether `bytes` actually contains well-formed ASCII.
-        ///
-        /// This constructor is infallible, and returns an `Ascii` directly,
-        /// rather than a `Result<Ascii, NotAsciiError>` as the `from_bytes`
-        /// constructor does.
-        ///
-        /// # Safety
-        ///
-        /// The caller must ensure that `bytes` contains only ASCII
-        /// characters: bytes no greater than 0x7f. Otherwise, the effect is
-        /// undefined.
         pub unsafe fn from_bytes_unchecked(bytes: Vec<u8>) -> Ascii {
             Ascii(bytes)
         }
     }
 }
+
 #[test]
 fn good_ascii() {
     use my_ascii::Ascii;
