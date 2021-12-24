@@ -1,10 +1,9 @@
-#![warn(rust_2018_idioms)]
 #![allow(elided_lifetimes_in_paths)]
 
 /// A first-in, first-out queue of characters.
 pub struct Queue {
     older: Vec<char>,   // older elements, eldest last.
-    younger: Vec<char>  // younger elements, youngest last.
+    younger: Vec<char>, // younger elements, youngest last.
 }
 
 impl Queue {
@@ -36,7 +35,10 @@ impl Queue {
 
 #[test]
 fn test_push_pop() {
-    let mut q = Queue { older: Vec::new(), younger: Vec::new() };
+    let mut q = Queue {
+        older: Vec::new(),
+        younger: Vec::new(),
+    };
 
     q.push('0');
     q.push('1');
@@ -61,7 +63,10 @@ impl Queue {
 
 #[test]
 fn test_is_empty() {
-    let mut q = Queue { older: Vec::new(), younger: Vec::new() };
+    let mut q = Queue {
+        older: Vec::new(),
+        younger: Vec::new(),
+    };
 
     assert!(q.is_empty());
     q.push('☉');
@@ -78,7 +83,10 @@ impl Queue {
 
 #[test]
 fn test_split() {
-    let mut q = Queue { older: Vec::new(), younger: Vec::new() };
+    let mut q = Queue {
+        older: Vec::new(),
+        younger: Vec::new(),
+    };
 
     q.push('P');
     q.push('D');
@@ -93,7 +101,10 @@ fn test_split() {
 
 impl Queue {
     pub fn new() -> Queue {
-        Queue { older: Vec::new(), younger: Vec::new() }
+        Queue {
+            older: Vec::new(),
+            younger: Vec::new(),
+        }
     }
 }
 
