@@ -1,0 +1,7 @@
+[package]
+name = "wasm-proxy-filter"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+proxy-wasm = "0.1.4"
