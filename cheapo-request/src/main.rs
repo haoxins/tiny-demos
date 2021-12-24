@@ -16,10 +16,9 @@ async fn cheapo_request(host: &str, port: u16, path: &str)
     Ok(response)
 }
 
-fn main() -> std::io::Result<()> {
-    use async_std::task;
-
-    let response = task::block_on(cheapo_request("baidu.com", 80, "/"))?;
+#[tokio::main]
+async fn main() -> std::io::Result<()> {
+    let response = cheapo_request("baidu.com", 80, "/").await?;
     println!("{}", response);
     Ok(())
 }
