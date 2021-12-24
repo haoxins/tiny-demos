@@ -26,29 +26,9 @@ mod my_ascii {
         }
     }
 }
-
-#[test]
-fn good_ascii() {
-    use my_ascii::Ascii;
-
     let bytes: Vec<u8> = b"ASCII and ye shall receive".to_vec();
-
     let ascii: Ascii = Ascii::from_bytes(bytes).unwrap();
-
     let string = String::from(ascii);
-
-    assert_eq!(string, "ASCII and ye shall receive");
-}
-
-#[test]
-fn bad_ascii() {
-    use my_ascii::Ascii;
-
     let bytes = vec![0xf7, 0xbf, 0xbf, 0xbf];
-
     let ascii = unsafe { Ascii::from_bytes_unchecked(bytes) };
-
     let bogus: String = ascii.into();
-
-    assert_eq!(bogus.chars().next().unwrap() as u32, 0x1fffff);
-}
