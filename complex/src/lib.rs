@@ -1,5 +1,3 @@
-//! Complex number examples.
-//!
 //! The chapter presents several different variations on how one might define
 //! arithmetic on a generic `Complex` type, so what we have here are a bunch of
 //! isolated modules, each of which defines its own `Complex` type in its own
@@ -71,8 +69,7 @@ mod first_cut {
         type Output = Self;
         fn mul(self, rhs: Self) -> Self {
             Complex {
-                re: self.re.clone() * rhs.re.clone()
-                    - (self.im.clone() * rhs.im.clone()),
+                re: self.re.clone() * rhs.re.clone() - (self.im.clone() * rhs.im.clone()),
                 im: self.im * rhs.re + self.re * rhs.im,
             }
         }
@@ -215,9 +212,15 @@ mod formatting {
     #[test]
     fn complex() {
         #[derive(Copy, Clone, Debug)]
-        struct Complex { re: f64, im: f64 }
+        struct Complex {
+            re: f64,
+            im: f64,
+        }
 
-        let third = Complex { re: -0.5, im: f64::sqrt(0.75) };
+        let third = Complex {
+            re: -0.5,
+            im: f64::sqrt(0.75),
+        };
         println!("{:?}", third);
 
         use std::fmt;
@@ -229,19 +232,26 @@ mod formatting {
             }
         }
 
-        let one_twenty = Complex { re: -0.5, im: 0.866 };
-        assert_eq!(format!("{}", one_twenty),
-                   "-0.5 + 0.866i");
+        let one_twenty = Complex {
+            re: -0.5,
+            im: 0.866,
+        };
+        assert_eq!(format!("{}", one_twenty), "-0.5 + 0.866i");
 
-        let two_forty = Complex { re: -0.5, im: -0.866 };
-        assert_eq!(format!("{}", two_forty),
-                   "-0.5 - 0.866i");
+        let two_forty = Complex {
+            re: -0.5,
+            im: -0.866,
+        };
+        assert_eq!(format!("{}", two_forty), "-0.5 - 0.866i");
     }
 
     #[test]
     fn complex_fancy() {
         #[derive(Copy, Clone, Debug)]
-        struct Complex { re: f64, im: f64 }
+        struct Complex {
+            re: f64,
+            im: f64,
+        }
 
         use std::fmt;
 
@@ -260,9 +270,7 @@ mod formatting {
         }
 
         let ninety = Complex { re: 0.0, im: 2.0 };
-        assert_eq!(format!("{}", ninety),
-                   "0 + 2i");
-        assert_eq!(format!("{:#}", ninety),
-                   "2 ∠ 90°");
+        assert_eq!(format!("{}", ninety), "0 + 2i");
+        assert_eq!(format!("{:#}", ninety), "2 ∠ 90°");
     }
 }

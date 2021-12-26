@@ -1,6 +1,3 @@
-#![warn(rust_2018_idioms)]
-#![allow(elided_lifetimes_in_paths)]
-
 use std::fs;
 use std::io;
 use std::path::Path;
@@ -26,9 +23,10 @@ use std::os::unix::fs::symlink;
 /// Stub implementation of `symlink` for platforms that don't provide it.
 #[cfg(not(unix))]
 fn symlink<P: AsRef<Path>, Q: AsRef<Path>>(src: P, _dst: Q) -> std::io::Result<()> {
-    Err(io::Error::new(io::ErrorKind::Other,
-                       format!("can't copy symbolic link: {}",
-                               src.as_ref().display())))
+    Err(io::Error::new(
+        io::ErrorKind::Other,
+        format!("can't copy symbolic link: {}", src.as_ref().display()),
+    ))
 }
 
 /// Copy whatever is at `src` to the target path `dst`.
@@ -41,25 +39,28 @@ fn copy_to(src: &Path, src_type: &fs::FileType, dst: &Path) -> io::Result<()> {
         let target = src.read_link()?;
         symlink(target, dst)?;
     } else {
-        return Err(io::Error::new(io::ErrorKind::Other,
-                                  format!("don't know how to copy: {}",
-                                          src.display())));
+        return Err(io::Error::new(
+            io::ErrorKind::Other,
+            format!("don't know how to copy: {}", src.display()),
+        ));
     }
     Ok(())
 }
 
 fn copy_into<P, Q>(source: P, destination: Q) -> io::Result<()>
-    where P: AsRef<Path>,
-          Q: AsRef<Path>
+where
+    P: AsRef<Path>,
+    Q: AsRef<Path>,
 {
     let src = source.as_ref();
     let dst = destination.as_ref();
 
     match src.file_name() {
         None => {
-            return Err(io::Error::new(io::ErrorKind::Other,
-                                      format!("can't copy nameless directory: {}",
-                                              src.display())));
+            return Err(io::Error::new(
+                io::ErrorKind::Other,
+                format!("can't copy nameless directory: {}", src.display()),
+            ));
         }
         Some(src_name) => {
             let md = src.metadata()?;
@@ -70,8 +71,9 @@ fn copy_into<P, Q>(source: P, destination: Q) -> io::Result<()>
 }
 
 fn dwim_copy<P, Q>(source: P, destination: Q) -> io::Result<()>
-    where P: AsRef<Path>,
-          Q: AsRef<Path>
+where
+    P: AsRef<Path>,
+    Q: AsRef<Path>,
 {
     let src = source.as_ref();
     let dst = destination.as_ref();
@@ -93,11 +95,12 @@ fn copy_main() -> io::Result<()> {
     } else {
         let dst = Path::new(&args[args.len() - 1]);
         if !dst.is_dir() {
-            return Err(io::Error::new(io::ErrorKind::Other,
-                                      format!("target '{}' is not a directory",
-                                              dst.display())));
+            return Err(io::Error::new(
+                io::ErrorKind::Other,
+                format!("target '{}' is not a directory", dst.display()),
+            ));
         }
-        for i in 1 .. args.len() - 1 {
+        for i in 1..args.len() - 1 {
             copy_into(&args[i], dst)?;
         }
     }
