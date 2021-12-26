@@ -1,4 +1,4 @@
-pub async fn many_requests(urls: &[String]) -> Vec<Result<String, surf::Exception>> {
+async fn requests(urls: &[String]) -> Vec<Result<String, surf::Exception>> {
     let client = surf::Client::new();
 
     let mut handles = vec![];
@@ -16,17 +16,17 @@ pub async fn many_requests(urls: &[String]) -> Vec<Result<String, surf::Exceptio
 }
 
 fn main() {
-    let requests = &[
+    let urls = &[
         "https://baidu.com".to_string(),
         "https://douban.com".to_string(),
         "https://zhihu.com".to_string(),
     ];
 
-    let results = async_std::task::block_on(many_requests(requests));
+    let results = async_std::task::block_on(requests(urls));
     for result in results {
         match result {
-            Ok(response) => println!("*** {}\n", response),
-            Err(err) => eprintln!("error: {}\n", err),
+            Ok(response) => println!("{}", response),
+            Err(err) => eprintln!("error: {}", err),
         }
     }
 }
