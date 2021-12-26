@@ -1,4 +1,4 @@
-async fn requests(urls: &[String]) -> Vec<Result<String, surf::Exception>> {
+async fn requests(urls: &[String]) -> Vec<Result<String, surf::Error>> {
     let client = surf::Client::new();
 
     let mut handles = vec![];
@@ -15,14 +15,15 @@ async fn requests(urls: &[String]) -> Vec<Result<String, surf::Exception>> {
     results
 }
 
-fn main() {
+#[tokio::main]
+async fn main() {
     let urls = &[
         "https://baidu.com".to_string(),
         "https://douban.com".to_string(),
         "https://zhihu.com".to_string(),
     ];
 
-    let results = async_std::task::block_on(requests(urls));
+    let results = requests(urls).await;
     for result in results {
         match result {
             Ok(response) => println!("{}", response),
