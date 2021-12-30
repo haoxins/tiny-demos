@@ -26,6 +26,9 @@ impl Queue {
         println! {"After swap: {:?}", self.older}
 
         self.older.reverse();
+        println! {"After reverse: {:?}", self.younger}
+        println! {"After reverse: {:?}\n\n\n", self.older}
+
         self.older.pop()
     }
 }
