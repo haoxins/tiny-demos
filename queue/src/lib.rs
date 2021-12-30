@@ -9,17 +9,18 @@ impl Queue {
     }
 
     pub fn pop(&mut self) -> Option<char> {
-        if self.older.is_empty() {
-            if self.younger.is_empty() {
-                return None;
-            }
-
-            use std::mem::swap;
-            swap(&mut self.older, &mut self.younger);
-            self.older.reverse();
+        if !self.older.is_empty() {
+            return self.older.pop();
         }
 
-        self.older.pop()
+        if self.younger.is_empty() {
+            return None;
+        }
+
+        use std::mem::swap;
+        swap(&mut self.older, &mut self.younger);
+        self.older.reverse();
+        return self.older.pop();
     }
 }
 
