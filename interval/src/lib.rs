@@ -1,7 +1,7 @@
 #[derive(Debug, PartialEq)]
 struct Interval<T> {
-    lower: T, // inclusive
-    upper: T, // exclusive
+    lower: T,
+    upper: T,
 }
 
 use std::cmp::{Ordering, PartialOrd};
@@ -23,5 +23,4 @@ impl<T: PartialOrd> PartialOrd<Interval<T>> for Interval<T> {
 #[test]
 fn test() {
     assert!(Interval { lower: 7, upper: 8 } <= Interval { lower: 7, upper: 8 });
-    assert!(Interval { lower: 7, upper: 8 }.le(&Interval { lower: 7, upper: 8 }));
 }
