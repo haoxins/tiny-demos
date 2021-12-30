@@ -18,7 +18,13 @@ impl Queue {
         }
 
         use std::mem::swap;
+        println! {"y {:?}", self.younger}
+        println! {"y {:?}", self.younger}
+
         swap(&mut self.older, &mut self.younger);
+        println! {"y {:?}", self.younger}
+        println! {"y {:?}", self.older}
+
         self.older.reverse();
         self.older.pop()
     }
@@ -61,11 +67,10 @@ fn test_split() {
 
     q.push('P');
     q.push('D');
-    assert_eq!(q.pop(), Some('P'));
     q.push('X');
 
     let (older, younger) = q.split();
     // q is now uninitialized.
-    assert_eq!(older, vec!['D']);
-    assert_eq!(younger, vec!['X']);
+    assert_eq!(older, vec![]);
+    assert_eq!(younger, vec!['P', 'D', 'X']);
 }
