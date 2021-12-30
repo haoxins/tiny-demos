@@ -20,7 +20,7 @@ impl Queue {
         use std::mem::swap;
         swap(&mut self.older, &mut self.younger);
         self.older.reverse();
-        return self.older.pop();
+        self.older.pop()
     }
 }
 
