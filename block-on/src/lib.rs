@@ -1,8 +1,8 @@
-use waker_fn::waker_fn;      // Cargo.toml: waker-fn = "1.1"
-use futures_lite::pin;       // Cargo.toml: futures-lite = "1.11"
 use crossbeam::sync::Parker; // Cargo.toml: crossbeam = "0.8"
+use futures_lite::pin; // Cargo.toml: futures-lite = "1.11"
 use std::future::Future;
 use std::task::{Context, Poll};
+use waker_fn::waker_fn; // Cargo.toml: waker-fn = "1.1"
 
 pub fn block_on<F: Future>(future: F) -> F::Output {
     let parker = Parker::new();
@@ -24,7 +24,7 @@ pub fn block_on<F: Future>(future: F) -> F::Output {
 fn test() {
     assert_eq!(block_on(std::future::ready(42)), 42);
 
-    use async_std::task::{spawn, sleep};
+    use async_std::task::{sleep, spawn};
     use futures_lite::FutureExt;
     use std::time::Duration;
 
@@ -40,5 +40,6 @@ fn test() {
             };
             spawn(one_sec.race(half_sec))
         }),
-        44);
+        44
+    );
 }
