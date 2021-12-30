@@ -45,5 +45,6 @@ fn test() {
         upper: 40,
     };
     assert!(!(left < right));
-    assert!(!(left >= right));
+    assert!(!(left > right));
+    assert!(!(left == right));
 }
