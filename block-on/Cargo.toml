@@ -4,9 +4,9 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-waker-fn = "1.1"
-futures-lite = "1.11"
+waker-fn = "1"
+futures-lite = "1"
 crossbeam = "0.8"
 
 [dev-dependencies]
-async-std = "1.7"
+async-std = "1"
