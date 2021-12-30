@@ -18,12 +18,12 @@ impl Queue {
         }
 
         use std::mem::swap;
-        println! {"y {:?}", self.younger}
-        println! {"y {:?}", self.younger}
+        println! {"Before swap: {:?}", self.younger}
+        println! {"Before swap: {:?}", self.younger}
 
         swap(&mut self.older, &mut self.younger);
-        println! {"y {:?}", self.younger}
-        println! {"y {:?}", self.older}
+        println! {"After swap: {:?}", self.younger}
+        println! {"After swap: {:?}", self.older}
 
         self.older.reverse();
         self.older.pop()
@@ -50,27 +50,4 @@ fn test_push_pop() {
     (&mut q).push('1');
     assert_eq!(q.pop(), Some('0'));
     assert_eq!(q.pop(), Some('1'));
-}
-
-impl Queue {
-    pub fn split(self) -> (Vec<char>, Vec<char>) {
-        (self.older, self.younger)
-    }
-}
-
-#[test]
-fn test_split() {
-    let mut q = Queue {
-        older: Vec::new(),
-        younger: Vec::new(),
-    };
-
-    q.push('P');
-    q.push('D');
-    q.push('X');
-
-    let (older, younger) = q.split();
-    // q is now uninitialized.
-    assert_eq!(older, vec![]);
-    assert_eq!(younger, vec!['P', 'D', 'X']);
 }
