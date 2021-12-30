@@ -89,26 +89,3 @@ fn test_split() {
     assert_eq!(older, vec!['D']);
     assert_eq!(younger, vec!['X']);
 }
-
-impl Queue {
-    pub fn new() -> Queue {
-        Queue {
-            older: Vec::new(),
-            younger: Vec::new(),
-        }
-    }
-}
-
-#[test]
-fn test_new() {
-    let mut q = Queue::new();
-
-    q.push('*');
-    q.push('1');
-    assert_eq!(q.pop(), Some('*'));
-
-    q.push('∞');
-    assert_eq!(q.pop(), Some('1'));
-    assert_eq!(q.pop(), Some('∞'));
-    assert_eq!(q.pop(), None);
-}
