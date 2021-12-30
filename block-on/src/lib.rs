@@ -1,8 +1,8 @@
-use crossbeam::sync::Parker; // Cargo.toml: crossbeam = "0.8"
-use futures_lite::pin; // Cargo.toml: futures-lite = "1.11"
+use crossbeam::sync::Parker;
+use futures_lite::pin;
 use std::future::Future;
 use std::task::{Context, Poll};
-use waker_fn::waker_fn; // Cargo.toml: waker-fn = "1.1"
+use waker_fn::waker_fn;
 
 pub fn block_on<F: Future>(future: F) -> F::Output {
     let parker = Parker::new();
