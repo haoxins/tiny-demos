@@ -47,26 +47,6 @@ fn test_push_pop() {
 }
 
 impl Queue {
-    pub fn is_empty(&self) -> bool {
-        self.older.is_empty() && self.younger.is_empty()
-    }
-}
-
-#[test]
-fn test_is_empty() {
-    let mut q = Queue {
-        older: Vec::new(),
-        younger: Vec::new(),
-    };
-
-    assert!(q.is_empty());
-    q.push('☉');
-    assert!(!q.is_empty());
-    q.pop();
-    assert!(q.is_empty());
-}
-
-impl Queue {
     pub fn split(self) -> (Vec<char>, Vec<char>) {
         (self.older, self.younger)
     }
