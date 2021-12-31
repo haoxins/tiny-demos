@@ -1,6 +1,3 @@
-#![warn(rust_2018_idioms)]
-#![allow(elided_lifetimes_in_paths)]
-
 pub struct Queue<T> {
     older: Vec<T>,
     younger: Vec<T>,
@@ -30,14 +27,10 @@ impl<T> Queue<T> {
                 return None;
             }
 
-            // Bring the elements in younger over to older, and put them in
-            // the promised order.
             swap(&mut self.older, &mut self.younger);
             self.older.reverse();
         }
 
-        // Now older is guaranteed to have something. Vec's pop method
-        // already returns an Option, so we're set.
         self.older.pop()
     }
 
@@ -81,8 +74,7 @@ fn test() {
 
 #[test]
 fn test_generic() {
-    let mut q = Queue::<char>::new();
-    &mut q;
+    let q = Queue::<char>::new();
     drop(q);
 
     let mut q = Queue::new();
