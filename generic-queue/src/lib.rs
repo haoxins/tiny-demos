@@ -33,10 +33,6 @@ impl<T> Queue<T> {
 
         self.older.pop()
     }
-
-    pub fn split(self) -> (Vec<T>, Vec<T>) {
-        (self.older, self.younger)
-    }
 }
 
 #[test]
@@ -68,8 +64,6 @@ fn test() {
     q.push('D');
     assert_eq!(q.pop(), Some('P'));
     q.push('X');
-
-    assert_eq!(q.split(), (vec!['D'], vec!['X']));
 }
 
 #[test]
