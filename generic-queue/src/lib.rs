@@ -83,6 +83,6 @@ fn test_generic() {
     q.push("CAD"); // apparently a Queue<&'static str>
     r.push(0.74); // apparently a Queue<f64>
 
-    q.push("BTC"); // Bitcoins per USD, 2019-6
-    r.push(13764.0); // Rust fails to detect irrational exuberance
+    q.push("BTC");
+    r.push(13764.0);
 }
