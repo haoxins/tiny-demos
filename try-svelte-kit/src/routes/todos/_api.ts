@@ -8,7 +8,6 @@ export async function api(
   resource: string,
   data?: Record<string, unknown>
 ): Promise<EndpointOutput> {
-  // user must have a cookie set
   if (!request.locals.userid) {
     return { status: 401 };
   }
@@ -21,10 +20,6 @@ export async function api(
     body: data && JSON.stringify(data)
   });
 
-  // if the request came from a <form> submission, the browser's default
-  // behaviour is to show the URL corresponding to the form's "action"
-  // attribute. in those cases, we want to redirect them back to the
-  // /todos page, rather than showing the response
   if (res.ok && request.method !== 'GET' && request.headers.accept !== 'application/json') {
     return {
       status: 303,
