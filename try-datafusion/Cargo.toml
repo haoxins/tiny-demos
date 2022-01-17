@@ -1,5 +1,5 @@
 [package]
-name = "arrow-datafusion"
+name = "try-datafusion"
 version = "0.1.0"
 edition = "2021"
 
