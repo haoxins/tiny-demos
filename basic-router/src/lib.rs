@@ -22,14 +22,12 @@ struct BasicRouter {
 }
 
 impl BasicRouter {
-    // Create an empty router.
     fn new() -> BasicRouter {
         BasicRouter {
             routes: HashMap::new(),
         }
     }
 
-    // Add a route to the router.
     fn add_route<C>(&mut self, url: &str, callback: C)
     where
         C: Fn(&Request) -> Response + 'static,
