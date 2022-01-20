@@ -1,0 +1,20 @@
+# permissions for end users to view versionedjobs.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: versionedjob-viewer-role
+rules:
+- apiGroups:
+  - job.flink.io
+  resources:
+  - versionedjobs
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - job.flink.io
+  resources:
+  - versionedjobs/status
+  verbs:
+  - get
