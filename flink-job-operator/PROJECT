@@ -1,0 +1,19 @@
+domain: flink.io
+layout:
+- go.kubebuilder.io/v3
+plugins:
+  manifests.sdk.operatorframework.io/v2: {}
+  scorecard.sdk.operatorframework.io/v2: {}
+projectName: flink-job-operator
+repo: github.com/haoxins/tiny-demos/flink-job-operator
+resources:
+- api:
+    crdVersion: v1
+    namespaced: true
+  controller: true
+  domain: flink.io
+  group: job
+  kind: VersionedJob
+  path: github.com/haoxins/tiny-demos/flink-job-operator/api/v1alpha1
+  version: v1alpha1
+version: "3"
