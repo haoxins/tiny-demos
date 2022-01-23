@@ -12,7 +12,7 @@ mod ref_with_flag {
     /// ("But it's not nearly as exciting this way...")
     pub struct RefWithFlag<'a, T> {
         ptr_and_bit: usize,
-        behaves_like: PhantomData<&'a T> // occupies no space
+        behaves_like: PhantomData<&'a T>, // occupies no space
     }
 
     impl<'a, T: 'a> RefWithFlag<'a, T> {
@@ -20,7 +20,7 @@ mod ref_with_flag {
             assert!(align_of::<T>() % 2 == 0);
             RefWithFlag {
                 ptr_and_bit: ptr as *const T as usize | flag as usize,
-                behaves_like: PhantomData
+                behaves_like: PhantomData,
             }
         }
 
