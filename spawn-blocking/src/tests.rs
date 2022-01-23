@@ -1,8 +1,10 @@
 use super::*;
 
-async fn verify_password(password: &str, hash: &str, key: &str)
-                        -> Result<bool, argonautica::Error>
-{
+async fn verify_password(
+    password: &str,
+    hash: &str,
+    key: &str,
+) -> Result<bool, argonautica::Error> {
     let password = password.to_string();
     let hash = hash.to_string();
     let key = key.to_string();
@@ -13,7 +15,8 @@ async fn verify_password(password: &str, hash: &str, key: &str)
             .with_password(password)
             .with_secret_key(key)
             .verify()
-    }).await
+    })
+    .await
 }
 
 static PASSWORD: &str = "P@ssw0rd";
@@ -44,9 +47,7 @@ fn many_serial() {
 #[test]
 fn many_parallel() {
     async_std::task::block_on(async {
-        let futures: Vec<_> = (0..100)
-            .map(|i| (i, spawn_blocking(move || i)))
-            .collect();
+        let futures: Vec<_> = (0..100).map(|i| (i, spawn_blocking(move || i))).collect();
 
         for (i, f) in futures {
             assert_eq!(f.await, i);

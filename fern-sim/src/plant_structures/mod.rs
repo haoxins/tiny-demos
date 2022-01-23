@@ -10,9 +10,9 @@
 //! cast shadows, and so on.
 
 // in plant_structures/mod.rs
+pub mod leaves;
 pub mod roots;
 pub mod stems;
-pub mod leaves;
 
 pub use self::leaves::Leaf;
 pub use self::roots::Root;
@@ -21,23 +21,25 @@ use self::roots::RootSet;
 use self::stems::StemSet;
 
 pub enum FernType {
-    Fiddlehead
+    Fiddlehead,
 }
 
 pub struct Fern {
     pub roots: RootSet,
-    pub stems: StemSet
+    pub stems: StemSet,
 }
 
 impl Fern {
     pub fn new(_type: FernType) -> Fern {
         Fern {
             roots: vec![],
-            stems: vec![stems::Stem { furled: true }]
+            stems: vec![stems::Stem { furled: true }],
         }
     }
 
-    pub fn is_furled(&self) -> bool { !self.is_fully_unfurled() }
+    pub fn is_furled(&self) -> bool {
+        !self.is_fully_unfurled()
+    }
 
     pub fn is_fully_unfurled(&self) -> bool {
         self.stems.iter().all(|s| !s.furled)
@@ -49,7 +51,10 @@ impl Fern {
 ///
 /// [r]: roots::Root
 pub fn trace_path(leaf: &leaves::Leaf, root: &roots::Root) -> VascularPath {
-    VascularPath { from: leaf.x, to: root.x }
+    VascularPath {
+        from: leaf.x,
+        to: root.x,
+    }
 }
 
 #[doc(alias = "route")]

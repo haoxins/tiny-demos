@@ -3,7 +3,8 @@
 
 use std::collections::HashMap;
 
-#[macro_use] mod macros;
+#[macro_use]
+mod macros;
 
 #[derive(Clone, PartialEq, Debug)]
 pub enum Json {
@@ -12,7 +13,7 @@ pub enum Json {
     Number(f64),
     String(String),
     Array(Vec<Json>),
-    Object(Box<HashMap<String, Json>>)
+    Object(Box<HashMap<String, Json>>),
 }
 
 impl From<bool> for Json {

@@ -10,10 +10,12 @@ fn check(activity: &'static str, status: c_int) -> c_int {
     if status < 0 {
         unsafe {
             let error = &*raw::giterr_last();
-            println!("error while {}: {} ({})",
-                     activity,
-                     CStr::from_ptr(error.message).to_string_lossy(),
-                     error.klass);
+            println!(
+                "error while {}: {} ({})",
+                activity,
+                CStr::from_ptr(error.message).to_string_lossy(),
+                error.klass
+            );
             std::process::exit(1);
         }
     }
@@ -34,33 +36,40 @@ unsafe fn show_commit(commit: *const raw::git_commit) {
 
 use std::ffi::CString;
 use std::mem;
-use std::ptr;
 use std::os::raw::c_char;
+use std::ptr;
 
 fn main() {
-    let path = std::env::args().skip(1).next()
+    let path = std::env::args()
+        .skip(1)
+        .next()
         .expect("usage: git-toy PATH");
-    let path = CString::new(path)
-        .expect("path contains null characters");
+    let path = CString::new(path).expect("path contains null characters");
 
     unsafe {
         check("initializing library", raw::git_libgit2_init());
 
         let mut repo = ptr::null_mut();
-        check("opening repository",
-              raw::git_repository_open(&mut repo, path.as_ptr()));
+        check(
+            "opening repository",
+            raw::git_repository_open(&mut repo, path.as_ptr()),
+        );
 
         let c_name = b"HEAD\0".as_ptr() as *const c_char;
         let oid = {
             let mut oid = mem::MaybeUninit::uninit();
-            check("looking up HEAD",
-                  raw::git_reference_name_to_id(oid.as_mut_ptr(), repo, c_name));
+            check(
+                "looking up HEAD",
+                raw::git_reference_name_to_id(oid.as_mut_ptr(), repo, c_name),
+            );
             oid.assume_init()
         };
 
         let mut commit = ptr::null_mut();
-        check("looking up commit",
-              raw::git_commit_lookup(&mut commit, repo, &oid));
+        check(
+            "looking up commit",
+            raw::git_commit_lookup(&mut commit, repo, &oid),
+        );
 
         show_commit(commit);
 

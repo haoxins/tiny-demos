@@ -9,7 +9,7 @@ use cells::{Cell, Gene};
 /// separate organism, up to 5mm across -- which produces the zygote
 /// that grows into a new fern. (Plant sex is complicated.)
 pub struct Spore {
-    size: f64
+    size: f64,
 }
 
 /// Simulate the production of a spore by meiosis.
@@ -34,7 +34,7 @@ mod cells {
 
     pub struct Cell {
         x: f64,
-        y: f64
+        y: f64,
     }
 
     impl Cell {

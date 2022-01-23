@@ -1,6 +1,6 @@
 // macros.rs
-pub use std::collections::HashMap;
 pub use std::boxed::Box;
+pub use std::collections::HashMap;
 pub use std::string::ToString;
 
 #[macro_export]
@@ -34,18 +34,20 @@ mod tests {
     #[test]
     fn json_with_rust_expressions() {
         const HELLO: &'static str = "hello";
-        let macro_generated_value =
-            json!({
-                "math_works": (4 - 2 == 2),
-                "en": HELLO,
-                HELLO: "bonjour!"
-            })
-            ;
-        let hand_coded_value = Json::Object(Box::new(vec![
-            ("math_works".to_string(), Json::Boolean(true)),
-            ("en".to_string(), Json::String("hello".to_string())),
-            ("hello".to_string(), Json::String("bonjour!".to_string())),
-        ].into_iter().collect()));
+        let macro_generated_value = json!({
+            "math_works": (4 - 2 == 2),
+            "en": HELLO,
+            HELLO: "bonjour!"
+        });
+        let hand_coded_value = Json::Object(Box::new(
+            vec![
+                ("math_works".to_string(), Json::Boolean(true)),
+                ("en".to_string(), Json::String("hello".to_string())),
+                ("hello".to_string(), Json::String("bonjour!".to_string())),
+            ]
+            .into_iter()
+            .collect(),
+        ));
         assert_eq!(macro_generated_value, hand_coded_value);
     }
 
@@ -55,16 +57,30 @@ mod tests {
     fn original_example() {
         let hand_coded_value = {
             let students = Json::Array(vec![
-                Json::Object(Box::new(vec![
-                    ("name".to_string(), Json::String("Jim Blandy".to_string())),
-                    ("class_of".to_string(), Json::Number(1926.0)),
-                    ("major".to_string(), Json::String("Tibetan throat singing".to_string()))
-                ].into_iter().collect())),
-                Json::Object(Box::new(vec![
-                    ("name".to_string(), Json::String("Jason Orendorff".to_string())),
-                    ("class_of".to_string(), Json::Number(1702.0)),
-                    ("major".to_string(), Json::String("Knots".to_string()))
-                ].into_iter().collect()))
+                Json::Object(Box::new(
+                    vec![
+                        ("name".to_string(), Json::String("Jim Blandy".to_string())),
+                        ("class_of".to_string(), Json::Number(1926.0)),
+                        (
+                            "major".to_string(),
+                            Json::String("Tibetan throat singing".to_string()),
+                        ),
+                    ]
+                    .into_iter()
+                    .collect(),
+                )),
+                Json::Object(Box::new(
+                    vec![
+                        (
+                            "name".to_string(),
+                            Json::String("Jason Orendorff".to_string()),
+                        ),
+                        ("class_of".to_string(), Json::Number(1702.0)),
+                        ("major".to_string(), Json::String("Knots".to_string())),
+                    ]
+                    .into_iter()
+                    .collect(),
+                )),
             ]);
             students
         };
@@ -98,29 +114,30 @@ mod tests {
                 }
             ]
         );
-        let hand_coded_value =
-            Json::Array(vec![
-                Json::Object(Box::new(vec![
-                    ("pitch".to_string(), Json::Number(440.0))
-                ].into_iter().collect()))
-            ]);
+        let hand_coded_value = Json::Array(vec![Json::Object(Box::new(
+            vec![("pitch".to_string(), Json::Number(440.0))]
+                .into_iter()
+                .collect(),
+        ))]);
         assert_eq!(macro_generated_value, hand_coded_value);
     }
 
     #[test]
     fn json_monolith() {
         let width = 4.0;
-        let desc =
-            json!({
-                "width": width,
-                "height": (width * 9.0 / 4.0)
-            });
+        let desc = json!({
+            "width": width,
+            "height": (width * 9.0 / 4.0)
+        });
 
-        let hand_coded_value =
-            Json::Object(Box::new(vec![
+        let hand_coded_value = Json::Object(Box::new(
+            vec![
                 ("width".to_string(), Json::Number(width)),
-                ("height".to_string(), Json::Number(width * 9.0 / 4.0))
-            ].into_iter().collect()));
+                ("height".to_string(), Json::Number(width * 9.0 / 4.0)),
+            ]
+            .into_iter()
+            .collect(),
+        ));
         assert_eq!(desc, hand_coded_value);
     }
 
@@ -135,11 +152,20 @@ mod tests {
             "actor": fields
         });
 
-        let hand_coded_value =
-            Json::Object(Box::new(vec![
-                ("name".to_string(), Json::String("Larson E. Whipsnade".to_string())),
-                ("actor".to_string(), Json::String("Fields, W.C.".to_string()))
-            ].into_iter().collect()));
+        let hand_coded_value = Json::Object(Box::new(
+            vec![
+                (
+                    "name".to_string(),
+                    Json::String("Larson E. Whipsnade".to_string()),
+                ),
+                (
+                    "actor".to_string(),
+                    Json::String("Fields, W.C.".to_string()),
+                ),
+            ]
+            .into_iter()
+            .collect(),
+        ));
         assert_eq!(role, hand_coded_value);
     }
 }

@@ -2,13 +2,13 @@
 //!
 //! The simulation algorithm is complex and has a lot of tweakable parameters.
 
+use crate::plant_structures::{Fern, FernType};
 use std::fs::File;
 use std::time::Duration;
-use crate::plant_structures::{Fern, FernType};
 
 /// The simulated universe.
 pub struct Terrarium {
-    ferns: Vec<Fern>
+    ferns: Vec<Fern>,
 }
 
 impl Terrarium {
@@ -20,11 +20,9 @@ impl Terrarium {
     /// Load a terrarium from a `.tm` file.
     pub fn load(filename: &str) -> Terrarium {
         // This implementation is, like everything else in here, completely bogus
-        File::open(filename).unwrap();  // check that the file is there
+        File::open(filename).unwrap(); // check that the file is there
         Terrarium {
-            ferns: vec![
-                Fern::new(FernType::Fiddlehead)
-            ]
+            ferns: vec![Fern::new(FernType::Fiddlehead)],
         }
     }
 

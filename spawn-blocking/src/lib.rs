@@ -12,9 +12,10 @@ struct Shared<T> {
 }
 
 pub fn spawn_blocking<T, F>(closure: F) -> SpawnBlocking<T>
-where F: FnOnce() -> T,
-      F: Send + 'static,
-      T: Send + 'static,
+where
+    F: FnOnce() -> T,
+    F: Send + 'static,
+    T: Send + 'static,
 {
     let inner = Arc::new(Mutex::new(Shared {
         value: None,

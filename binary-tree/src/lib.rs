@@ -19,7 +19,11 @@ fn binary_tree_size() {
 
     let word = size_of::<usize>();
     assert_eq!(size_of::<BinaryTree<String>>(), word);
-    type Triple = (&'static str, BinaryTree<&'static str>, BinaryTree<&'static str>);
+    type Triple = (
+        &'static str,
+        BinaryTree<&'static str>,
+        BinaryTree<&'static str>,
+    );
     assert_eq!(size_of::<Triple>(), 4 * word);
 }
 
@@ -62,8 +66,10 @@ fn build_binary_tree() {
         right: uranus_tree,
     }));
 
-    assert_eq!(tree.walk(),
-               vec!["Jupiter", "Mars", "Mercury", "Saturn", "Uranus", "Venus"]);
+    assert_eq!(
+        tree.walk(),
+        vec!["Jupiter", "Mars", "Mercury", "Saturn", "Uranus", "Venus"]
+    );
 }
 
 impl<T: Clone> BinaryTree<T> {
@@ -109,8 +115,10 @@ fn test_add_method_1() {
         tree.add(planet);
     }
 
-    assert_eq!(tree.walk(),
-               vec!["Jupiter", "Mars", "Mercury", "Saturn", "Uranus", "Venus"]);
+    assert_eq!(
+        tree.walk(),
+        vec!["Jupiter", "Mars", "Mercury", "Saturn", "Uranus", "Venus"]
+    );
 }
 
 #[test]
@@ -141,7 +149,7 @@ struct TreeIter<'a, T> {
     // The node the iterator will visit next is at the top of the stack,
     // with those ancestors still unvisited below it. If the stack is empty,
     // the iteration is over.
-    unvisited: Vec<&'a TreeNode<T>>
+    unvisited: Vec<&'a TreeNode<T>>,
 }
 
 impl<'a, T: 'a> TreeIter<'a, T> {
@@ -155,7 +163,9 @@ impl<'a, T: 'a> TreeIter<'a, T> {
 
 impl<T> BinaryTree<T> {
     fn iter(&self) -> TreeIter<T> {
-        let mut iter = TreeIter { unvisited: Vec::new() };
+        let mut iter = TreeIter {
+            unvisited: Vec::new(),
+        };
         iter.push_left_edge(self);
         iter
     }
@@ -189,10 +199,12 @@ impl<'a, T> Iterator for TreeIter<'a, T> {
 
 #[test]
 fn external_iterator() {
-    fn make_node<T>(left: BinaryTree<T>, element: T, right: BinaryTree<T>)
-               -> BinaryTree<T>
-    {
-        NonEmpty(Box::new(TreeNode { left, element, right }))
+    fn make_node<T>(left: BinaryTree<T>, element: T, right: BinaryTree<T>) -> BinaryTree<T> {
+        NonEmpty(Box::new(TreeNode {
+            left,
+            element,
+            right,
+        }))
     }
 
     // Build a small tree.
@@ -209,11 +221,12 @@ fn external_iterator() {
     }
     assert_eq!(v, ["droid", "jaeger", "mecha", "robot"]);
 
-    assert_eq!(tree.iter()
-               .map(|name| format!("mega-{}", name))
-               .collect::<Vec<_>>(),
-               vec!["mega-droid", "mega-jaeger",
-                    "mega-mecha", "mega-robot"]);
+    assert_eq!(
+        tree.iter()
+            .map(|name| format!("mega-{}", name))
+            .collect::<Vec<_>>(),
+        vec!["mega-droid", "mega-jaeger", "mega-mecha", "mega-robot"]
+    );
 
     let mut iterator = (&tree).into_iter();
     assert_eq!(iterator.next(), Some(&"droid"));
@@ -224,9 +237,7 @@ fn external_iterator() {
 
     // Construct a tree by hand.
     let left_subtree = make_node(Empty, "mecha", Empty);
-    let right_subtree = make_node(make_node(Empty, "droid", Empty),
-                                  "robot",
-                                  Empty);
+    let right_subtree = make_node(make_node(Empty, "droid", Empty), "robot", Empty);
     let tree = make_node(left_subtree, "Jaeger", right_subtree);
 
     // Try initializing the iterator ourselves and see if it runs.
@@ -254,7 +265,6 @@ fn external_iterator() {
     assert_eq!(v, ["mecha", "Jaeger", "droid", "robot"]);
 }
 
-
 #[test]
 fn other_cloned() {
     use std::collections::BTreeSet;
@@ -264,26 +274,32 @@ fn other_cloned() {
     set.insert("Jaeger");
     set.insert("droid");
     set.insert("robot");
-    assert_eq!(set.iter().cloned().collect::<Vec<_>>(),
-               ["Jaeger", "droid", "mecha", "robot"]);
+    assert_eq!(
+        set.iter().cloned().collect::<Vec<_>>(),
+        ["Jaeger", "droid", "mecha", "robot"]
+    );
 }
 
 #[test]
 fn fuzz() {
     fn make_random_tree(p: f32) -> BinaryTree<i32> {
         use rand::prelude::*;
-        use rand::thread_rng;
         use rand::rngs::ThreadRng;
+        use rand::thread_rng;
 
         fn make(p: f32, next: &mut i32, rng: &mut ThreadRng) -> BinaryTree<i32> {
-            if rng.gen_range(0.0 .. 1.0) > p {
+            if rng.gen_range(0.0..1.0) > p {
                 Empty
             } else {
                 let left = make(p * p, next, rng);
                 let element = *next;
                 *next += 1;
                 let right = make(p * p, next, rng);
-                NonEmpty(Box::new(TreeNode { left, element, right }))
+                NonEmpty(Box::new(TreeNode {
+                    left,
+                    element,
+                    right,
+                }))
             }
         }
 
@@ -292,8 +308,17 @@ fn fuzz() {
 
     for _ in 0..100 {
         let tree = make_random_tree(0.9999);
-        assert!(tree.into_iter().fold(Some(0), |s, &i| {
-            s.and_then(|expected| if i == expected { Some(expected+1) } else { None })
-        }).is_some());
+        assert!(tree
+            .into_iter()
+            .fold(Some(0), |s, &i| {
+                s.and_then(|expected| {
+                    if i == expected {
+                        Some(expected + 1)
+                    } else {
+                        None
+                    }
+                })
+            })
+            .is_some());
     }
 }

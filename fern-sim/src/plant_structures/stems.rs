@@ -4,11 +4,11 @@
 //! property of ferns.
 
 // in plant_structures/stems.rs
-pub mod xylem;
 pub mod phloem;
+pub mod xylem;
 
 pub struct Stem {
-    pub furled: bool
+    pub furled: bool,
 }
 
 pub type StemSet = Vec<Stem>;
