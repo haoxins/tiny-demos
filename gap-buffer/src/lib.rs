@@ -1,7 +1,3 @@
-#![warn(rust_2018_idioms)]
-#![allow(elided_lifetimes_in_paths)]
-#![allow(dead_code)]
-
 mod gap {
     use std::ops::Range;
 
@@ -18,12 +14,15 @@ mod gap {
 
         // Range of uninitialized elements in the middle of `storage`.
         // Elements before and after this range are always initialized.
-        gap: Range<usize>
+        gap: Range<usize>,
     }
 
     impl<T> GapBuffer<T> {
         pub fn new() -> GapBuffer<T> {
-            GapBuffer { storage: Vec::new(), gap: 0..0 }
+            GapBuffer {
+                storage: Vec::new(),
+                gap: 0..0,
+            }
         }
 
         /// Return the number of elements this GapBuffer could hold without
@@ -97,19 +96,19 @@ mod gap {
                     // `pos` falls after the gap. Move the gap right
                     // by shifting elements after the gap to before it.
                     let distance = pos - gap.start;
-                    std::ptr::copy(self.space(gap.end),
-                                   self.space_mut(gap.start),
-                                   distance);
+                    std::ptr::copy(self.space(gap.end), self.space_mut(gap.start), distance);
                 } else if pos < gap.start {
                     // `pos` falls before the gap. Move the gap left
                     // by shifting elements before the gap to after it.
                     let distance = gap.start - pos;
-                    std::ptr::copy(self.space(pos),
-                                   self.space_mut(gap.end - distance),
-                                   distance);
+                    std::ptr::copy(
+                        self.space(pos),
+                        self.space_mut(gap.end - distance),
+                        distance,
+                    );
                 }
 
-                self.gap = pos .. pos + gap.len();
+                self.gap = pos..pos + gap.len();
             }
         }
 
@@ -130,7 +129,8 @@ mod gap {
         /// Insert the elements produced by `iter` at the current insertion
         /// position, and leave the insertion position after them.
         pub fn insert_iter<I>(&mut self, iterable: I)
-            where I: IntoIterator<Item=T>
+        where
+            I: IntoIterator<Item = T>,
         {
             for item in iterable {
                 self.insert(item)
@@ -145,9 +145,7 @@ mod gap {
                 return None;
             }
 
-            let element = unsafe {
-                std::ptr::read(self.space(self.gap.end))
-            };
+            let element = unsafe { std::ptr::read(self.space(self.gap.end)) };
             self.gap.end += 1;
             Some(element)
         }
@@ -165,19 +163,15 @@ mod gap {
             // capacity. So just create a new vector and move over the elements.
             let mut new = Vec::with_capacity(new_capacity);
             let after_gap = self.capacity() - self.gap.end;
-            let new_gap = self.gap.start .. new.capacity() - after_gap;
+            let new_gap = self.gap.start..new.capacity() - after_gap;
 
             unsafe {
                 // Move the elements that fall before the gap.
-                std::ptr::copy_nonoverlapping(self.space(0),
-                                              new.as_mut_ptr(),
-                                              self.gap.start);
+                std::ptr::copy_nonoverlapping(self.space(0), new.as_mut_ptr(), self.gap.start);
 
                 // Move the elements that fall after the gap.
                 let new_gap_end = new.as_mut_ptr().offset(new_gap.end as isize);
-                std::ptr::copy_nonoverlapping(self.space(self.gap.end),
-                                              new_gap_end,
-                                              after_gap);
+                std::ptr::copy_nonoverlapping(self.space(self.gap.end), new_gap_end, after_gap);
             }
 
             // This frees the old Vec, but drops no elements,
@@ -190,10 +184,10 @@ mod gap {
     impl<T> Drop for GapBuffer<T> {
         fn drop(&mut self) {
             unsafe {
-                for i in 0 .. self.gap.start {
+                for i in 0..self.gap.start {
                     std::ptr::drop_in_place(self.space_mut(i));
                 }
-                for i in self.gap.end .. self.capacity() {
+                for i in self.gap.end..self.capacity() {
                     std::ptr::drop_in_place(self.space_mut(i));
                 }
             }
@@ -202,7 +196,7 @@ mod gap {
 
     pub struct Iter<'a, T> {
         buffer: &'a GapBuffer<T>,
-        pos: usize
+        pos: usize,
     }
 
     impl<'a, T> Iterator for Iter<'a, T> {
@@ -221,7 +215,10 @@ mod gap {
         type Item = &'a T;
         type IntoIter = Iter<'a, T>;
         fn into_iter(self) -> Iter<'a, T> {
-            Iter { buffer: self, pos: 0 }
+            Iter {
+                buffer: self,
+                pos: 0,
+            }
         }
     }
 
@@ -236,13 +233,12 @@ mod gap {
     use std::fmt;
     impl<T: fmt::Debug> fmt::Debug for GapBuffer<T> {
         fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-            let indices = (0..self.gap.start).chain(self.gap.end .. self.capacity());
+            let indices = (0..self.gap.start).chain(self.gap.end..self.capacity());
             let elements = indices.map(|i| unsafe { &*self.space(i) });
             f.debug_list().entries(elements).finish()
         }
     }
 }
-
 
 mod gap_tests {
     #[test]
