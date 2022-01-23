@@ -1,15 +1,9 @@
-macro_rules! define_complex {
-    () => {
-        #[derive(Clone, Copy, Debug)]
-        struct Complex<T> {
-            re: T,
-            im: T,
-        }
-    };
-}
-
 mod non_generic_add {
-    define_complex!();
+    #[derive(Clone, Copy, Debug)]
+    struct Complex<T> {
+        re: T,
+        im: T,
+    }
 
     use std::ops::Add;
 
@@ -25,7 +19,11 @@ mod non_generic_add {
 }
 
 mod somewhat_generic {
-    define_complex!();
+    #[derive(Clone, Copy, Debug)]
+    struct Complex<T> {
+        re: T,
+        im: T,
+    }
 
     use std::ops::Add;
 
@@ -59,7 +57,12 @@ mod somewhat_generic {
 }
 
 mod very_generic {
-    define_complex!();
+
+    #[derive(Clone, Copy, Debug)]
+    struct Complex<T> {
+        re: T,
+        im: T,
+    }
 
     use std::ops::Add;
 
@@ -78,7 +81,12 @@ mod very_generic {
 }
 
 mod impl_compound {
-    define_complex!();
+
+    #[derive(Clone, Copy, Debug)]
+    struct Complex<T> {
+        re: T,
+        im: T,
+    }
 
     use std::ops::AddAssign;
 
@@ -112,9 +120,6 @@ mod derive_everything {
     }
 }
 
-/// Examples from Chapter 17, Strings and Text
-///
-/// These use a separate, non-generic `Complex` type, for simplicity.
 mod formatting {
     #[test]
     fn complex() {
