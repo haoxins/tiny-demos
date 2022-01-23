@@ -4,19 +4,19 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-sea-orm = "0.3"
+sea-orm = "0.5"
 prost = "0.9"
 rkyv = "0.7"
 tonic = "0.6"
-tokio = { version = "1.0", features = ["macros", "rt-multi-thread"] }
+tokio = { version = "1", features = ["macros", "rt-multi-thread"] }
 
 [build-dependencies]
 tonic-build = "0.6"
 
 [[bin]]
-name = "grpc-server"
+name = "server"
 path = "src/server.rs"
 
 [[bin]]
-name = "grpc-client"
+name = "client"
 path = "src/client.rs"
