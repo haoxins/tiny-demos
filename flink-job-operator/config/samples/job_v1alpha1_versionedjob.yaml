@@ -1,6 +1,0 @@
-apiVersion: job.flink.io/v1alpha1
-kind: VersionedJob
-metadata:
-  name: versionedjob-sample
-spec:
-  # TODO(user): Add fields here
