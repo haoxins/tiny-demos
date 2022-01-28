@@ -3,4 +3,5 @@ updates:
   - package-ecosystem: gomod
     directory: "/flink-job-operator"
     schedule:
-      interval: friday
+      interval: weekly
+      day: friday
