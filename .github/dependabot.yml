@@ -1,7 +1,12 @@
 version: 2
 updates:
+  - package-ecosystem: cargo
+    directory: "/panopticon"
+    schedule:
+      interval: weekly
+      day: friday
   - package-ecosystem: gomod
-    directory: "/flink-job-operator"
+    directory: "/go118"
     schedule:
       interval: weekly
       day: friday
