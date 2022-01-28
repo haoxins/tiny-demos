@@ -28,8 +28,12 @@ type VersionedJobSpec struct {
 	// INSERT ADDITIONAL SPEC FIELDS - desired state of cluster
 	// Important: Run "make" to regenerate code after modifying this file
 
-	// Foo is an example field of VersionedJob. Edit versionedjob_types.go to remove/update
-	Foo string `json:"foo,omitempty"`
+	Name        string `json:"name"`
+	Version     int    `json:"version"`
+	Description string `json:"description"`
+	// Params
+	JarFile       string `json:"jarFile"`
+	JarEntryClass string `json:"jarEntryClass"`
 }
 
 // VersionedJobStatus defines the observed state of VersionedJob

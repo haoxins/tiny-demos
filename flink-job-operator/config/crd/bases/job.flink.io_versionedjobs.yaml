@@ -36,10 +36,23 @@ spec:
           spec:
             description: VersionedJobSpec defines the desired state of VersionedJob
             properties:
-              foo:
-                description: Foo is an example field of VersionedJob. Edit versionedjob_types.go
-                  to remove/update
+              description:
                 type: string
+              jarEntryClass:
+                type: string
+              jarFile:
+                description: Params
+                type: string
+              name:
+                type: string
+              version:
+                type: integer
+            required:
+            - description
+            - jarEntryClass
+            - jarFile
+            - name
+            - version
             type: object
           status:
             description: VersionedJobStatus defines the observed state of VersionedJob
