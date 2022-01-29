@@ -1,10 +1,5 @@
 version: 2
 updates:
-  - package-ecosystem: cargo
-    directory: "/panopticon"
-    schedule:
-      interval: weekly
-      day: friday
 - package-ecosystem: gomod
   directory: /go119
   schedule:
@@ -12,6 +7,11 @@ updates:
     day: friday
 - package-ecosystem: pip
   directory: /ml2022
+  schedule:
+    interval: weekly
+    day: friday
+- package-ecosystem: cargo
+  directory: /panopticon
   schedule:
     interval: weekly
     day: friday
