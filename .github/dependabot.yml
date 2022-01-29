@@ -5,8 +5,8 @@ updates:
     schedule:
       interval: weekly
       day: friday
-  - package-ecosystem: gomod
-    directory: "/go118"
-    schedule:
-      interval: weekly
-      day: friday
+- package-ecosystem: gomod
+  directory: /go119
+  schedule:
+    interval: weekly
+    day: friday
