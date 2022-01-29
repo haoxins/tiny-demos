@@ -1,1 +1,2 @@
-print("hello")
+def start():
+    print("2022")
