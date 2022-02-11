@@ -6,7 +6,7 @@ edition = "2021"
 [dependencies]
 ballista = "0.6"
 datafusion = "6"
-sea-orm = "0.5"
+sea-orm = "0.6"
 prost = "0.9"
 rkyv = "0.7"
 surf = "2"
