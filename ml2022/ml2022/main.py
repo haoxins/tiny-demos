@@ -3,4 +3,3 @@ import pandas as pd
 
 
 def start():
-    print("2022")
