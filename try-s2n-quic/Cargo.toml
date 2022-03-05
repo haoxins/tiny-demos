@@ -1,0 +1,7 @@
+[package]
+name = "try-s2n-quic"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+s2n-quic = "1"
