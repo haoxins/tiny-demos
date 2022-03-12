@@ -1,7 +1,7 @@
 version: 2
 updates:
 - package-ecosystem: gomod
-  directory: /go119
+  directory: /go118
   schedule:
     interval: weekly
     day: friday
@@ -11,7 +11,12 @@ updates:
     interval: weekly
     day: friday
 - package-ecosystem: cargo
-  directory: /panopticon
+  directory: /try-s2n-quic
+  schedule:
+    interval: weekly
+    day: friday
+- package-ecosystem: cargo
+  directory: /wasm-proxy-filter
   schedule:
     interval: weekly
     day: friday
