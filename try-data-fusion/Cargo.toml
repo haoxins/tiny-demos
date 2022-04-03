@@ -1,0 +1,8 @@
+[package]
+name = "try-data-fusion"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+datafusion = "7"
+tokio = "1"

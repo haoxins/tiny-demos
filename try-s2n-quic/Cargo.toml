@@ -2,6 +2,8 @@
 name = "try-s2n-quic"
 version = "0.1.0"
 edition = "2021"
+rust-version = "1.59"
 
 [dependencies]
 s2n-quic = "1"
+tokio = { version = "1", features = ["full"] }
