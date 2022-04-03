@@ -1,4 +1,3 @@
 
-```zsh
-openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -sha256 -days 365
-```
+https://github.com/aws/s2n-quic/blob/main/quic/s2n-quic-core/certs/key.pem
+https://github.com/aws/s2n-quic/blob/main/quic/s2n-quic-core/certs/cert.pem
