@@ -6,9 +6,9 @@ authors = ["haoxin <haoxinst@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = ">=3.10,<3.11"
-tensorflow = "2.8.0"
-pandas = "1.4.1"
-matplotlib = "3.5.1"
+tensorflow = "2.8"
+polars = "0.13"
+matplotlib = "3.5"
 
 [tool.poetry.dev-dependencies]
 pytest = "7.1.1"
