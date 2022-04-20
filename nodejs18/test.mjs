@@ -1,5 +1,5 @@
 import test from 'node:test'
-import assert from 'assert'
+import assert from 'node:assert'
 
 test('Demo test', async (t) => {
   await t.test('ok', () => {
