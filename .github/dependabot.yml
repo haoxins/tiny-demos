@@ -11,7 +11,7 @@ updates:
     interval: weekly
     day: friday
 - package-ecosystem: cargo
-  directory: /wasm-proxy-filter
+  directory: /wasm-proxy
   schedule:
     interval: weekly
     day: friday
