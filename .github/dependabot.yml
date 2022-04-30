@@ -11,7 +11,7 @@ updates:
     interval: weekly
     day: friday
 - package-ecosystem: cargo
-  directory: /wasm-proxy
+  directory: /try-datafusion
   schedule:
     interval: weekly
     day: friday
