@@ -6,7 +6,7 @@ updates:
     interval: weekly
     day: friday
 - package-ecosystem: cargo
-  directory: /try-s2n-quic
+  directory: /try-ballista
   schedule:
     interval: weekly
     day: friday
