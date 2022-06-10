@@ -1,10 +1,5 @@
 .DS_Store
 
-.venv
-__pycache__
-poetry.lock
-dist
-
 target
 Cargo.lock
 
