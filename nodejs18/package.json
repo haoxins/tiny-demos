@@ -1,9 +1,0 @@
-{
-  "name": "nodejs18",
-  "version": "1.0.0",
-  "private": true,
-  "main": "test.mjs",
-  "scripts": {
-    "test": "node test.mjs"
-  }
-}

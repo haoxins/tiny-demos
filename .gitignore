@@ -8,4 +8,5 @@ dist
 target
 Cargo.lock
 
+*.avro
 *.csv
