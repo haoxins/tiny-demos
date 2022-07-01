@@ -2,7 +2,7 @@
 name = "try-ballista"
 version = "0.1.0"
 edition = "2021"
-rust-version = "1.60"
+rust-version = "1.62"
 
 [dependencies]
 ballista = "0.7"
