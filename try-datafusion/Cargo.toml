@@ -5,5 +5,5 @@ edition = "2021"
 rust-version = "1.62"
 
 [dependencies]
-datafusion = "9"
+datafusion = "10"
 tokio = "1"
