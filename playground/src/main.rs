@@ -1,3 +1,11 @@
+use std::rc::Rc;
+use std::sync::{Arc, Mutex};
+
 fn main() {
-    println!("Hello, world!");
+    let a = 10;
+    let b = Box::new(20);
+    let c = Rc::new(Box::new(30));
+    let d = Arc::new(Mutex::new(40));
+
+    println!("a is {}, b is {}, c is {}, d is {:?}", a, b, c, d);
 }
