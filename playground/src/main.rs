@@ -8,4 +8,11 @@ fn main() {
     let d = Arc::new(Mutex::new(40));
 
     println!("a is {}, b is {}, c is {}, d is {:?}", a, b, c, d);
+
+    let s1 = r"Hello!";
+    let s2 = r#"Hello""#;
+    let s3 = r#"Hello#"#;
+    println!("{}", s1);
+    println!("{}", s2);
+    println!("{}", s3);
 }
