@@ -36,12 +36,19 @@ fn main() {
 
     let args = app.get_matches();
 
+    let action = args.value_of("action").unwrap();
+    let std = args.value_of("std").unwrap();
+
+    if action == "set" {
+        unimplemented!();
+    }
+
     let now = Clock::get();
 
-    // match std {
-    //     "timestamp" => println!("{}", now.timestamp()),
-    //     "rfc2822" => println!("{}", now.to_rfc2822()),
-    //     "rfc3339" => println!("{}", now.to_rfc3339()),
-    //     _ => unreachable!(),
-    // }
+    match std {
+        "timestamp" => println!("{}", now.timestamp()),
+        "rfc2822" => println!("{}", now.to_rfc2822()),
+        "rfc3339" => println!("{}", now.to_rfc3339()),
+        _ => unreachable!(),
+    }
 }
