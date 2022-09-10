@@ -3,4 +3,14 @@ name = "kv"
 version = "0.1.0"
 edition = "2021"
 
+[lib]
+name = "kvlib"
+path = "src/lib.rs"
+
+[[bin]]
+name = "kv_mem"
+path = "src/kv_mem.rs"
+
 [dependencies]
+byteorder = "1.4"
+crc = "3"
