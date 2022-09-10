@@ -7,11 +7,6 @@ impl Clock {
     fn get() -> DateTime<Local> {
         Local::now()
     }
-
-    fn set() -> ! {
-        unimplemented!();
-        todo!();
-    }
 }
 
 fn main() {
