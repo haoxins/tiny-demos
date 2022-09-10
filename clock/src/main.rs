@@ -1,4 +1,5 @@
 use chrono::{DateTime, Local};
+use clap::{App, Arg};
 
 struct Clock;
 
@@ -14,6 +15,33 @@ impl Clock {
 }
 
 fn main() {
+    let app = App::new("clock")
+        .version("0.1.0")
+        .about("Gets and sets the time.")
+        .arg(
+            Arg::with_name("action")
+                .takes_value(true)
+                .possible_values(&["get", "set"])
+                .default_value("get"),
+        )
+        .arg(
+            Arg::with_name("std")
+                .short('s')
+                .long("standard")
+                .takes_value(true)
+                .possible_values(&["rfc2822", "rfc3339", "timestamp"])
+                .default_value("rfc3339"),
+        )
+        .arg(Arg::with_name("datetime").help("When <action> is [set], apply <datetime>."));
+
+    let args = app.get_matches();
+
     let now = Clock::get();
-    println!("{}", now);
+
+    // match std {
+    //     "timestamp" => println!("{}", now.timestamp()),
+    //     "rfc2822" => println!("{}", now.to_rfc2822()),
+    //     "rfc3339" => println!("{}", now.to_rfc3339()),
+    //     _ => unreachable!(),
+    // }
 }
