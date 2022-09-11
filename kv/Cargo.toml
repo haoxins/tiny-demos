@@ -14,3 +14,4 @@ path = "src/kv_mem.rs"
 [dependencies]
 byteorder = "1.4"
 crc = "3"
+serde = "1"
