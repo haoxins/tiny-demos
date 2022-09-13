@@ -20,9 +20,9 @@ impl fmt::Display for CustomError {
 impl error::Error for CustomError {}
 
 fn main() -> Result<(), CustomError> {
-    let _f = File::open("not-exists.txt")?.maybe_convert_to(CustomError);
+    let _f = File::open("not-exists.txt").map_err(CustomError::IO)?;
 
-    let _localhost = "::1".parse::<Ipv6Addr>()?.maybe_convert_to(CustomError);
+    let _localhost = "::1".parse::<Ipv6Addr>().map_err(CustomError::Parsing)?;
 
     Ok(())
 }
