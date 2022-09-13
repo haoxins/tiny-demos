@@ -3,20 +3,22 @@ use std::{thread, time};
 fn main() {
     let start = time::Instant::now();
 
-    let handler_1 = thread::spawn(move || {
-        let pause = time::Duration::from_millis(500);
-        thread::sleep(pause.clone());
-    });
+    for n in 1..=1000 {
+        let mut handlers: Vec<thread::JoinHandle<()>> = Vec::with_capacity(n);
 
-    let handler_2 = thread::spawn(|| {
-        let pause = time::Duration::from_millis(500);
-        thread::sleep(pause);
-    });
+        for m in 0..n {
+            let handler = thread::spawn(|| {
+                let pause = time::Duration::from_millis(20);
+                thread::sleep(pause);
+            });
+            handlers.push(handler);
+        }
 
-    handler_1.join().unwrap();
-    handler_2.join().unwrap();
+        while let Some(handle) = handlers.pop() {
+            handle.join();
+        }
+    }
 
     let finished = time::Instant::now();
-
     println!("Finished in {:?}", finished.duration_since(start));
 }
