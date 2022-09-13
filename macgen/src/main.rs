@@ -21,7 +21,7 @@ impl MacAddress {
     fn new() -> Self {
         let mut octets: [u8; 6] = [0; 6];
         rand::thread_rng().fill_bytes(&mut octets);
-        octets[0] &= 0b_0000_0011;
+        octets[0] |= 0b_0000_0011;
         MacAddress { 0: octets }
     }
 
