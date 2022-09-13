@@ -1,10 +1,10 @@
 use std::{thread, time};
 
 fn main() {
-    let start = time::Instant::now();
-
     for n in 1..=1000 {
         let mut handlers: Vec<thread::JoinHandle<()>> = Vec::with_capacity(n);
+
+        let start = time::Instant::now();
 
         for m in 0..n {
             let handler = thread::spawn(|| {
@@ -17,8 +17,8 @@ fn main() {
         while let Some(handle) = handlers.pop() {
             handle.join();
         }
-    }
 
-    let finished = time::Instant::now();
-    println!("Finished in {:?}", finished.duration_since(start));
+        let finished = time::Instant::now();
+        println!("Finished in {:?}", finished.duration_since(start));
+    }
 }
