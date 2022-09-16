@@ -4,6 +4,8 @@ use svg::node::element::path::{Command, Data, Position};
 use svg::node::element::{Path, Rectangle};
 use svg::Document;
 
+use rayon::prelude::*;
+
 use crate::Operation::{Forward, Home, Noop, TurnLeft, TurnRight};
 
 use crate::Orientation::{East, North, South, West};
@@ -102,7 +104,8 @@ impl Artist {
 
 fn parse(input: &str) -> Vec<Operation> {
     input
-        .bytes()
+        .as_bytes()
+        .par_iter()
         .map(|byte| match byte {
             b'0' => Home,
             b'1'..=b'9' => {
@@ -111,7 +114,7 @@ fn parse(input: &str) -> Vec<Operation> {
             }
             b'a' | b'b' | b'c' => TurnLeft,
             b'd' | b'e' | b'f' => TurnRight,
-            _ => Noop(byte),
+            _ => Noop(*byte),
         })
         .collect()
 }
