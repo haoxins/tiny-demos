@@ -147,11 +147,44 @@ fn convert(operations: &Vec<Operation>) -> Vec<Command> {
     path_data
 }
 
+fn generate_svg(path_data: Vec<Command>) -> Document {
+    let background = Rectangle::new()
+        .set("x", 0)
+        .set("y", 0)
+        .set("width", WIDTH)
+        .set("height", HEIGHT)
+        .set("fill", "white");
+
+    let border = background
+        .clone()
+        .set("fill-opacity", "0.0")
+        .set("stroke", "#cccccc")
+        .set("stroke-width", 3 * STROKE_WIDTH);
+
+    let sketch = Path::new()
+        .set("fill", "none")
+        .set("stroke", "#2f2f2f")
+        .set("stroke-width", STROKE_WIDTH)
+        .set("stroke-opacity", "0.9")
+        .set("d", Data::from(path_data));
+
+    let document = Document::new()
+        .set("viewBox", (0, 0, HEIGHT, WIDTH))
+        .set("width", WIDTH)
+        .set("height", HEIGHT)
+        .set("style", "style=\"outline: 5px solid #800000;\"")
+        .add(background)
+        .add(sketch)
+        .add(border);
+
+    document
+}
+
 fn main() {
     let args = env::args().collect::<Vec<String>>();
     let input = args.get(1).unwrap();
-    let default = format!("{}.svg", input);
-    let save_to = args.get(2).unwrap_or(&default);
+    let default_filename = format!("{}.svg", input);
+    let save_to = args.get(2).unwrap_or(&default_filename);
 
     let operations = parse(input);
     let path_data = convert(&operations);
