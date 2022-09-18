@@ -39,25 +39,6 @@ impl KV {
         Ok(KV { f, index })
     }
 
-    pub fn load(&mut self) -> io::Result<()> {
-        let mut f = BufReader::new(&self.f);
-
-        loop {
-            let position = f.seek(SeekFrom::Current(0))?;
-            let maybe_kv = KV::process_record(&mut f);
-
-            let kv = match maybe_kv {
-                Ok(kv) => kv,
-                Err(err) => match err.kind() {
-                    io::ErrorKind::UnexpectedEof => break,
-                    _ => return Err(err),
-                },
-            };
-            self.index.insert(kv.key, position);
-        }
-        Ok(())
-    }
-
     fn process_record<R: Read>(f: &mut R) -> io::Result<KeyValuePair> {
         let saved_checksum = f.read_u32::<LittleEndian>()?;
         let key_len = f.read_u32::<LittleEndian>()?;
@@ -68,22 +49,92 @@ impl KV {
 
         {
             f.by_ref().take(data_len as u64).read_to_end(&mut data)?;
-
-            debug_assert_eq!(data.len(), data_len as usize);
-
-            let checksum = CASTAGNOLI.checksum(&data);
-            if checksum != saved_checksum {
-                panic!(
-                    "checksum mismatch {:08x} vs {:08x}",
-                    checksum, saved_checksum
-                );
-            }
-
-            let value = data.split_off(key_len as usize);
-            let key = data;
-
-            Ok(KeyValuePair { key, value })
         }
+        debug_assert_eq!(data.len(), data_len as usize);
+
+        let checksum = CASTAGNOLI.checksum(&data);
+        if checksum != saved_checksum {
+            return Err(io::Error::new(
+                io::ErrorKind::InvalidData,
+                "checksum mismatch",
+            ));
+        }
+
+        let value = data.split_off(key_len as usize);
+        let key = data;
+
+        Ok(KeyValuePair { key, value })
+    }
+
+    pub fn seek_to_end(&mut self) -> io::Result<u64> {
+        self.f.seek(SeekFrom::End(0))
+    }
+
+    pub fn load(&mut self) -> io::Result<()> {
+        let mut f = BufReader::new(&self.f);
+
+        loop {
+            let current_position = f.seek(SeekFrom::Current(0))?;
+            let maybe_kv = KV::process_record(&mut f);
+
+            let kv = match maybe_kv {
+                Ok(kv) => kv,
+                Err(err) => match err.kind() {
+                    io::ErrorKind::UnexpectedEof => {
+                        break;
+                    }
+                    _ => return Err(err),
+                },
+            };
+            self.index.insert(kv.key, current_position);
+        }
+        Ok(())
+    }
+
+    pub fn get(&mut self, key: &ByteStr) -> io::Result<Option<ByteString>> {
+        let position = match self.index.get(key) {
+            Some(position) => *position,
+            None => return Ok(None),
+        };
+
+        let kv = self.get_at(position)?;
+
+        Ok(Some(kv.value))
+    }
+
+    pub fn get_at(&mut self, position: u64) -> io::Result<KeyValuePair> {
+        let mut f = BufReader::new(&mut self.f);
+        f.seek(SeekFrom::Start(position))?;
+        let kv = KV::process_record(&mut f)?;
+
+        Ok(kv)
+    }
+
+    pub fn find(&mut self, target: &ByteStr) -> io::Result<Option<u64, ByteString>> {
+        let mut f = BufReader::new(&mut self.f);
+        let mut found: Option<(u64, ByteString)> = None;
+
+        loop {
+            let position = f.seek(SeekFrom::Current(0))?;
+
+            let maybe_kv = KV::process_record(&mut f);
+
+            let kv = match maybe_kv {
+                Ok(kv) => kv,
+                Err(err) => match err.kind() {
+                    io::ErrorKind::UnexpectedEof => {
+                        break;
+                    }
+                    _ => return Err(err),
+                },
+            };
+
+            if kv.key == target {
+                found = Some((position, kv.value));
+            }
+        }
+
+        Ok(found)
     }
 
     pub fn insert(&mut self, key: &ByteStr, value: &ByteStr) -> io::Result<()> {
@@ -119,5 +170,15 @@ impl KV {
         f.write_all(&tmp)?;
 
         Ok(current_position)
+    }
+
+    #[inline]
+    pub fn update(&mut self, key: &ByteStr, value: &ByteStr) -> io::Result<()> {
+        self.insert(key, value)
+    }
+
+    #[inline]
+    pub fn delete(&mut self, key: &ByteStr) -> io::Result<()> {
+        self.insert(key, b"")
     }
 }

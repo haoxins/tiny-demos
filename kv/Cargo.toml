@@ -11,7 +11,12 @@ path = "src/lib.rs"
 name = "kv_mem"
 path = "src/kv_mem.rs"
 
+[[bin]]
+name = "kv_disk"
+path = "src/kv_disk.rs"
+
 [dependencies]
+bincode = "1"
 byteorder = "1"
 crc = "3"
 serde = "1"
