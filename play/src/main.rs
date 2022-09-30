@@ -15,7 +15,7 @@ fn gcd(mut n: u64, mut m: u64) -> u64 {
 }
 
 fn main() {
-    let mut numbers = Vec::new();
+    let mut numbers = vec![];
 
     for arg in env::args().skip(1) {
         numbers.push(u64::from_str(&arg).expect("error parsing argument"));
