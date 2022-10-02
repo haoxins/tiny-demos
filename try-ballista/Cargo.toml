@@ -2,8 +2,11 @@
 name = "try-ballista"
 version = "0.1.0"
 edition = "2021"
-rust-version = "1.62"
+rust-version = "1.64"
+
+[[bin]]
+name = "hello"
+path = "src/hello.rs"
 
 [dependencies]
 ballista = "0.8"
-# cargo update --package quote --precise 1.0.10
