@@ -1,8 +1,3 @@
-[package]
-name = "kv"
-version = "0.1.0"
-edition = "2021"
-
 [lib]
 name = "kvlib"
 path = "src/lib.rs"
@@ -14,10 +9,3 @@ path = "src/kv_mem.rs"
 [[bin]]
 name = "kv_disk"
 path = "src/kv_disk.rs"
-
-[dependencies]
-bincode = "1"
-byteorder = "1"
-crc = "3"
-serde = "1"
-serde_derive = "1"
