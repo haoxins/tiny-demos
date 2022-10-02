@@ -2,11 +2,6 @@ use kvlib::KV;
 
 #[cfg(not(target_os = "windows"))]
 const USAGE: &str = "
-Usage:
-    kv_mem FILE get KEY
-    kv_mem FILE delete KEY
-    kv_mem FILE insert KEY VALUE
-    kv_mem FILE update KEY VALUE
 ";
 
 fn main() {

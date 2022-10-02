@@ -3,11 +3,6 @@ use std::collections::HashMap;
 
 #[cfg(not(target_os = "windows"))]
 const USAGE: &str = "
-Usage:
-    kv_disk FILE get KEY
-    kv_disk FILE delete KEY
-    kv_disk FILE insert KEY VALUE
-    kv_disk FILE update KEY VALUE
 ";
 
 type ByteString = Vec<u8>;

@@ -1,5 +1,3 @@
-static GLOBAL: i32 = 1000;
-
 fn noop() -> *const i32 {
     let local = 12345;
     &local as *const i32
