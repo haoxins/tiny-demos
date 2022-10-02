@@ -33,12 +33,11 @@ async fn index() -> Html<&'static str> {
 
 async fn handle_gcd(Form(params): Form<GcdParams>) -> Html<String> {
     println!("The request is {:?}", params);
-    let result = &gcd(params.n, params.m).to_string();
+    let n = &gcd(params.n, params.m).to_string();
 
     let mut html = String::from(GCD_FORM);
-    html.push_str("<p>");
+    let result = &format!("<p>{}</p>", n);
     html.push_str(result);
-    html.push_str("</p>");
 
     Html(html)
 }
