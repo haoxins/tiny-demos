@@ -28,20 +28,19 @@ async fn main() {
 }
 
 async fn index() -> Html<&'static str> {
-    Html(
-        r#"
-        <title>GCD Calculator</title>
-        <form action="/gcd" method="POST">
-            <input type="text" name="n" />
-            <input type="text" name="m" />
-            <button type="submit">Compute GCD</button>
-        </form>
-    "#,
-    )
+    Html(GCD_FORM)
 }
 
 async fn handle_gcd(Form(params): Form<GcdParams>) -> Html<String> {
     println!("The request is {:?}", params);
+    let result: &str = &gcd(params.n, params.m).to_string();
+
+    let mut html = String::from(GCD_FORM);
+    html.push_str("<p>");
+    html.push_str(result);
+    html.push_str("</p>");
+
+    Html(html)
 }
 
 fn gcd(mut n: u64, mut m: u64) -> u64 {
@@ -62,3 +61,12 @@ fn test_gcd() {
     assert_eq!(gcd(7, 13), 1);
     assert_eq!(gcd(2 * 5, 3 * 5), 5);
 }
+
+const GCD_FORM: &str = r#"
+<title>GCD Calculator</title>
+<form action="/gcd" method="POST">
+    <input type="text" name="n" />
+    <input type="text" name="m" />
+    <button type="submit">Compute GCD</button>
+</form>
+"#;
