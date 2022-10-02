@@ -1,15 +1,30 @@
-use axum::{response::Html, routing::get, Router};
+use axum::{
+    extract::Form,
+    response::Html,
+    routing::{get, post},
+    Router,
+};
+use serde::Deserialize;
+
 use std::net::SocketAddr;
+
+#[derive(Deserialize, Debug)]
+struct GcdParams {
+    n: u64,
+    m: u64,
+}
 
 #[tokio::main]
 async fn main() {
-    let app = Router::new().route("/", get(index));
+    let app = Router::new()
+        .route("/", get(index))
+        .route("/gcd", post(handle_gcd));
 
     let addr = SocketAddr::from(([127, 0, 0, 1], 3000));
     axum::Server::bind(&addr)
         .serve(app.into_make_service())
         .await
-        .unwrap();
+        .expect("server error");
 }
 
 async fn index() -> Html<&'static str> {
@@ -23,4 +38,27 @@ async fn index() -> Html<&'static str> {
         </form>
     "#,
     )
+}
+
+async fn handle_gcd(Form(params): Form<GcdParams>) -> Html<String> {
+    println!("The request is {:?}", params);
+}
+
+fn gcd(mut n: u64, mut m: u64) -> u64 {
+    assert!(n != 0 && m != 0);
+    while m != 0 {
+        if m < n {
+            let t = m;
+            m = n;
+            n = t;
+        }
+        m = m % n;
+    }
+    n
+}
+
+#[test]
+fn test_gcd() {
+    assert_eq!(gcd(7, 13), 1);
+    assert_eq!(gcd(2 * 5, 3 * 5), 5);
 }
