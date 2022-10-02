@@ -1,7 +1,0 @@
-[package]
-name = "channel-complex"
-version = "0.1.0"
-edition = "2021"
-
-[dependencies]
-crossbeam = "0.8"
