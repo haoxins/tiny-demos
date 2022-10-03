@@ -1,12 +1,12 @@
 version: 2
 updates:
 - package-ecosystem: cargo
-  directory: /try-ballista
+  directory: /ballista-demos
   schedule:
     interval: weekly
-    day: friday
+    day: monday
 - package-ecosystem: cargo
-  directory: /try-datafusion
+  directory: /datafusion-demos
   schedule:
     interval: weekly
-    day: friday
+    day: monday
