@@ -1,25 +1,3 @@
-pub const CASTAGNOLI: Crc<u32> = Crc::<u32>::new(&CRC_32_ISCSI);
-pub struct KeyValuePair {
-    pub key: ByteString,
-    pub value: ByteString,
-}
-pub struct KV {
-    f: File,
-    pub index: HashMap<ByteString, u64>,
-}
-impl KV {
-    pub fn open(path: &Path) -> io::Result<Self> {
-        let f = OpenOptions::new()
-            .read(true)
-            .write(true)
-            .create(true)
-            .append(true)
-            .open(path)?;
-
-        let index = HashMap::new();
-        Ok(KV { f, index })
-    }
-    fn process_record<R: Read>(f: &mut R) -> io::Result<KeyValuePair> {
         let saved_checksum = f.read_u32::<LittleEndian>()?;
         let key_len = f.read_u32::<LittleEndian>()?;
         let val_len = f.read_u32::<LittleEndian>()?;
