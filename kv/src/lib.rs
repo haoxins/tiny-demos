@@ -5,7 +5,6 @@
         let mut data = ByteString::with_capacity(data_len as usize);
         {
             f.by_ref().take(data_len as u64).read_to_end(&mut data)?;
-        }
         debug_assert_eq!(data.len(), data_len as usize);
         let checksum = CASTAGNOLI.checksum(&data);
         if checksum != saved_checksum {
@@ -13,14 +12,11 @@
                 io::ErrorKind::InvalidData,
                 "checksum mismatch",
             ));
-        }
         let value = data.split_off(key_len as usize);
         let key = data;
         Ok(KeyValuePair { key, value })
-    }
     pub fn seek_to_end(&mut self) -> io::Result<u64> {
         self.f.seek(SeekFrom::End(0))
-    }
     pub fn load(&mut self) -> io::Result<()> {
         let mut f = BufReader::new(&self.f);
         loop {
@@ -31,22 +27,15 @@
                 Err(err) => match err.kind() {
                     io::ErrorKind::UnexpectedEof => {
                         break;
-                    }
                     _ => return Err(err),
-                },
-            };
             self.index.insert(kv.key, current_position);
-        }
         Ok(())
-    }
     pub fn get(&mut self, key: &ByteStr) -> io::Result<Option<ByteString>> {
         let position = match self.index.get(key) {
             Some(position) => *position,
             None => return Ok(None),
-        };
         let kv = self.get_at(position)?;
         Ok(Some(kv.value))
-    }
     pub fn get_at(&mut self, position: u64) -> io::Result<KeyValuePair> {
         let mut f = BufReader::new(&mut self.f);
         f.seek(SeekFrom::Start(position))?;
@@ -66,8 +55,6 @@
                         break;
                     }
                     _ => return Err(err),
-                },
-            };
             if kv.key == target {
                 found = Some((position, kv.value));
         Ok(found)
@@ -85,7 +72,6 @@
         }
         for byte in value {
             tmp.push(*byte);
-        }
         let checksum = CASTAGNOLI.checksum(&tmp);
         let next_byte = SeekFrom::End(0);
         let current_position = f.seek(SeekFrom::Current(0))?;
@@ -95,11 +81,7 @@
         f.write_u32::<LittleEndian>(val_len as u32)?;
         f.write_all(&tmp)?;
         Ok(current_position)
-    }
-    #[inline]
     pub fn update(&mut self, key: &ByteStr, value: &ByteStr) -> io::Result<()> {
         self.insert(key, value)
-    }
-    #[inline]
     pub fn delete(&mut self, key: &ByteStr) -> io::Result<()> {
         self.insert(key, b"")
