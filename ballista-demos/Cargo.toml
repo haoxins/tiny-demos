@@ -9,4 +9,4 @@ name = "hello"
 path = "src/hello.rs"
 
 [dependencies]
-ballista = "0.8"
+ballista = "0.9"
