@@ -9,5 +9,5 @@ name = "hello"
 path = "src/hello.rs"
 
 [dependencies]
-datafusion = "12"
+datafusion = "15"
 tokio = "1"
