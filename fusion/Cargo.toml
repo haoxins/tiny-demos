@@ -3,6 +3,11 @@ name = "fusion"
 version = "0.1.0"
 edition = "2021"
 
+[[bin]]
+name = "hello"
+path = "src/hello-fusion.rs"
+
 [dependencies]
-datafusion = "18"
 ballista = "0.10"
+datafusion = "18"
+tokio = "1"
