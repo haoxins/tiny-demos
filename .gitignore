@@ -1,6 +1,7 @@
 .DS_Store
 
 dist
+poetry.lock
 
 target
 Cargo.lock

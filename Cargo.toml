@@ -2,7 +2,6 @@
 [workspace]
 members = [
     "fusion",
-    "pola",
 ]
 exclude = [
     "mandelbrot",

@@ -5,8 +5,3 @@ updates:
   schedule:
     interval: weekly
     day: monday
-- package-ecosystem: cargo
-  directory: /pola
-  schedule:
-    interval: weekly
-    day: monday
