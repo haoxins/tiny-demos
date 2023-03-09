@@ -1,5 +1,5 @@
-use axum::{extract::Json, routing::post, Router};
-use serde::Deserialize;
+use axum::{http::StatusCode, response::IntoResponse, routing::post, Json, Router};
+use serde::{Deserialize, Serialize};
 
 use std::net::SocketAddr;
 
@@ -20,19 +20,22 @@ async fn main() {
         .unwrap();
 }
 
-fn handle_gcd() {
-    println!("Hello, world!");
+fn handle_gcd(Json(input): Json<Numbers>) -> Result<impl IntoResponse, StatusCode> {
+    println!("The input is {:?}", input);
+
+    let result = gcd(input);
+
+    Ok(Json(result))
 }
 
-async fn handle_gcd(Form(params): Form<GcdParams>) -> Html<String> {
-    println!("The request is {:?}", params);
-    let n = &gcd(params.n, params.m).to_string();
-
-    let mut html = String::from(GCD_FORM);
-    let result = &format!("<p>{}</p>", n);
 #[derive(Debug, Deserialize)]
 struct Numbers {
     m: u64,
+    n: u64,
+}
+
+#[derive(Debug, Serialize)]
+struct Results {
     n: u64,
 }
 
