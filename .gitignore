@@ -3,6 +3,7 @@
 target
 Cargo.lock
 
+*.parquet
 *.avro
 *.csv
 *.png
