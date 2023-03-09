@@ -1,6 +1,6 @@
 
 ```zsh
 cd arrow-ballista
-cargo build
+cargo build --release
 
 ```
