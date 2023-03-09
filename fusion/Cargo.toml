@@ -8,6 +8,6 @@ name = "hello"
 path = "src/hello-fusion.rs"
 
 [dependencies]
-ballista = "0.10"
-datafusion = "18"
+ballista = "0.11"
+datafusion = "19"
 tokio = "1"
