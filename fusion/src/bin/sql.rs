@@ -1,5 +1,4 @@
-use std::env;
-use std::path::Path;
+use fusion::test_util::get_file_path;
 
 use ballista::prelude::*;
 use datafusion::prelude::CsvReadOptions;
@@ -11,10 +10,7 @@ async fn main() -> Result<()> {
         .build()?;
     let ctx = BallistaContext::remote("localhost", 50050, &config).await?;
 
-    let homedir = env::var("GITHUB_DIR").unwrap();
-    let csv_path = Path::new(&homedir)
-        .join("haoxins/tiny-demos/fusion")
-        .join("testdata/aggregate_test_100.csv");
+    let csv_path = get_file_path("testdata/aggregate_test_100.csv");
 
     ctx.register_csv("test", csv_path.to_str().unwrap(), CsvReadOptions::new())
         .await?;
