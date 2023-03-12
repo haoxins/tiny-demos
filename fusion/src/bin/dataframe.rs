@@ -1,3 +1,5 @@
+use fusion::test_util::get_file_path;
+
 use ballista::prelude::*;
 use datafusion::prelude::{col, lit, ParquetReadOptions};
 
@@ -8,10 +10,13 @@ async fn main() -> Result<()> {
         .build()?;
     let ctx = BallistaContext::remote("localhost", 50050, &config).await?;
 
-    let filename = "testdata/alltypes_plain.parquet";
+    let parquet_path = get_file_path("alltypes_plain.parquet");
 
     let df = ctx
-        .read_parquet(filename, ParquetReadOptions::default())
+        .read_parquet(
+            parquet_path.to_str().unwrap(),
+            ParquetReadOptions::default(),
+        )
         .await?
         .select_columns(&["id", "bool_col", "timestamp_col"])?
         .filter(col("id").gt(lit(1)))?;

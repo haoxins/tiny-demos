@@ -10,7 +10,7 @@ async fn main() -> Result<()> {
         .build()?;
     let ctx = BallistaContext::remote("localhost", 50050, &config).await?;
 
-    let csv_path = get_file_path("testdata/aggregate_test_100.csv");
+    let csv_path = get_file_path("aggregate_test_100.csv");
 
     ctx.register_csv("test", csv_path.to_str().unwrap(), CsvReadOptions::new())
         .await?;
