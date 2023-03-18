@@ -1,4 +1,4 @@
-use fusion::test_util::get_file_path;
+use fusion::util::get_file_path;
 
 use ballista::prelude::*;
 use datafusion::prelude::CsvReadOptions;
