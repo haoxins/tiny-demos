@@ -4,9 +4,12 @@ dist
 poetry.lock
 
 target
+testdata
+
 Cargo.lock
 
 *.parquet
+*.lance
 *.avro
 *.csv
 *.png

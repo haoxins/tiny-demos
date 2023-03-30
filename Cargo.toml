@@ -5,5 +5,5 @@ members = [
 ]
 exclude = [
     "mandelbrot",
-    "polapy",
+    "rpy",
 ]
