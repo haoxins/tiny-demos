@@ -6,7 +6,7 @@ edition = "2021"
 [dependencies]
 ballista = "0.11"
 datafusion = "18"
-polars = "0.27"
+polars = "0.28"
 lance = "0.3"
 futures = "0.3"
 tokio = "1"
