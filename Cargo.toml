@@ -1,9 +1,10 @@
 
 [workspace]
 members = [
-    "fusion",
+  "arroyo",
+  "fusion",
 ]
 exclude = [
-    "mandelbrot",
-    "rpy",
+  "mandelbrot",
+  "rpy",
 ]
