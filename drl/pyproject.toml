@@ -6,8 +6,9 @@ authors = ["haoxin <haoxinst@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = "^3.10"
 pylance = "0.4"
+gym = "0.26"
 
 [build-system]
 requires = ["poetry-core"]
