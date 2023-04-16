@@ -7,7 +7,7 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.10"
-pylance = "0.4"
+pylance = "0.4.2"
 gym = "0.26"
 
 [build-system]
