@@ -1,7 +1,6 @@
 use std::env;
 use std::fs;
-use std::path::Path;
-use std::path::PathBuf;
+use std::path::{Path, PathBuf};
 
 fn get_sql_file_path(name: &str) -> PathBuf {
     let homedir = env::var("GITHUB_DIR").unwrap();

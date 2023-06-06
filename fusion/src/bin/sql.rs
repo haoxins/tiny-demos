@@ -1,7 +1,9 @@
-use fusion::util::get_file_path;
+use std::env;
 
 use ballista::prelude::*;
-use datafusion::prelude::CsvReadOptions;
+use datafusion::prelude::ParquetReadOptions;
+
+use fusion::util::read_sql;
 
 #[tokio::main]
 async fn main() -> Result<()> {
@@ -10,19 +12,13 @@ async fn main() -> Result<()> {
         .build()?;
     let ctx = BallistaContext::remote("localhost", 50050, &config).await?;
 
-    let csv_path = get_file_path("aggregate_test_100.csv");
-
-    ctx.register_csv("test", csv_path.to_str().unwrap(), CsvReadOptions::new())
+    let parquet_dir = env::var("PARQUET_DIR").unwrap();
+    ctx.register_parquet("bw", parquet_dir.as_str(), ParquetReadOptions::default())
         .await?;
 
-    let df = ctx
-        .sql(
-            "SELECT c1, MIN(c12), MAX(c12) \
-        FROM test \
-        WHERE c11 > 0.1 AND c11 < 0.9 \
-        GROUP BY c1",
-        )
-        .await?;
+    let sql_1 = read_sql("sql_1");
+
+    let df = ctx.sql(sql_1.as_str()).await?;
 
     df.show().await?;
 
