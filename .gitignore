@@ -1,0 +1,12 @@
+.DS_Store
+
+dist
+target
+
+testdata
+
+Cargo.lock
+
+*.parquet
+*.lance
+*.png

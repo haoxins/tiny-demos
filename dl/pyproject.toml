@@ -1,0 +1,30 @@
+[project]
+name = "dl"
+version = "0.1.0"
+dependencies = [
+    "torch>=2.0.1",
+    "torchvision>=0.15.2",
+    "gymnasium>=0.29.0",
+    "polars>=0.18.8",
+    "pandas>=2.0.3",
+    "plotly>=5.15.0",
+    "transformers>=4.31.0",
+    "numpy>=1.25.1",
+]
+requires-python = ">= 3.11"
+
+[tool.rye]
+managed = true
+dev-dependencies = [
+  "black~=23.3.0"
+]
+
+[tool.rye.scripts]
+fmt = "black src"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.metadata]
+allow-direct-references = true
