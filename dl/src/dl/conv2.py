@@ -1,5 +1,5 @@
 import torch
-from torch import nn
+import torch.nn as nn
 
 
 def comp_conv2d(conv2d, X):

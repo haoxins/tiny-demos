@@ -80,7 +80,7 @@ def py_torch():
     data_iter = load_array((feats, labels), batch_size)
 
     # print(next(iter(data_iter)))
-    from torch import nn
+    import torch.nn as nn
 
     net = nn.Sequential(nn.Linear(2, 1))
     net[0].weight.data.normal_(0, 0.01)

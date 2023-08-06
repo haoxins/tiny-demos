@@ -1,7 +1,7 @@
 import torch
 import torchvision
-from torch.utils import data
-from torchvision import transforms
+import torch.utils.data as data
+import torchvision.transforms as transforms
 
 import os
 

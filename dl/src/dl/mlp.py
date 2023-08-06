@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
-from torch.utils import data
-from torchvision import transforms
+import torch.utils.data as data
+import torchvision.transforms as transforms
 import torchvision
 
 x = torch.arange(-8.0, 8.0, 1, requires_grad=True)
