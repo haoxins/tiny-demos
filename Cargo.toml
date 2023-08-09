@@ -1,0 +1,11 @@
+[workspace]
+members = [
+  "alg",
+  "fusion",
+  "ml",
+]
+exclude = [
+  "dl",
+]
+
+[workspace.dependencies]
