@@ -3,12 +3,6 @@ import torch.nn as nn
 
 net = nn.Sequential(nn.Linear(4, 8), nn.ReLU(), nn.Linear(8, 1))
 X = torch.rand(size=(2, 4))
-# print(net(X))
-# print(net[2].state_dict())
-# print(type(net[2].bias))
-# print(net[2].bias)
-# print(net[2].bias.data)
-# print(net[2].weight.grad is None)
 print([(name, param.shape) for name, param in net[0].named_parameters()])
 print([(name, param.shape) for name, param in net.named_parameters()])
 print(net.state_dict()["2.bias"].data)
@@ -26,10 +20,6 @@ def block2():
 
 
 rgnet = nn.Sequential(block2(), nn.Linear(4, 1))
-print(rgnet(X))
-
-print(rgnet)
-print(rgnet[0][1][0].bias.data)
 
 
 def init_normal(m):
@@ -39,7 +29,6 @@ def init_normal(m):
 
 
 net.apply(init_normal)
-print(net[0].weight.data[0], net[0].bias.data[0])
 
 
 def init_constant(m):

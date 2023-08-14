@@ -25,8 +25,3 @@ net = nn.Sequential(
     nn.AdaptiveAvgPool2d((1, 1)),
     nn.Flatten(),
 )
-
-X = torch.randn(size=(1, 1, 224, 224))
-for layer in net:
-    X = layer(X)
-    print(layer.__class__.__name__, "output shape:\t", X.shape)

@@ -1,4 +1,3 @@
-import plotly.express as px
 import torch
 
 import random
@@ -40,8 +39,6 @@ def py_native():
     true_w = torch.tensor([2, -3.4])
     true_b = 4.2
     feats, labels = synthetic_data(true_w, true_b, 1000)
-
-    # px.scatter(x=feats[:, 1], y=labels[:, 0]).show()
 
     batch_size = 10
     # for X, y in data_iter(batch_size, feats, labels):
