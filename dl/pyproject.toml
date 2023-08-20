@@ -1,18 +1,18 @@
 [project]
 name = "dl"
 version = "0.1.0"
+requires-python = ">= 3.11"
 dependencies = [
     "torch>=2.0.1",
     "torchvision>=0.15.2",
     "gymnasium>=0.29.0",
-    "numpy>=1.25.1",
+    "numpy>=1.25.2",
 ]
-requires-python = ">= 3.11"
 
 [tool.rye]
 managed = true
 dev-dependencies = [
-  "black~=23.3.0"
+  "black>=23.7.0"
 ]
 
 [tool.rye.scripts]

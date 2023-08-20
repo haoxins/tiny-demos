@@ -7,8 +7,6 @@ import os.path as path
 import collections
 import random
 
-# http://d2l-data.s3-accelerate.amazonaws.com/timemachine.txt
-
 
 def read_time_machine():
     fp = path.join(path.dirname(__file__), "../../data/time_machine.txt")
