@@ -1,7 +1,12 @@
 version: 2
 updates:
 - package-ecosystem: cargo
-  directory: /ml
+  directory: /train
+  schedule:
+    interval: weekly
+    day: sunday
+- package-ecosystem: cargo
+  directory: /fusion
   schedule:
     interval: weekly
     day: sunday
