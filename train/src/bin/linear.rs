@@ -1,5 +1,5 @@
 use candle_core::{DType, Device, Result, Tensor};
-use candle_nn::Linear;
+use candle_nn::{Linear, Module};
 
 struct Model {
     first: Linear,

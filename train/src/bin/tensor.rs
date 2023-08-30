@@ -1,5 +1,4 @@
-use candle_core::Error;
-use candle_core::{Device, Tensor};
+use candle_core::{Device, Error, Tensor};
 
 fn main() -> Result<(), Error> {
     let a = Tensor::randn(0f32, 1., (2, 3), &Device::Cpu)?;

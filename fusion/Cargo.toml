@@ -4,7 +4,8 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-rdkafka = "0.33"
+axum = "0.6"
+rdkafka = "0.34"
 serde = "1"
 serde_json = "1"
 tokio = "1"
