@@ -13,5 +13,13 @@ fn main() -> Result<(), Error> {
     let c = a.matmul(&b)?;
     println!("{c}");
 
+    let a = Tensor::from_slice(
+        &[-1., 2., 2., 2., -1., 2., 2., 2., -1.],
+        (3, 3),
+        &Device::Cpu,
+    )?;
+    let b = a.transpose(0, 1)?;
+    let c = a.matmul(&b)?;
+    println!("{a} {b} {c}");
     Ok(())
 }

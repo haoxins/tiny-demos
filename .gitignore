@@ -5,8 +5,6 @@ target
 
 testdata
 
-Cargo.lock
-
-*.parquet
+*.lock
 *.lance
-*.png
+*.parquet
