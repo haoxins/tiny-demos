@@ -5,5 +5,5 @@ edition = "2021"
 
 [dependencies]
 candle-core = "0.2"
-candle-nn = "0.2"
+candle-nn = "0.3"
 candle-transformers = "0.2"
