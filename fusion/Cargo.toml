@@ -5,7 +5,7 @@ edition = "2021"
 
 [dependencies]
 axum = "0.6"
-rdkafka = "0.34"
+rdkafka = "0.36"
 serde = "1"
 serde_json = "1"
 tokio = "1"
