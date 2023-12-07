@@ -1,0 +1,9 @@
+[workspace]
+members = [
+  "fusion",
+  "rust-snippet",
+  "train",
+]
+resolver = "2"
+
+[workspace.dependencies]

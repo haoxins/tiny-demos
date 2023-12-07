@@ -1,0 +1,8 @@
+[package]
+name = "rust-snippet"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+axum = "0.7"
+axum-htmx = "0.5"

@@ -1,0 +1,13 @@
+.DS_Store
+
+.ruff_cache
+.venv
+
+dist
+target
+
+testdata
+
+*.lock
+*.lance
+*.parquet

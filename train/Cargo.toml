@@ -1,0 +1,11 @@
+[package]
+name = "train"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+candle-core = "0.3"
+candle-nn = "0.3"
+candle-transformers = "0.3"
+kalosm = { git = "https://github.com/floneum/floneum", version = "0.1.0" }
+tokio = { version = "1", features = ["full"] }
