@@ -6,3 +6,11 @@ edition = "2021"
 [dependencies]
 axum = "0.7"
 axum-htmx = "0.5"
+candle-core = "0.3"
+candle-nn = "0.3"
+candle-transformers = "0.3"
+kalosm = { git = "https://github.com/floneum/floneum", version = "0.1.0" }
+rdkafka = "0.36"
+serde = "1"
+serde_json = "1"
+tokio = { version = "1", features = ["full"] }

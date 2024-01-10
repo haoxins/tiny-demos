@@ -7,6 +7,13 @@ import (
 )
 
 func TestNil(t *testing.T) {
+	nums := []int{1, 2, 3}
+	assert.Equal(t, 3, len(nums))
+	nums = nil
+	assert.Equal(t, 0, len(nums))
+	nums = []int{}
+	assert.Equal(t, 0, len(nums))
+
 	var a Account
 	assert.Equal(t, []string([]string(nil)), a.Badges)
 	var p *Account

@@ -1,8 +1,7 @@
 [workspace]
 members = [
-  "fusion",
+  "math-snippet",
   "rust-snippet",
-  "train",
 ]
 resolver = "2"
 
