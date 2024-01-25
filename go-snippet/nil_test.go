@@ -11,6 +11,10 @@ func TestNil(t *testing.T) {
 	assert.Equal(t, 3, len(nums))
 	nums = nil
 	assert.Equal(t, 0, len(nums))
+	// append nil slice
+	nums = append(nums, 1, 2, 3)
+	assert.Equal(t, 3, len(nums))
+
 	nums = []int{}
 	assert.Equal(t, 0, len(nums))
 

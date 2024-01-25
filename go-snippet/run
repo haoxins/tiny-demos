@@ -2,6 +2,6 @@
 
 export GOEXPERIMENT=rangefunc
 
-go1.22rc1 fmt .
-go1.22rc1 vet .
-go1.22rc1 test -v .
+go fmt .
+go vet .
+go test -v .

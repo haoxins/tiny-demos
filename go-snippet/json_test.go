@@ -27,13 +27,13 @@ func TestJSON(t *testing.T) {
 		Badges: nil,
 	}
 	b1, _ := json.Marshal(a1)
-	assert.Equal(t, string(b1), `{"badges":null}`)
+	assert.Equal(t, `{"badges":null,"balance":null}`, string(b1))
 
 	a2 = Account{
 		Badges: []string{},
 	}
 	b2, _ := json.Marshal(a2)
-	assert.Equal(t, string(b2), `{"badges":[]}`)
+	assert.Equal(t, `{"badges":[],"balance":null}`, string(b2))
 
 	// NaN
 	v := stat.Variance([]float64{0.0}, nil)
@@ -45,4 +45,11 @@ func TestJSON(t *testing.T) {
 		Amount: v,
 	})
 	assert.Equal(t, "json: unsupported value: NaN", e.Error())
+
+	var list1 []Account
+	text := `[{}]`
+	json.Unmarshal([]byte(text), &list1)
+	assert.Equal(t, 1, len(list1))
+	assert.Len(t, list1[0].Badges, 0)
+	assert.True(t, list1[0].Balance == nil)
 }
