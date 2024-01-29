@@ -12,9 +12,15 @@ func TestNil(t *testing.T) {
 
 	nums = []int{}
 	assert.Equal(t, 0, len(nums))
+	for _, _ = range nums {
+		t.Error("should not run")
+	}
 	// nil
 	nums = nil
 	assert.Equal(t, 0, len(nums))
+	for _, _ = range nums {
+		t.Error("should not run")
+	}
 	// append nil
 	nums = append(nums, 1, 2, 3)
 	assert.Equal(t, 3, len(nums))
