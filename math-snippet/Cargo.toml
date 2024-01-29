@@ -4,6 +4,7 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+candle-core = "0.3.2"
 nalgebra = "0.32"
 num = "0.4"
 plotters = "0.3"

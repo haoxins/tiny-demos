@@ -9,14 +9,15 @@ import (
 func TestNil(t *testing.T) {
 	nums := []int{1, 2, 3}
 	assert.Equal(t, 3, len(nums))
-	nums = nil
-	assert.Equal(t, 0, len(nums))
-	// append nil slice
-	nums = append(nums, 1, 2, 3)
-	assert.Equal(t, 3, len(nums))
 
 	nums = []int{}
 	assert.Equal(t, 0, len(nums))
+	// nil
+	nums = nil
+	assert.Equal(t, 0, len(nums))
+	// append nil
+	nums = append(nums, 1, 2, 3)
+	assert.Equal(t, 3, len(nums))
 
 	var a Account
 	assert.Equal(t, []string([]string(nil)), a.Badges)
