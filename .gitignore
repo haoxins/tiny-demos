@@ -6,8 +6,7 @@
 dist
 target
 
-testdata
-
+*.log
 *.lock
 *.lance
 *.parquet
