@@ -1,5 +1,6 @@
 [workspace]
 members = [
+  "arrow-examples",
   "math-snippet",
   "rust-snippet",
 ]

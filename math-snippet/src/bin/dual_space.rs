@@ -35,11 +35,11 @@ fn main() {
     println!("g_ij = {} g_ij det = {}", g_ij, g_ij_det);
 
     // Solution: 1
-    let det_s1: f64 = g_ij_det.sqrt();
+    let det1_s: f64 = g_ij_det.sqrt();
 
-    let e_1 = e2.cross(&e3) / det_s1;
-    let e_2 = e3.cross(&e1) / det_s1;
-    let e_3 = e1.cross(&e2) / det_s1;
+    let e_1 = e2.cross(&e3) / det1_s;
+    let e_2 = e3.cross(&e1) / det1_s;
+    let e_3 = e1.cross(&e2) / det1_s;
 
     println!("The results from solution 1");
     println!("e_1 = {} e_2 = {} e_3 = {}", e_1, e_2, e_3);
@@ -77,7 +77,7 @@ fn main() {
         stp1 * stp_1
     );
 
-    // Solution: 3
+    // Go back
     let g_ji = Matrix3::new(
         e_1.dot(&e_1),
         e_1.dot(&e_2),
@@ -92,21 +92,21 @@ fn main() {
 
     let g_ji_det = g_ji.determinant();
 
-    println!("The results from solution 3");
+    println!("The results go back");
     println!("g_ji = {} g_ji det = {}", g_ji, g_ji_det);
     println!(
         "g_ij det * g_ji det = {} (should be 1)",
         g_ij_det * g_ji_det
     );
 
-    let e_1 = g_ji * e1;
-    let e_2 = g_ji * e2;
-    let e_3 = g_ji * e3;
+    let e1 = g_ji * e_1;
+    let e2 = g_ji * e_2;
+    let e3 = g_ji * e_3;
 
-    println!("e_1 = {} e_2 = {} e_3 = {}", e_1, e_2, e_3);
+    println!("e1 = {} e2 = {} e3 = {}", e1, e2, e3);
 
-    let stp_1 = e_1.dot(&e_2.cross(&e_3));
-    println!("[e_1 e_2 e_3] = e_1 * (e_2 x e_3) = {}", stp_1);
+    let stp1 = e1.dot(&e2.cross(&e3));
+    println!("[e1 e2 e3] = e1 * (e2 x e3) = {}", stp1);
     println!(
         "[e1 e2 e3] * [e_1 e_2 e_3] = {} (should be 1)",
         stp1 * stp_1
