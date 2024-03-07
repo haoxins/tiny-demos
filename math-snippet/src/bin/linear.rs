@@ -7,6 +7,11 @@ fn main() {
 
     let t2 = Matrix3::new(9.0, 8.0, 7.0, 6.0, 5.0, 4.0, 3.0, 2.0, 1.0);
 
+    let vals = t1.eigenvalues().unwrap();
+    println!("eigenvalues: {:?}", vals);
+    let cvals = t1.complex_eigenvalues();
+    println!("complex eigenvalues: {:?}", cvals);
+
     // Det
     let det1 = (t1 * t2).determinant();
     let det2 = t1.determinant() * t2.determinant();

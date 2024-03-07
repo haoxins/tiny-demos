@@ -3,7 +3,7 @@ module snippet
 go 1.22
 
 require (
-	github.com/stretchr/testify v1.8.4
+	github.com/stretchr/testify v1.9.0
 	gonum.org/v1/gonum v0.14.0
 )
 

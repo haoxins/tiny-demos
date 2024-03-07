@@ -1,6 +1,7 @@
 [workspace]
 members = [
   "arrow-examples",
+  "gpui-examples",
   "math-snippet",
   "rust-snippet",
 ]
