@@ -1,8 +1,8 @@
 [workspace]
 members = [
   "arrow-examples",
-  "gpui-examples",
   "math-snippet",
+  "raphtory-rust",
   "rust-snippet",
 ]
 resolver = "2"
