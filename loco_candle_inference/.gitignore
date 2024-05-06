@@ -1,9 +1,0 @@
-**/config/local.yaml
-
-debug/
-target/
-
-Cargo.lock
-
-**/*.rs.bk
-

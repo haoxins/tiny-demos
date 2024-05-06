@@ -5,5 +5,5 @@ edition = "2021"
 
 [dependencies]
 ballista = "0.12"
-datafusion = "36"
+datafusion = "37"
 tokio = "1"

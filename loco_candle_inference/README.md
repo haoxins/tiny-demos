@@ -1,3 +1,0 @@
-```
-$ cargo loco start
-```
