@@ -9,9 +9,8 @@ readme = "README.md"
 requires-python = ">= 3.12"
 dependencies = [
     "raphtory>=0.8",
-    "pandas>=2.2",
-    "matplotlib>=3.8",
     "polars>=0.20",
+    "seaborn>=0.13.2",
 ]
 
 [build-system]
@@ -21,11 +20,9 @@ build-backend = "hatchling.build"
 [tool.rye]
 managed = true
 dev-dependencies = [
-    "ruff>=0.4",
 ]
 
 [tool.rye.scripts]
-fmt = "ruff check --fix ."
 app = "python src/raphtory_python/main.py"
 
 [tool.hatch.metadata]

@@ -1,6 +1,6 @@
 from raphtory import Graph
 from raphtory import algorithms as algo
-import pandas as pd
+import polars as pl
 
 graph = Graph()
 
@@ -13,15 +13,20 @@ graph.add_edge(timestamp=3, src="Bob", dst="Charlie", properties={"weight": -15.
 
 print(graph)
 
-results = [["earliest_time", "name", "out_degree", "in_degree"]]
+results = []
 
 for graph_view in graph.rolling(window=1):
     for v in graph_view.nodes:
         results.append(
-            [graph_view.earliest_time, v.name, v.out_degree(), v.in_degree()]
+            {
+                "earliest_time": graph_view.earliest_time,
+                "name": v.name,
+                "out_degree": v.out_degree(),
+                "in_degree": v.in_degree(),
+            }
         )
 
-print(pd.DataFrame(results[1:], columns=results[0]))
+print(pl.DataFrame(results))
 
 cb_edge = graph.edge("Bob", "Charlie")
 weight_history = cb_edge.properties.temporal.get("weight").items()

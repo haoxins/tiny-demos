@@ -1,9 +1,0 @@
-[package]
-name = "arrow-examples"
-version = "0.1.0"
-edition = "2021"
-
-[dependencies]
-ballista = "0.12"
-datafusion = "37"
-tokio = "1"

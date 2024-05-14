@@ -9,6 +9,7 @@ axum-htmx = "0.5"
 candle-core = "0.5"
 candle-nn = "0.5"
 candle-transformers = "0.5"
+object_store = { version = "0.10", features = ["gcp"] }
 rdkafka = "0.36"
 serde = "1"
 serde_json = "1"
