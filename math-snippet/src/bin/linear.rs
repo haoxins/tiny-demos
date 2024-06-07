@@ -3,7 +3,6 @@ use nalgebra::{
     Vector2,
 };
 use num_complex::Complex64;
-// use num::Float;
 
 fn main() {
     let t1 = Matrix3::new(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0);

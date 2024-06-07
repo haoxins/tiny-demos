@@ -1,6 +1,8 @@
 [workspace]
 members = [
+  "FHE",
   "math-snippet",
+  "quantum-snippet",
   "rust-snippet",
 ]
 resolver = "2"

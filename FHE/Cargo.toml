@@ -1,0 +1,15 @@
+[package]
+name = "FHE"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+concrete-fft = "0.4"
+dyn-stack = "0.9"
+num-complex = "0.4"
+tfhe = { version = "0.6", features = [
+  "boolean",
+  "shortint",
+  "integer",
+  "x86_64-unix"
+] }

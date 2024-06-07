@@ -1,7 +1,8 @@
 #!/usr/bin/env zsh
 
-export GOEXPERIMENT=rangefunc
+# go install golang.org/dl/gotip@latest
+# gotip download
 
-go fmt .
-go vet .
-go test -v .
+gotip fmt .
+gotip vet .
+gotip test -v .
