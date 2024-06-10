@@ -1,4 +1,4 @@
-use nalgebra::base::{RowVector3, SVector, Vector3};
+use nalgebra::base::{RowVector3, Vector3};
 
 fn main() {
     let a = Vector3::new(1.0, 0.0, 0.0);

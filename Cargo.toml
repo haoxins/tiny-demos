@@ -1,7 +1,7 @@
 [workspace]
 members = [
   "FHE",
-  "math-snippet",
+  "math-snippet", "qomo",
   "quantum-snippet",
   "rust-snippet",
 ]
