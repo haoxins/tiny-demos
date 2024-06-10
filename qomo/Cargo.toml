@@ -2,7 +2,9 @@
 name = "qomo"
 version = "0.0.0"
 edition = "2021"
+description = "A quantum computing toolkit"
+license = "MIT"
 
 [dependencies]
 nalgebra = "0.32"
-num-traits = "0.2.19"
+num-traits = "0.2"
