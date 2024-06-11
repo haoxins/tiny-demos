@@ -46,15 +46,13 @@ impl<T> From<T> for LocalScalar<T> {
     }
 }
 
-// impl<T: Scalar + SimdComplexField + Num + NumAssignOps + MulAdd> Mul<Ket3<T>> for LocalScalar<T> {
-//     type Output = Ket3<T>;
+impl<T: Scalar + Num + NumAssignOps + MulAdd> Mul<Ket3<T>> for LocalScalar<T> {
+    type Output = Ket3<T>;
 
-//     fn mul(self, rhs: Ket3<T>) -> Self::Output {
-//         Ket3 {
-//             v: self.0 * rhs.v,
-//         }
-//     }
-// }
+    fn mul(self, rhs: Ket3<T>) -> Self::Output {
+        Ket3 { v: rhs.v * self.0 }
+    }
+}
 
 impl<T: Scalar + Num + NumAssignOps + MulAdd> Mul<LocalScalar<T>> for Ket3<T> {
     type Output = Ket3<T>;
@@ -85,25 +83,21 @@ impl<T: Scalar + Num + NumAssignOps + MulAdd> Mul<Ket3<T>> for Bra3<T> {
     }
 }
 
-// pub type Ket1<T> = Ket<T, 1>;
 // pub type Ket2<T> = Ket<T, 2>;
 // pub type Ket3<T> = Ket<T, 3>;
 // pub type Ket4<T> = Ket<T, 4>;
 // pub type Ket5<T> = Ket<T, 5>;
 // pub type Ket6<T> = Ket<T, 6>;
 
-// pub type Bra1<T> = Bra<T, 1>;
 // pub type Bra2<T> = Bra<T, 2>;
 // pub type Bra3<T> = Bra<T, 3>;
 // pub type Bra4<T> = Bra<T, 4>;
 // pub type Bra5<T> = Bra<T, 5>;
 // pub type Bra6<T> = Bra<T, 6>;
 
-// pub struct Ket<T, const R: usize> {
-// }
+// pub struct Ket<T, const R: usize> {}
 
-// pub struct Bra<T, const R: usize> {
-// }
+// pub struct Bra<T, const R: usize> {}
 
 #[cfg(test)]
 mod tests {
@@ -115,7 +109,6 @@ mod tests {
     fn bra_ket() {
         let k = Ket3::new(1.0, 2.0, 3.0);
         let b = Bra3::new(3.0, 2.0, 1.0);
-
         assert_eq!(b * k, 10.0);
 
         let k = Ket3::new(1.0, 0.0, 0.0);
@@ -132,9 +125,17 @@ mod tests {
         let k2 = Ket3::new(0.0, 3.0, 0.0);
         let r = k * b * k2;
         assert_eq!(r.v, Vector3::new(6.0, 0.0, 0.0));
-        // let r = LocalScalar(2.0) * k;
-        // assert_eq!(r.v, Vector3::new(2.0, 0.0, 0.0));
+
+        let r = LocalScalar(2.0) * k;
+        assert_eq!(r.v, Vector3::new(2.0, 0.0, 0.0));
+
         let r = k * LocalScalar(2.0);
+        assert_eq!(r.v, Vector3::new(2.0, 0.0, 0.0));
+
+        let r = 2.0 * k;
+        assert_eq!(r.v, Vector3::new(2.0, 0.0, 0.0));
+
+        let r = k * 2.0;
         assert_eq!(r.v, Vector3::new(2.0, 0.0, 0.0));
     }
 }

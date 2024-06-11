@@ -8,6 +8,7 @@ authors = [
 readme = "README.md"
 requires-python = ">= 3.12"
 dependencies = [
+    # "raphtory @ file:///Users/xin.hao/github/haoxins/Raphtory/python ",
     "raphtory>=0.8",
     "polars>=0.20",
     "seaborn>=0.13.2",
