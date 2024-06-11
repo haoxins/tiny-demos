@@ -6,6 +6,7 @@ use nalgebra::{
 };
 use num_traits::{MulAdd, Num, NumAssignOps};
 
+#[derive(Debug, Clone, Copy)]
 pub struct Ket3<T> {
     pub v: Vector3<T>,
 }
@@ -26,6 +27,44 @@ impl<T: Scalar + Num + NumAssignOps + MulAdd> Mul<Bra3<T>> for Ket3<T> {
     }
 }
 
+impl<T: Scalar + Num + NumAssignOps + MulAdd> Mul<Ket3<T>>
+    for Matrix<T, Const<3>, Const<3>, ArrayStorage<T, 3, 3>>
+{
+    type Output = Ket3<T>;
+
+    fn mul(self, rhs: Ket3<T>) -> Self::Output {
+        Ket3 { v: self * rhs.v }
+    }
+}
+
+#[derive(Debug, Clone, Copy)]
+struct LocalScalar<T>(T);
+
+impl<T> From<T> for LocalScalar<T> {
+    fn from(v: T) -> Self {
+        Self(v)
+    }
+}
+
+// impl<T: Scalar + SimdComplexField + Num + NumAssignOps + MulAdd> Mul<Ket3<T>> for LocalScalar<T> {
+//     type Output = Ket3<T>;
+
+//     fn mul(self, rhs: Ket3<T>) -> Self::Output {
+//         Ket3 {
+//             v: self.0 * rhs.v,
+//         }
+//     }
+// }
+
+impl<T: Scalar + Num + NumAssignOps + MulAdd> Mul<LocalScalar<T>> for Ket3<T> {
+    type Output = Ket3<T>;
+
+    fn mul(self, rhs: LocalScalar<T>) -> Self::Output {
+        Ket3 { v: self.v * rhs.0 }
+    }
+}
+
+#[derive(Debug, Clone, Copy)]
 pub struct Bra3<T> {
     pub v: RowVector3<T>,
 }
@@ -87,5 +126,15 @@ mod tests {
                 0.0, 2.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
             )
         );
+
+        let k = Ket3::new(1.0, 0.0, 0.0);
+        let b = Bra3::new(0.0, 2.0, 0.0);
+        let k2 = Ket3::new(0.0, 3.0, 0.0);
+        let r = k * b * k2;
+        assert_eq!(r.v, Vector3::new(6.0, 0.0, 0.0));
+        // let r = LocalScalar(2.0) * k;
+        // assert_eq!(r.v, Vector3::new(2.0, 0.0, 0.0));
+        let r = k * LocalScalar(2.0);
+        assert_eq!(r.v, Vector3::new(2.0, 0.0, 0.0));
     }
 }
