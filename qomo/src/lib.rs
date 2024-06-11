@@ -1,3 +1,4 @@
+use std::fmt::{self, Debug};
 use std::ops::Mul;
 
 use nalgebra::{
@@ -6,7 +7,7 @@ use nalgebra::{
 };
 use num_traits::{MulAdd, Num, NumAssignOps};
 
-#[derive(Debug, Clone, Copy)]
+#[derive(Clone, Copy)]
 pub struct Ket3<T> {
     pub v: Vector3<T>,
 }
@@ -16,6 +17,12 @@ impl<T> Ket3<T> {
         Self {
             v: Vector3::new(x, y, z),
         }
+    }
+}
+
+impl<T: Scalar> Debug for Ket3<T> {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "{:?}", self.v.data.as_slice())
     }
 }
 
@@ -37,16 +44,8 @@ impl<T: Scalar + Num + NumAssignOps + MulAdd> Mul<Ket3<T>>
     }
 }
 
-#[derive(Debug, Clone, Copy)]
-struct LocalScalar<T>(T);
-
-impl<T> From<T> for LocalScalar<T> {
-    fn from(v: T) -> Self {
-        Self(v)
-    }
-}
-
-impl<T: Scalar + Num + NumAssignOps + MulAdd> Mul<Ket3<T>> for LocalScalar<T> {
+// https://stackoverflow.com/questions/63119000/why-am-i-required-to-cover-t-in-impl-foreigntraitlocaltype-for-t-e0210
+impl<T: Scalar + Num + NumAssignOps + MulAdd> Mul<Ket3<T>> for (T,) {
     type Output = Ket3<T>;
 
     fn mul(self, rhs: Ket3<T>) -> Self::Output {
@@ -54,15 +53,15 @@ impl<T: Scalar + Num + NumAssignOps + MulAdd> Mul<Ket3<T>> for LocalScalar<T> {
     }
 }
 
-impl<T: Scalar + Num + NumAssignOps + MulAdd> Mul<LocalScalar<T>> for Ket3<T> {
+impl<T: Scalar + Num + NumAssignOps + MulAdd> Mul<T> for Ket3<T> {
     type Output = Ket3<T>;
 
-    fn mul(self, rhs: LocalScalar<T>) -> Self::Output {
-        Ket3 { v: self.v * rhs.0 }
+    fn mul(self, rhs: T) -> Self::Output {
+        Ket3 { v: self.v * rhs }
     }
 }
 
-#[derive(Debug, Clone, Copy)]
+#[derive(Clone, Copy)]
 pub struct Bra3<T> {
     pub v: RowVector3<T>,
 }
@@ -72,6 +71,12 @@ impl<T> Bra3<T> {
         Self {
             v: RowVector3::new(x, y, z),
         }
+    }
+}
+
+impl<T: Scalar> Debug for Bra3<T> {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "{:?}", self.v.data.as_slice())
     }
 }
 
@@ -126,13 +131,7 @@ mod tests {
         let r = k * b * k2;
         assert_eq!(r.v, Vector3::new(6.0, 0.0, 0.0));
 
-        let r = LocalScalar(2.0) * k;
-        assert_eq!(r.v, Vector3::new(2.0, 0.0, 0.0));
-
-        let r = k * LocalScalar(2.0);
-        assert_eq!(r.v, Vector3::new(2.0, 0.0, 0.0));
-
-        let r = 2.0 * k;
+        let r = (2.0,) * k;
         assert_eq!(r.v, Vector3::new(2.0, 0.0, 0.0));
 
         let r = k * 2.0;

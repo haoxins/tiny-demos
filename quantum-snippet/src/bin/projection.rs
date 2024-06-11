@@ -5,21 +5,18 @@ use qomo::{Bra3, Ket3};
 fn main() {
     let k = Ket3::new(1.0, 0.0, 0.0);
     let b = Bra3::new(1.0, 0.0, 0.0);
-    let v = Ket3::new(3.0, 2.0, 1.0);
-    println!("r1: {:?}", k * b * v);
-    let b = Bra3::new(1.0, 0.0, 0.0);
-    let k = Ket3::new(3.0, 2.0, 1.0);
-    let k2 = Ket3::new(1.0, 0.0, 0.0);
-    println!("r2: {:?}", b * k * k2);
+    let k2 = Ket3::new(3.0, 2.0, 1.0);
+    println!("got x: {:?}", k * b * k2);
 
     let k = Ket3::new(0.0, 1.0, 0.0);
     let b = Bra3::new(0.0, 1.0, 0.0);
-    let v = Ket3::new(3.0, 2.0, 1.0);
+    let k2 = Ket3::new(3.0, 2.0, 1.0);
 
-    println!("r1: {:?}", k * b * v);
+    println!("got y: {:?}", k * b * k2);
 
-    let b = Bra3::new(0.0, 1.0, 0.0);
-    let k = Ket3::new(3.0, 2.0, 1.0);
-    let k2 = Ket3::new(0.0, 1.0, 0.0);
-    println!("r2: {:?}", b * k * k2);
+    let k = Ket3::new(0.0, 0.0, 1.0);
+    let b = Bra3::new(0.0, 0.0, 1.0);
+    let k2 = Ket3::new(3.0, 2.0, 1.0);
+
+    println!("got z: {:?}", k * b * k2);
 }
