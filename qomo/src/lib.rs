@@ -1,112 +1,122 @@
 use std::fmt::{self, Debug};
 use std::ops::Mul;
+use std::usize;
 
-use nalgebra::{
-    base::{Matrix, RowVector3, Vector3},
-    ArrayStorage, Const, Scalar,
-};
+use nalgebra::{base::Matrix, ArrayStorage, Const, Scalar};
 use num_traits::{MulAdd, Num, NumAssignOps};
 
-#[derive(Clone, Copy)]
-pub struct Ket3<T> {
-    pub v: Vector3<T>,
-}
+pub type Ket2<T> = Ket<T, 2>;
+pub type Ket3<T> = Ket<T, 3>;
+pub type Ket4<T> = Ket<T, 4>;
 
-impl<T> Ket3<T> {
-    pub fn new(x: T, y: T, z: T) -> Self {
-        Self {
-            v: Vector3::new(x, y, z),
-        }
-    }
-}
-
-impl<T: Scalar> Debug for Ket3<T> {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{:?}", self.v.data.as_slice())
-    }
-}
-
-impl<T: Scalar + Num + NumAssignOps + MulAdd> Mul<Bra3<T>> for Ket3<T> {
-    type Output = Matrix<T, Const<3>, Const<3>, ArrayStorage<T, 3, 3>>;
-
-    fn mul(self, rhs: Bra3<T>) -> Self::Output {
-        self.v.kronecker(&rhs.v)
-    }
-}
-
-impl<T: Scalar + Num + NumAssignOps + MulAdd> Mul<Ket3<T>>
-    for Matrix<T, Const<3>, Const<3>, ArrayStorage<T, 3, 3>>
-{
-    type Output = Ket3<T>;
-
-    fn mul(self, rhs: Ket3<T>) -> Self::Output {
-        Ket3 { v: self * rhs.v }
-    }
-}
-
-// https://stackoverflow.com/questions/63119000/why-am-i-required-to-cover-t-in-impl-foreigntraitlocaltype-for-t-e0210
-impl<T: Scalar + Num + NumAssignOps + MulAdd> Mul<Ket3<T>> for (T,) {
-    type Output = Ket3<T>;
-
-    fn mul(self, rhs: Ket3<T>) -> Self::Output {
-        Ket3 { v: rhs.v * self.0 }
-    }
-}
-
-impl<T: Scalar + Num + NumAssignOps + MulAdd> Mul<T> for Ket3<T> {
-    type Output = Ket3<T>;
-
-    fn mul(self, rhs: T) -> Self::Output {
-        Ket3 { v: self.v * rhs }
-    }
-}
+pub type Bra2<T> = Bra<T, 2>;
+pub type Bra3<T> = Bra<T, 3>;
+pub type Bra4<T> = Bra<T, 4>;
 
 #[derive(Clone, Copy)]
-pub struct Bra3<T> {
-    pub v: RowVector3<T>,
+pub struct Ket<T, const R: usize> {
+    pub v: Matrix<T, Const<R>, Const<1>, ArrayStorage<T, R, 1>>,
 }
 
-impl<T> Bra3<T> {
-    pub fn new(x: T, y: T, z: T) -> Self {
-        Self {
-            v: RowVector3::new(x, y, z),
+macro_rules! ket_impl(
+    ($($R: expr, [$($num: ident),*] $(;)*)*) => {$(
+        impl<T> Ket<T, $R> {
+            // #[inline]
+            pub const fn new($($num: T),*) -> Self {
+                Self {
+                    v: Matrix::<T, Const<$R>, Const<1>, ArrayStorage<T, $R, 1>>::new($($num),*)
+                }
+            }
         }
-    }
+
+        impl<T: Scalar> Debug for Ket<T, $R> {
+            fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+                write!(f, "{:?}", self.v.data.as_slice())
+            }
+        }
+
+        impl<T: Scalar + Num + NumAssignOps + MulAdd> Mul<Bra<T, $R>> for Ket<T, $R> {
+            type Output = Matrix<T, Const<$R>, Const<$R>, ArrayStorage<T, $R, $R>>;
+
+            fn mul(self, rhs: Bra<T, $R>) -> Self::Output {
+                self.v.kronecker(&rhs.v)
+            }
+        }
+
+        impl<T: Scalar + Num + NumAssignOps + MulAdd> Mul<Ket<T, $R>>
+            for Matrix<T, Const<$R>, Const<$R>, ArrayStorage<T, $R, $R>> {
+            type Output = Ket<T, $R>;
+
+            fn mul(self, rhs: Ket<T, $R>) -> Self::Output {
+                Ket { v: self * rhs.v }
+            }
+        }
+
+        // // https://stackoverflow.com/questions/63119000/why-am-i-required-to-cover-t-in-impl-foreigntraitlocaltype-for-t-e0210
+        impl<T: Scalar + Num + NumAssignOps + MulAdd> Mul<Ket<T, $R>> for (T,) {
+            type Output = Ket<T, $R>;
+
+            fn mul(self, rhs: Ket<T, $R>) -> Self::Output {
+                Ket { v: rhs.v * self.0 }
+            }
+        }
+
+        impl<T: Scalar + Num + NumAssignOps + MulAdd> Mul<T> for Ket<T, $R> {
+            type Output = Ket<T, $R>;
+
+            fn mul(self, rhs: T) -> Self::Output {
+                Ket { v: self.v * rhs }
+            }
+        }
+    )*}
+);
+
+ket_impl!(
+    2, [a, b];
+    3, [a, b, c];
+    4, [a, b, c, d];
+);
+
+#[derive(Clone, Copy)]
+pub struct Bra<T, const R: usize> {
+    pub v: Matrix<T, Const<1>, Const<R>, ArrayStorage<T, 1, R>>,
 }
 
-impl<T: Scalar> Debug for Bra3<T> {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{:?}", self.v.data.as_slice())
-    }
-}
+macro_rules! bra_impl(
+    ($($R: expr, [$($num: ident),*] $(;)*)*) => {$(
+        impl<T> Bra<T, $R> {
+            pub fn new($($num: T),*) -> Self {
+                Self {
+                    v: Matrix::<T, Const<1>, Const<$R>, ArrayStorage<T, 1, $R>>::new($($num),*),
+                }
+            }
+        }
 
-impl<T: Scalar + Num + NumAssignOps + MulAdd> Mul<Ket3<T>> for Bra3<T> {
-    type Output = T;
+        impl<T: Scalar> Debug for Bra<T, $R> {
+            fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+                write!(f, "{:?}", self.v.data.as_slice())
+            }
+        }
 
-    fn mul(self, rhs: Ket3<T>) -> Self::Output {
-        self.v.dot(&rhs.v.transpose())
-    }
-}
+        impl<T: Scalar + Num + NumAssignOps + MulAdd> Mul<Ket<T, $R>> for Bra<T, $R> {
+            type Output = T;
 
-// pub type Ket2<T> = Ket<T, 2>;
-// pub type Ket3<T> = Ket<T, 3>;
-// pub type Ket4<T> = Ket<T, 4>;
-// pub type Ket5<T> = Ket<T, 5>;
-// pub type Ket6<T> = Ket<T, 6>;
+            fn mul(self, rhs: Ket<T, $R>) -> Self::Output {
+                self.v.dot(&rhs.v.transpose())
+            }
+        }
+    )*}
+);
 
-// pub type Bra2<T> = Bra<T, 2>;
-// pub type Bra3<T> = Bra<T, 3>;
-// pub type Bra4<T> = Bra<T, 4>;
-// pub type Bra5<T> = Bra<T, 5>;
-// pub type Bra6<T> = Bra<T, 6>;
-
-// pub struct Ket<T, const R: usize> {}
-
-// pub struct Bra<T, const R: usize> {}
+bra_impl!(
+    2, [a, b];
+    3, [a, b, c];
+    4, [a, b, c, d];
+);
 
 #[cfg(test)]
 mod tests {
-    use nalgebra::base::SquareMatrix;
+    use nalgebra::base::{SquareMatrix, Vector3};
 
     use super::*;
 
