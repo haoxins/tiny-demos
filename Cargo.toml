@@ -2,7 +2,6 @@
 members = [
   "FHE",
   "math-snippet",
-  "qomo",
   "quantum-snippet",
   "rust-snippet",
 ]
