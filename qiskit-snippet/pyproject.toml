@@ -1,29 +1,26 @@
 [project]
-name = "raphtory-python"
+name = "qiskit-snippet"
 version = "0.1.0"
 description = ""
 readme = "README.md"
 requires-python = ">= 3.12"
 dependencies = [
-    # "raphtory @ file:///Users/xin.hao/github/haoxins/Raphtory/python ",
-    "raphtory>=0.9",
-    "polars>=1",
-    "seaborn>=0.13",
+    "qiskit>=1.1",
+    "matplotlib>=3.9.1",
 ]
 
 [tool.rye]
 managed = true
-dev-dependencies = [
-]
+dev-dependencies = []
 
 [tool.rye.scripts]
-app = "python src/raphtory_python/main.py"
+bloch = "python3 src/qiskit_snippet/bloch.py"
 
 [tool.hatch.metadata]
 allow-direct-references = true
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/raphtory_python"]
+packages = ["src/qiskit_snippet"]
 
 [build-system]
 requires = ["hatchling"]

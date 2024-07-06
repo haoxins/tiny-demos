@@ -1,8 +1,8 @@
 
 ```
-docker volume create postgres-volume
+podman volume create postgres-volume
 
-docker run --name arroyo-postgres \
+podman run --name arroyo-postgres \
   --env POSTGRES_USER=arroyo \
   --env POSTGRES_PASSWORD=arroyo \
   --env POSTGRES_DB=arroyo \

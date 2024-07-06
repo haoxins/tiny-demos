@@ -2,13 +2,17 @@
 name = "rust-snippet"
 version = "0.1.0"
 edition = "2021"
+publish = false
 
 [dependencies]
-candle-core = "0.5"
-candle-nn = "0.5"
-candle-transformers = "0.5"
+blake3 = "1.5"
+candle-core = "0.6"
+candle-nn = "0.6"
+candle-transformers = "0.6"
+md5 = "0.7.0"
 object_store = { version = "0.10", features = ["gcp"] }
 rdkafka = "0.36"
 serde = "1"
 serde_json = "1"
+sha2 = "0.10.8"
 tokio = { version = "1", features = ["full"] }

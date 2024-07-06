@@ -6,6 +6,7 @@ import (
 	"math"
 	"testing"
 
+	"github.com/samber/lo"
 	"github.com/stretchr/testify/assert"
 	"gonum.org/v1/gonum/stat"
 )
@@ -14,13 +15,13 @@ func TestJSON(t *testing.T) {
 	s1 := `{"": []}`
 	a1 := Account{}
 	json.Unmarshal([]byte(s1), &a1)
-	assert.Equal(t, []string([]string(nil)), a1.Badges)
+	assert.True(t, lo.IsNil(a1.Badges))
 	assert.Equal(t, 0, len(a1.Badges))
 
 	s2 := `{"badges": null}`
 	a2 := Account{}
 	json.Unmarshal([]byte(s2), &a2)
-	assert.Equal(t, []string([]string(nil)), a2.Badges)
+	assert.True(t, lo.IsNil(a2.Badges))
 	assert.Equal(t, 0, len(a2.Badges))
 
 	a1 = Account{
@@ -51,5 +52,5 @@ func TestJSON(t *testing.T) {
 	json.Unmarshal([]byte(text), &list1)
 	assert.Equal(t, 1, len(list1))
 	assert.Len(t, list1[0].Badges, 0)
-	assert.True(t, list1[0].Balance == nil)
+	assert.True(t, lo.IsNil(list1[0].Balance))
 }

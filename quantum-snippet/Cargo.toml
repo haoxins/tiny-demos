@@ -2,7 +2,8 @@
 name = "quantum-snippet"
 version = "0.1.0"
 edition = "2021"
+publish = false
 
 [dependencies]
-nalgebra = "0.32"
-qomo = "0.0.5"
+nalgebra = "0.33"
+qomo = "0.0.7"
