@@ -15,22 +15,22 @@ fn main() {
     // println!("md5 {:?}", md5::compute(s));
 
     let start = SystemTime::now();
-    for _ in 0..1_000_000 {
-        blake3::hash(s);
-    }
-    println!("blake3 times {:?}", start.elapsed().unwrap());
-
-    let start = SystemTime::now();
-    for _ in 0..1_000_000 {
-        md5::compute(s);
-    }
-    println!("md5 times {:?}", start.elapsed().unwrap());
-
-    let start = SystemTime::now();
-    for _ in 0..1_000_000 {
+    for _ in 0..10_000_000 {
         let mut h = Sha256::new();
         h.update(s);
         h.finalize();
     }
     println!("sha2 (256) times {:?}", start.elapsed().unwrap());
+
+    let start = SystemTime::now();
+    for _ in 0..10_000_000 {
+        md5::compute(s);
+    }
+    println!("md5 times {:?}", start.elapsed().unwrap());
+
+    let start = SystemTime::now();
+    for _ in 0..10_000_000 {
+        blake3::hash(s);
+    }
+    println!("blake3 times {:?}", start.elapsed().unwrap());
 }

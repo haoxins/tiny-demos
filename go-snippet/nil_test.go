@@ -8,6 +8,15 @@ import (
 )
 
 func TestNil(t *testing.T) {
+	type Balance struct {
+		Amount float64 `json:"amount"`
+	}
+
+	type Account struct {
+		Badges  []string `json:"badges"`
+		Balance *Balance `json:"balance"`
+	}
+
 	nums := []int{1, 2, 3}
 	assert.Equal(t, 3, len(nums))
 

@@ -12,6 +12,19 @@ import (
 )
 
 func TestJSON(t *testing.T) {
+	type Balance struct {
+		Amount float64 `json:"amount"`
+	}
+
+	type Account struct {
+		Badges  []string `json:"badges"`
+		Balance *Balance `json:"balance"`
+	}
+
+	type Transaction struct {
+		Amount float64 `json:"amount"`
+	}
+
 	s1 := `{"": []}`
 	a1 := Account{}
 	json.Unmarshal([]byte(s1), &a1)
@@ -53,4 +66,15 @@ func TestJSON(t *testing.T) {
 	assert.Equal(t, 1, len(list1))
 	assert.Len(t, list1[0].Badges, 0)
 	assert.True(t, lo.IsNil(list1[0].Balance))
+}
+
+func TestOmitEmpty(t *testing.T) {
+	type A struct {
+		Name  string  `json:"name,omitempty"`
+		Age   int     `json:"age,omitempty"`
+		Valid bool    `json:"valid,omitempty"`
+		Score float32 `json:"score,omitempty"`
+	}
+	b, _ := json.Marshal(A{})
+	assert.Equal(t, `{}`, string(b))
 }
