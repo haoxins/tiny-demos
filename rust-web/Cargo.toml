@@ -11,3 +11,4 @@ serde = { version = "1", features = ["derive"] }
 tokio = { version = "1", features = ["full"] }
 tracing = "0.1"
 tracing-subscriber = "0.3"
+uuid = { version = "1.10", features = ["v7"] }

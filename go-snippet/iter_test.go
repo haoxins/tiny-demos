@@ -3,6 +3,7 @@ package snippet
 import (
 	"fmt"
 	"slices"
+	"strconv"
 	"testing"
 )
 
@@ -18,10 +19,14 @@ func TestIter_1(t *testing.T) {
 		fmt.Println(n)
 	}
 }
-func iter1(yield func(int, int) bool) {
+
+// Yield returns true if the iterator should continue
+// with the next element in the sequence,
+// false if it should stop.
+func iter1(yield func(int, string) bool) {
 	for i := range 3 {
-		if !yield(i, i+1) {
-			return
+		if !yield(i, strconv.Itoa(i)) {
+			break
 		}
 	}
 }
