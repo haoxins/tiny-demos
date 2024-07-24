@@ -6,6 +6,7 @@ use tracing::info;
 use tracing_subscriber;
 
 mod domain;
+mod entity;
 mod handler;
 mod storage;
 
@@ -21,7 +22,7 @@ async fn main() {
         .route("/accounts", post(handler::create_account))
         .with_state(db);
 
-    let listener = tokio::net::TcpListener::bind("127.0.0.1:3000")
+    let listener = tokio::net::TcpListener::bind("127.0.0.1:8080")
         .await
         .unwrap();
 

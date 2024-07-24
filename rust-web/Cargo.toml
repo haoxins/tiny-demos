@@ -6,9 +6,21 @@ publish = false
 
 [dependencies]
 axum = "0.7"
-sea-orm = "0.12"
 serde = { version = "1", features = ["derive"] }
 tokio = { version = "1", features = ["full"] }
 tracing = "0.1"
 tracing-subscriber = "0.3"
 uuid = { version = "1.10", features = ["v7"] }
+
+[dependencies.sea-orm]
+version = "1.0.0-rc.7"
+features = [
+  # "macros",
+  # "sqlx-sqlite",
+  # "with-uuid",
+  # "runtime-async-std-native-tls",
+  "default",
+]
+
+# [dependencies.sea-orm-migration]
+# version = "1.0.0-rc.7"

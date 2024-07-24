@@ -4,6 +4,6 @@ use std::{
 };
 use uuid::Uuid;
 
-use crate::domain;
+use crate::entity::Account;
 
-pub type Db = Arc<RwLock<HashMap<Uuid, domain::Account>>>;
+pub type Db = Arc<RwLock<HashMap<Uuid, Account>>>;
