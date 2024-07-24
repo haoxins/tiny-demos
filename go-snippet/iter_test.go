@@ -46,8 +46,8 @@ func TestIter_3(t *testing.T) {
 	m.Store("cindy", 13)
 
 	// Go 1.22
-	m.Range(func(key, value any) bool {
-		fmt.Println(key, value)
+	m.Range(func(key, val any) bool {
+		fmt.Println(key, val)
 		return true
 	})
 

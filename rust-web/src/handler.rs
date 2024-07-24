@@ -7,7 +7,7 @@ use tracing::info;
 use uuid::Uuid;
 
 use crate::domain;
-use crate::entity;
+use crate::entity::account::Model as Account;
 use crate::storage::Db;
 
 pub async fn query_accounts(State(db): State<Db>) -> impl IntoResponse {
@@ -32,7 +32,7 @@ pub async fn create_account(
     Json(payload): Json<domain::AccountPayload>,
 ) -> impl IntoResponse {
     info!("creating account: {:?}", payload);
-    let account = entity::Account {
+    let account = Account {
         id: Uuid::now_v7(),
         name: payload.name,
         email: payload.email,

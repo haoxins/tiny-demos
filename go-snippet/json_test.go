@@ -2,13 +2,11 @@ package snippet
 
 import (
 	"encoding/json"
-	"fmt"
 	"math"
 	"testing"
 
 	"github.com/samber/lo"
 	"github.com/stretchr/testify/assert"
-	"gonum.org/v1/gonum/stat"
 )
 
 func TestJSON(t *testing.T) {
@@ -29,13 +27,13 @@ func TestJSON(t *testing.T) {
 	a1 := Account{}
 	json.Unmarshal([]byte(s1), &a1)
 	assert.True(t, lo.IsNil(a1.Badges))
-	assert.Equal(t, 0, len(a1.Badges))
+	assert.Len(t, a1.Badges, 0)
 
 	s2 := `{"badges": null}`
 	a2 := Account{}
 	json.Unmarshal([]byte(s2), &a2)
 	assert.True(t, lo.IsNil(a2.Badges))
-	assert.Equal(t, 0, len(a2.Badges))
+	assert.Len(t, a2.Badges, 0)
 
 	a1 = Account{
 		Badges: nil,
@@ -50,20 +48,20 @@ func TestJSON(t *testing.T) {
 	assert.Equal(t, `{"badges":[],"balance":null}`, string(b2))
 
 	// NaN
-	v := stat.Variance([]float64{0.0}, nil)
-	assert.Equal(t, true, math.IsNaN(v))
-	v = stat.Variance([]float64{1.1}, nil)
-	assert.Equal(t, true, math.IsNaN(v))
-	fmt.Println("variance:", v)
 	_, e := json.Marshal(Transaction{
-		Amount: v,
+		Amount: math.NaN(),
 	})
 	assert.Equal(t, "json: unsupported value: NaN", e.Error())
+	// Inf
+	_, e = json.Marshal(Transaction{
+		Amount: math.Inf(0),
+	})
+	assert.Equal(t, "json: unsupported value: +Inf", e.Error())
 
 	var list1 []Account
 	text := `[{}]`
 	json.Unmarshal([]byte(text), &list1)
-	assert.Equal(t, 1, len(list1))
+	assert.Len(t, list1, 1)
 	assert.Len(t, list1[0].Badges, 0)
 	assert.True(t, lo.IsNil(list1[0].Balance))
 }

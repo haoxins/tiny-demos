@@ -18,22 +18,22 @@ func TestNil(t *testing.T) {
 	}
 
 	nums := []int{1, 2, 3}
-	assert.Equal(t, 3, len(nums))
+	assert.Len(t, nums, 3)
 
 	nums = []int{}
-	assert.Equal(t, 0, len(nums))
+	assert.Len(t, nums, 0)
 	for range nums {
 		t.Error("should not run")
 	}
 	// nil
 	nums = nil
-	assert.Equal(t, 0, len(nums))
+	assert.Len(t, nums, 0)
 	for range nums {
 		t.Error("should not run")
 	}
 	// append nil
 	nums = append(nums, 1, 2, 3)
-	assert.Equal(t, 3, len(nums))
+	assert.Len(t, nums, 3)
 
 	var a Account
 	assert.True(t, lo.IsNil(a.Badges))
@@ -44,9 +44,9 @@ func TestNil(t *testing.T) {
 	})
 
 	var list1 []Account
-	assert.Equal(t, 0, len(list1))
+	assert.Len(t, list1, 0)
 	assert.True(t, lo.IsNil(list1))
 	var list2 []*Account
-	assert.Equal(t, 0, len(list2))
+	assert.Len(t, list2, 0)
 	assert.True(t, lo.IsNil(list2))
 }

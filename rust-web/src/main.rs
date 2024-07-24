@@ -2,6 +2,7 @@ use axum::{
     routing::{get, post},
     Router,
 };
+use sea_orm::Database;
 use tracing::info;
 use tracing_subscriber;
 
@@ -10,9 +11,15 @@ mod entity;
 mod handler;
 mod storage;
 
+const DATABASE_URL: &str = "sqlite::memory:";
+
 #[tokio::main]
 async fn main() {
     tracing_subscriber::fmt::init();
+
+    let db = Database::connect(DATABASE_URL).await.unwrap();
+    entity::setup_schema(&db).await;
+    info!("schema applied");
 
     let db = storage::Db::default();
 

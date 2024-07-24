@@ -5,7 +5,6 @@ go 1.23
 require (
 	github.com/samber/lo v1.46.0
 	github.com/stretchr/testify v1.9.0
-	gonum.org/v1/gonum v0.15.0
 )
 
 require (
