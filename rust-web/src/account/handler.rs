@@ -6,8 +6,8 @@ use axum::{
 use sea_orm::DatabaseConnection;
 use tracing::info;
 
-use crate::domain::account::*;
-use crate::repository::account as repo;
+use super::domain::*;
+use super::repository as repo;
 
 pub async fn query_accounts(State(db): State<DatabaseConnection>) -> impl IntoResponse {
     let accounts = repo::query_accounts(&db).await.unwrap();

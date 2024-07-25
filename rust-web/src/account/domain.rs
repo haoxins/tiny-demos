@@ -1,7 +1,7 @@
 use axum::{http::StatusCode, Json};
 use serde::{Deserialize, Serialize};
 
-use crate::entity::account::Model as Account;
+use super::entity::Model as Account;
 
 #[derive(Debug, Deserialize)]
 pub struct CreatePayload {

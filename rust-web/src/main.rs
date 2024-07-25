@@ -6,10 +6,8 @@ use sea_orm::Database;
 // use tracing::info;
 use tracing_subscriber;
 
-mod domain;
-mod entity;
-mod handler;
-mod repository;
+mod account;
+mod migration;
 
 const DATABASE_URL: &str = "sqlite::memory:";
 
@@ -18,13 +16,13 @@ async fn main() {
     tracing_subscriber::fmt::init();
 
     let db = Database::connect(DATABASE_URL).await.unwrap();
-    entity::setup_schema(&db).await;
+    migration::setup_schema(&db).await;
     println!("schema applied");
 
     let app = Router::new()
-        .route("/accounts", get(handler::account::query_accounts))
-        .route("/accounts/:id", get(handler::account::get_account))
-        .route("/accounts", post(handler::account::create_account))
+        .route("/accounts", get(account::handler::query_accounts))
+        .route("/accounts/:id", get(account::handler::get_account))
+        .route("/accounts", post(account::handler::create_account))
         .with_state(db);
 
     let listener = tokio::net::TcpListener::bind("127.0.0.1:8080")

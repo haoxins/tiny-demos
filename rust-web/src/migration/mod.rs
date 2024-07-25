@@ -1,11 +1,9 @@
-pub mod account;
-
 use sea_orm::{DbBackend, DbConn, Schema};
 use sea_orm_migration::prelude::*;
 use tracing::info;
 
 pub async fn setup_schema(db: &DbConn) {
-    use account::Entity as AccountEntity;
+    use crate::account::entity::Entity as AccountEntity;
 
     let schema = Schema::new(DbBackend::Sqlite);
 
