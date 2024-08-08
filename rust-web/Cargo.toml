@@ -1,11 +1,11 @@
 [package]
 name = "rust-web"
-version = "0.1.0"
 edition = "2021"
 publish = false
 
 [dependencies]
 axum = "0.7"
+sea-orm-migration = "1.0.0-rc.7"
 serde = { version = "1", features = ["derive"] }
 tokio = { version = "1", features = ["full"] }
 tracing = "0.1"
@@ -21,6 +21,3 @@ features = [
   "with-uuid",
   "runtime-tokio",
 ]
-
-[dependencies.sea-orm-migration]
-version = "1.0.0-rc.7"

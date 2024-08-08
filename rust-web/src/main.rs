@@ -9,6 +9,8 @@ use tracing_subscriber;
 mod account;
 mod migration;
 
+use account::handler::*;
+
 const DATABASE_URL: &str = "sqlite::memory:";
 
 #[tokio::main]
@@ -20,9 +22,9 @@ async fn main() {
     println!("schema applied");
 
     let app = Router::new()
-        .route("/accounts", get(account::handler::query_accounts))
-        .route("/accounts/:id", get(account::handler::get_account))
-        .route("/accounts", post(account::handler::create_account))
+        .route("/accounts", get(query_accounts))
+        .route("/accounts/:id", get(get_account))
+        .route("/accounts", post(create_account))
         .with_state(db);
 
     let listener = tokio::net::TcpListener::bind("127.0.0.1:8080")
