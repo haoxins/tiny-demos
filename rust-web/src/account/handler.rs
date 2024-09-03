@@ -4,7 +4,6 @@ use axum::{
     Json,
 };
 use sea_orm::DatabaseConnection;
-use tracing::info;
 
 use super::domain::*;
 use super::repository as repo;
@@ -33,7 +32,7 @@ pub async fn create_account(
     State(db): State<DatabaseConnection>,
     Json(payload): Json<CreatePayload>,
 ) -> impl IntoResponse {
-    info!("creating account: {:?}", payload);
+    println!("creating account with payload: {:?}", payload);
     let account = repo::create_account(&db, payload).await.unwrap();
     GetResponse::ok(account)
 }

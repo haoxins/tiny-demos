@@ -3,7 +3,6 @@ package snippet
 import (
 	"fmt"
 	"strconv"
-	"sync"
 	"testing"
 )
 
@@ -24,14 +23,22 @@ func TestIter1(t *testing.T) {
 	}
 }
 
-func TestIter2(t *testing.T) {
-	var m sync.Map
+type Result struct {
+	Index int
+}
 
-	m.Store("alice", 11)
-	m.Store("bob", 12)
-	m.Store("cindy", 13)
-
-	for key, val := range m.Range {
-		fmt.Println(key, val)
+func Scan(s *[]Result) {
+	for i := range 10 {
+		*s = append(*s, Result{Index: i})
 	}
+}
+
+// func Iter() iter.Seq[Result] {
+// }
+
+func TestScanAndIter(t *testing.T) {
+	var s []Result
+	Scan(&s)
+
+	fmt.Println(s)
 }

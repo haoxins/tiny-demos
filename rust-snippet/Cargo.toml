@@ -9,7 +9,7 @@ candle-core = "0.6"
 candle-nn = "0.6"
 candle-transformers = "0.6"
 md5 = "0.7"
-object_store = { version = "0.10", features = ["gcp"] }
+object_store = { version = "0.11", features = ["gcp"] }
 rdkafka = "0.36"
 serde = "1"
 serde_json = "1"

@@ -3,8 +3,6 @@ use axum::{
     Router,
 };
 use sea_orm::Database;
-// use tracing::info;
-use tracing_subscriber;
 
 mod account;
 mod migration;
@@ -15,8 +13,6 @@ const DATABASE_URL: &str = "sqlite::memory:";
 
 #[tokio::main]
 async fn main() {
-    tracing_subscriber::fmt::init();
-
     let db = Database::connect(DATABASE_URL).await.unwrap();
     migration::setup_schema(&db).await;
     println!("schema applied");

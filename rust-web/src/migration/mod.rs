@@ -1,6 +1,5 @@
 use sea_orm::{DbBackend, DbConn, Schema};
 use sea_orm_migration::prelude::*;
-use tracing::info;
 
 pub async fn setup_schema(db: &DbConn) {
     use crate::account::entity::Entity as AccountEntity;
@@ -14,5 +13,5 @@ pub async fn setup_schema(db: &DbConn) {
         .await
         .unwrap();
 
-    info!("setup_schema: {:?}", result);
+    println!("setup schema result: {:?}", result);
 }
