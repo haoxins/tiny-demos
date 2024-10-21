@@ -2,6 +2,7 @@
 
 .ruff_cache
 .venv
+.zig-cache
 
 dist
 target
