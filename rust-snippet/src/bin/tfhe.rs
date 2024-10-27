@@ -1,5 +1,5 @@
 use tfhe::prelude::*;
-use tfhe::{generate_keys, set_server_key, ConfigBuilder, FheUint32, FheUint8};
+use tfhe::{ConfigBuilder, FheUint8, FheUint32, generate_keys, set_server_key};
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     let config = ConfigBuilder::default().build();

@@ -1,6 +1,0 @@
-[package]
-name = "ZKP"
-publish = false
-edition = "2021"
-
-[dependencies]

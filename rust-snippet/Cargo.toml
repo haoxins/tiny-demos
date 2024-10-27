@@ -1,17 +1,17 @@
 [package]
 name = "rust-snippet"
-edition = "2021"
 publish = false
+edition = "2024"
+rust-version = "1.85"
 
 [dependencies]
-blake3 = "1.5"
-candle-core = "0.6"
-candle-nn = "0.6"
-candle-transformers = "0.6"
-md5 = "0.7"
-object_store = { version = "0.11", features = ["gcp"] }
-rdkafka = "0.36"
-serde = "1"
-serde_json = "1"
-sha2 = "0.10"
-tokio = { version = "1", features = ["full"] }
+dyn-stack = "0.11"
+nalgebra = "0.33"
+num-complex = "0.4"
+qomo = "0.0.8"
+tfhe-fft = { version = "*" }
+tfhe = { version = "*", features = [
+  "boolean",
+  "shortint",
+  "integer"
+] }

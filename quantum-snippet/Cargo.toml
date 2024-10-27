@@ -1,8 +1,0 @@
-[package]
-name = "quantum-snippet"
-edition = "2021"
-publish = false
-
-[dependencies]
-nalgebra = "0.33"
-qomo = "0.0.7"

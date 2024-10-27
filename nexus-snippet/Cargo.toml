@@ -1,0 +1,10 @@
+[package]
+name = "nexus-snippet"
+publish = false
+edition = "2024"
+
+[dependencies]
+nexus-rt = { git = "https://github.com/nexus-xyz/nexus-zkvm.git", version = "0.2.4" }
+
+[features]
+cycles = [] # Enable cycle counting for run command

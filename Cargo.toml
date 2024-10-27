@@ -1,11 +1,7 @@
 [workspace]
 members = [
-  "FHE",
-  "ZKP",
-  "math-snippet",
-  "quantum-snippet",
+  "nexus-snippet",
   "rust-snippet",
-  "rust-web",
 ]
 resolver = "2"
 

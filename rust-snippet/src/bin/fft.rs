@@ -1,8 +1,8 @@
-use concrete_fft::c64;
-use concrete_fft::ordered::{Method, Plan};
-use dyn_stack::{GlobalPodBuffer, PodStack, ReborrowMut};
+use dyn_stack::{GlobalPodBuffer, PodStack};
 use num_complex::ComplexFloat;
 use std::time::Duration;
+use tfhe_fft::c64;
+use tfhe_fft::ordered::{Method, Plan};
 
 fn main() {
     const N: usize = 4;
@@ -18,10 +18,10 @@ fn main() {
     ];
 
     let mut transformed_fwd = data;
-    plan.fwd(&mut transformed_fwd, stack.rb_mut());
+    plan.fwd(&mut transformed_fwd, stack);
 
     let mut transformed_inv = transformed_fwd;
-    plan.inv(&mut transformed_inv, stack.rb_mut());
+    plan.inv(&mut transformed_inv, stack);
 
     for (actual, expected) in transformed_inv.iter().map(|z| z / N as f64).zip(data) {
         assert!((expected - actual).abs() < 1e-9);
