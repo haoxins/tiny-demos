@@ -4,8 +4,6 @@ members = [
   "ZKP",
   "math-snippet",
   "quantum-snippet",
-  "rust-snippet",
-  "rust-web",
 ]
 resolver = "2"
 
