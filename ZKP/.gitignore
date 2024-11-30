@@ -1,0 +1,7 @@
+*.r1cs
+*.ptau
+*.zkey
+*.json
+*.wasm
+*.wtns
+*_js

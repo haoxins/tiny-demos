@@ -4,10 +4,10 @@ edition = "2021"
 publish = false
 
 [dependencies]
-concrete-fft = "0.4"
-dyn-stack = "0.9"
+concrete-fft = "0.5"
+dyn-stack = "0.11"
 num-complex = "0.4"
-tfhe = { version = "0.7", features = [
+tfhe = { version = "0.10", features = [
   "boolean",
   "shortint",
   "integer",
