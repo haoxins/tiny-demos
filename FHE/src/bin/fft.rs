@@ -1,5 +1,5 @@
-use concrete_fft::c64;
-use concrete_fft::ordered::{Method, Plan};
+use tfhe_fft::c64;
+use tfhe_fft::ordered::{Method, Plan};
 use dyn_stack::{GlobalPodBuffer, PodStack, ReborrowMut};
 use num_complex::ComplexFloat;
 use std::time::Duration;

@@ -1,13 +1,13 @@
 [package]
 name = "FHE"
-edition = "2021"
+edition = "2024"
 publish = false
 
 [dependencies]
-concrete-fft = "0.5"
-dyn-stack = "0.11"
+tfhe-fft = "0.6"
+dyn-stack = "0.10"
 num-complex = "0.4"
-tfhe = { version = "0.10", features = [
+tfhe = { git = "https://github.com/zama-ai/tfhe-rs.git", features = [
   "boolean",
   "shortint",
   "integer",

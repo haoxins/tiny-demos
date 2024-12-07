@@ -1,6 +1,6 @@
 use nalgebra::{
-    base::{Matrix2, Matrix3},
     Vector2,
+    base::{Matrix2, Matrix3},
 };
 use num_complex::Complex64;
 
