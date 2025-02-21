@@ -2,7 +2,6 @@
 
 .ruff_cache
 .venv
-.zig-cache
 .lake
 
 node_modules

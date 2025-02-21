@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"math"
 	"testing"
+	"time"
 
 	"github.com/samber/lo"
 	"github.com/stretchr/testify/assert"
@@ -68,11 +69,56 @@ func TestJSON(t *testing.T) {
 
 func TestOmitEmpty(t *testing.T) {
 	type A struct {
-		Name  string  `json:"name,omitempty"`
-		Age   int     `json:"age,omitempty"`
-		Valid bool    `json:"valid,omitempty"`
-		Score float32 `json:"score,omitempty"`
+		Name   string   `json:"name,omitempty"`
+		Age    int      `json:"age,omitempty"`
+		Valid  bool     `json:"valid,omitempty"`
+		Score  float32  `json:"score,omitempty"`
+		Badges []string `json:"badges,omitempty"`
 	}
-	b, _ := json.Marshal(A{})
+	a, _ := json.Marshal(A{})
+	assert.Equal(t, `{}`, string(a))
+
+	type B struct {
+		Badges []string `json:"badges,omitempty"`
+	}
+
+	b, _ := json.Marshal(B{
+		Badges: []string{},
+	})
 	assert.Equal(t, `{}`, string(b))
+
+	type C struct {
+		CreatedAt time.Time `json:"created_at,omitempty"`
+	}
+
+	c, _ := json.Marshal(C{})
+	assert.Equal(t, `{"created_at":"0001-01-01T00:00:00Z"}`, string(c))
+}
+
+func TestOmitZero(t *testing.T) {
+	type A struct {
+		Name   string   `json:"name,omitzero"`
+		Age    int      `json:"age,omitzero"`
+		Valid  bool     `json:"valid,omitzero"`
+		Score  float32  `json:"score,omitzero"`
+		Badges []string `json:"badges,omitzero"`
+	}
+	a, _ := json.Marshal(A{})
+	assert.Equal(t, `{}`, string(a))
+
+	type B struct {
+		Badges []string `json:"badges,omitzero"`
+	}
+
+	b, _ := json.Marshal(B{
+		Badges: []string{},
+	})
+	assert.Equal(t, `{"badges":[]}`, string(b))
+
+	type C struct {
+		CreatedAt time.Time `json:"created_at,omitzero"`
+	}
+
+	c, _ := json.Marshal(C{})
+	assert.Equal(t, `{}`, string(c))
 }
