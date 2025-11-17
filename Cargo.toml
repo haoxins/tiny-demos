@@ -1,8 +1,0 @@
-[workspace]
-members = [
-  "nexus-snippet",
-  "rust-snippet",
-]
-resolver = "2"
-
-[workspace.dependencies]

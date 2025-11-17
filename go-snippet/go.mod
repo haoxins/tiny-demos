@@ -1,10 +1,10 @@
 module snippet
 
-go 1.24
+go 1.25
 
 require (
-	github.com/samber/lo v1.49.1
-	github.com/stretchr/testify v1.10.0
+	github.com/samber/lo v1.52.0
+	github.com/stretchr/testify v1.11.1
 )
 
 require (

@@ -5,8 +5,7 @@ edition = "2024"
 rust-version = "1.85"
 
 [dependencies]
-dyn-stack = "0.11"
-nalgebra = "0.33"
+nalgebra = "0.34"
 num-complex = "0.4"
 qomo = "0.0.8"
 tfhe-fft = { version = "*" }

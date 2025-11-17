@@ -2,6 +2,7 @@ package snippet
 
 import (
 	"encoding/json"
+	"fmt"
 	"math"
 	"testing"
 	"time"
@@ -9,6 +10,24 @@ import (
 	"github.com/samber/lo"
 	"github.com/stretchr/testify/assert"
 )
+
+func TestMarshal(t *testing.T) {
+	type Transaction struct {
+		Amount float64
+		From   string
+		To     string
+	}
+
+	t1 := Transaction{
+		Amount: 100,
+		From:   "Alice",
+		To:     "Bob",
+	}
+
+	bytes, err := json.Marshal(t1)
+	assert.Nil(t, err)
+	fmt.Println(string(bytes))
+}
 
 func TestJSON(t *testing.T) {
 	type Balance struct {

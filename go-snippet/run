@@ -3,6 +3,6 @@
 # go install golang.org/dl/gotip@latest
 # gotip download
 
-gotip fmt .
-gotip vet .
-gotip test -v .
+go fmt .
+go vet .
+go test -v .
