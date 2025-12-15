@@ -2,7 +2,6 @@ package snippet
 
 import (
 	"encoding/json"
-	"fmt"
 	"math"
 	"testing"
 	"time"
@@ -26,7 +25,31 @@ func TestMarshal(t *testing.T) {
 
 	bytes, err := json.Marshal(t1)
 	assert.Nil(t, err)
-	fmt.Println(string(bytes))
+	assert.Equal(t, `{"Amount":100,"From":"Alice","To":"Bob"}`, string(bytes))
+
+	type Result struct {
+		Transactions []*Transaction `json:"transactions"`
+	}
+
+	r1 := Result{
+		Transactions: []*Transaction{},
+	}
+
+	bytes, err = json.Marshal(r1)
+	assert.Nil(t, err)
+	assert.Equal(t, `{"transactions":[]}`, string(bytes))
+
+	type Result2 struct {
+		Transactions []*Transaction `json:"transactions,omitempty"`
+	}
+
+	r2 := Result2{
+		Transactions: []*Transaction{},
+	}
+
+	bytes, err = json.Marshal(r2)
+	assert.Nil(t, err)
+	assert.Equal(t, `{}`, string(bytes))
 }
 
 func TestJSON(t *testing.T) {
