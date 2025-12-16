@@ -31,6 +31,12 @@ func TestMarshal(t *testing.T) {
 		Transactions []*Transaction `json:"transactions"`
 	}
 
+	var r0 Result
+
+	bytes, err = json.Marshal(r0)
+	assert.Nil(t, err)
+	assert.Equal(t, `{"transactions":null}`, string(bytes))
+
 	r1 := Result{
 		Transactions: []*Transaction{},
 	}
@@ -48,6 +54,12 @@ func TestMarshal(t *testing.T) {
 	}
 
 	bytes, err = json.Marshal(r2)
+	assert.Nil(t, err)
+	assert.Equal(t, `{}`, string(bytes))
+
+	var r3 Result2
+
+	bytes, err = json.Marshal(r3)
 	assert.Nil(t, err)
 	assert.Equal(t, `{}`, string(bytes))
 }
@@ -130,7 +142,7 @@ func TestOmitEmpty(t *testing.T) {
 	assert.Equal(t, `{}`, string(b))
 
 	type C struct {
-		CreatedAt time.Time `json:"created_at,omitempty"`
+		CreatedAt time.Time `json:"created_at"` // omitempty is useless for time.Time
 	}
 
 	c, _ := json.Marshal(C{})
