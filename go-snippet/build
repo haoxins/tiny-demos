@@ -1,10 +1,6 @@
 #!/usr/bin/env zsh
 
-# go install golang.org/dl/gotip@latest
-# gotip download
-
-gotip mod tidy
-gotip fix .
-gotip vet .
-gotip fmt .
-gotip test -v .
+go mod tidy
+go fix .
+go fmt .
+go test -v .

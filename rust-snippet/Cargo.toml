@@ -8,7 +8,7 @@ rust-version = "1.92"
 nalgebra = "0.34"
 num-complex = "0.4"
 qomo = "0.0.8"
-tfhe = { version = "1.4.3", features = [
+tfhe = { version = "1.5.3", features = [
   "boolean",
   "shortint",
   "integer"
