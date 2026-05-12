@@ -2,13 +2,13 @@
 name = "rust-snippet"
 publish = false
 edition = "2024"
-rust-version = "1.92"
+rust-version = "1.95"
 
 [dependencies]
-nalgebra = "0.34"
+nalgebra = "0.34.2"
 num-complex = "0.4"
 qomo = "0.0.8"
-tfhe = { version = "1.5.3", features = [
+tfhe = { version = "1.6.1", features = [
   "boolean",
   "shortint",
   "integer"
