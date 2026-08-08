@@ -6,7 +6,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestNew(t *testing.T) {
+func Test_new(t *testing.T) {
 	type User struct {
 		Name *string
 		Age  *int

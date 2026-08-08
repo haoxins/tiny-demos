@@ -17,7 +17,7 @@ func iter1(yield func(int, string) bool) {
 	}
 }
 
-func TestIter1(t *testing.T) {
+func Test_iter1(t *testing.T) {
 	for k, v := range iter1 {
 		fmt.Println("iter", k, v)
 	}
@@ -34,9 +34,10 @@ func Scan(s *[]Result) {
 }
 
 // func Iter() iter.Seq[Result] {
+
 // }
 
-func TestScanAndIter(t *testing.T) {
+func Test_ScanAndIter(t *testing.T) {
 	var s []Result
 	Scan(&s)
 

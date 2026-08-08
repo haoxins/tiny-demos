@@ -2,7 +2,7 @@ package snippet
 
 import "testing"
 
-func TestMapNil(t *testing.T) {
+func Test_map_nil(t *testing.T) {
 	var m map[string]int
 	m = nil
 	if _, ok := m["404"]; !ok {

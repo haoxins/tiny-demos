@@ -10,7 +10,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestMarshal(t *testing.T) {
+func Test_Marshal(t *testing.T) {
 	type Transaction struct {
 		Amount float64
 		From   string
@@ -64,7 +64,7 @@ func TestMarshal(t *testing.T) {
 	assert.Equal(t, `{}`, string(bytes))
 }
 
-func TestJSON(t *testing.T) {
+func Test_JSON(t *testing.T) {
 	type Balance struct {
 		Amount float64 `json:"amount"`
 	}
@@ -121,7 +121,7 @@ func TestJSON(t *testing.T) {
 	assert.True(t, lo.IsNil(list1[0].Balance))
 }
 
-func TestOmitEmpty(t *testing.T) {
+func Test_omitempty(t *testing.T) {
 	type A struct {
 		Name   string   `json:"name,omitempty"`
 		Age    int      `json:"age,omitempty"`
@@ -149,7 +149,7 @@ func TestOmitEmpty(t *testing.T) {
 	assert.Equal(t, `{"created_at":"0001-01-01T00:00:00Z"}`, string(c))
 }
 
-func TestOmitZero(t *testing.T) {
+func Test_omitzero(t *testing.T) {
 	type A struct {
 		Name   string   `json:"name,omitzero"`
 		Age    int      `json:"age,omitzero"`
@@ -175,4 +175,44 @@ func TestOmitZero(t *testing.T) {
 
 	c, _ := json.Marshal(C{})
 	assert.Equal(t, `{}`, string(c))
+}
+
+func Test_json_(t *testing.T) {
+	type Address struct {
+		City string
+	}
+
+	type User struct {
+		Address
+		Name string
+	}
+
+	u := User{
+		Address: Address{
+			City: "Beijing",
+		},
+		Name: "Alice",
+	}
+	assert.Equal(t, "Beijing", u.City)
+	assert.Equal(t, "Alice", u.Name)
+	bytes, err := json.Marshal(u)
+	assert.Nil(t, err)
+	assert.Equal(t, `{"City":"Beijing","Name":"Alice"}`, string(bytes))
+
+	type User2 struct {
+		Address Address
+		Name    string
+	}
+
+	u2 := User2{
+		Address: Address{
+			City: "Beijing",
+		},
+		Name: "Alice",
+	}
+	assert.Equal(t, "Beijing", u2.Address.City)
+	assert.Equal(t, "Alice", u2.Name)
+	bytes, err = json.Marshal(u2)
+	assert.Nil(t, err)
+	assert.Equal(t, `{"Address":{"City":"Beijing"},"Name":"Alice"}`, string(bytes))
 }

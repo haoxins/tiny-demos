@@ -7,7 +7,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestRepeat(t *testing.T) {
+func Test_Repeat(t *testing.T) {
 	a := [...]int{1, 2, 3}
 	b := slices.Repeat(a[:], 1)
 	c := a[:]

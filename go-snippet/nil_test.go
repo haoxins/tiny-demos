@@ -7,7 +7,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestNil(t *testing.T) {
+func Test_nil(t *testing.T) {
 	type Balance struct {
 		Amount float64 `json:"amount"`
 	}

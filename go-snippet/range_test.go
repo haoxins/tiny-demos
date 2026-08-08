@@ -2,9 +2,12 @@ package snippet
 
 import "testing"
 
-func TestRange(t *testing.T) {
-	for i := range -3 {
-		t.Log("range", i)
+func Test_range(t *testing.T) {
+	for range 0 {
+		t.Fatal("won't run")
+	}
+	for range -1 {
+		t.Fatal("won't run")
 	}
 	a := [...]int{3, 2, 1}
 	for i := range a {
