@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<button id="btn1">Click Me</button>
+<script>
+  // Safari 26.5 still does not support the `when` method
+  document.querySelector('#btn1')
+    .when('click')
+    .subscribe(() => {
+      console.info('Button was clicked!')
+    })
+  // TODO: Signal
+</script>

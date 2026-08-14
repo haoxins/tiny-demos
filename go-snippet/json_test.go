@@ -64,7 +64,7 @@ func Test_Marshal(t *testing.T) {
 	assert.Equal(t, `{}`, string(bytes))
 }
 
-func Test_JSON(t *testing.T) {
+func Test_json_nil_or_empty_slice(t *testing.T) {
 	type Balance struct {
 		Amount float64 `json:"amount"`
 	}
@@ -177,7 +177,7 @@ func Test_omitzero(t *testing.T) {
 	assert.Equal(t, `{}`, string(c))
 }
 
-func Test_json_(t *testing.T) {
+func Test_json_embedded_struct(t *testing.T) {
 	type Address struct {
 		City string
 	}

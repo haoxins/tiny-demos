@@ -3,4 +3,4 @@
 go mod tidy
 go fix .
 go fmt .
-go test -v .
+go test .
