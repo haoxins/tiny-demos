@@ -13,5 +13,3 @@ target
 
 *.log
 *.lock
-*.lance
-*.parquet

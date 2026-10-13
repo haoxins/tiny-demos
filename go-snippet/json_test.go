@@ -159,6 +159,10 @@ func Test_omitzero(t *testing.T) {
 	}
 	a, _ := json.Marshal(A{})
 	assert.Equal(t, `{}`, string(a))
+	a, _ = json.Marshal(A{Score: 0.0})
+	assert.Equal(t, `{}`, string(a))
+	a, _ = json.Marshal(A{Score: 0.000001})
+	assert.Equal(t, `{"score":0.000001}`, string(a))
 
 	type B struct {
 		Badges []string `json:"badges,omitzero"`
@@ -168,6 +172,10 @@ func Test_omitzero(t *testing.T) {
 		Badges: []string{},
 	})
 	assert.Equal(t, `{"badges":[]}`, string(b))
+	b, _ = json.Marshal(B{
+		Badges: nil,
+	})
+	assert.Equal(t, `{}`, string(b))
 
 	type C struct {
 		CreatedAt time.Time `json:"created_at,omitzero"`
@@ -188,9 +196,7 @@ func Test_json_embedded_struct(t *testing.T) {
 	}
 
 	u := User{
-		Address: Address{
-			City: "Beijing",
-		},
+		City: "Beijing",
 		Name: "Alice",
 	}
 	assert.Equal(t, "Beijing", u.City)
