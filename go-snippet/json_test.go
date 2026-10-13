@@ -1,7 +1,7 @@
 package snippet
 
 import (
-	"encoding/json"
+	"encoding/json/v2"
 	"math"
 	"testing"
 	"time"
@@ -35,7 +35,7 @@ func Test_Marshal(t *testing.T) {
 
 	bytes, err = json.Marshal(r0)
 	assert.Nil(t, err)
-	assert.Equal(t, `{"transactions":null}`, string(bytes))
+	assert.Equal(t, `{"transactions":[]}`, string(bytes))
 
 	r1 := Result{
 		Transactions: []*Transaction{},
@@ -94,7 +94,7 @@ func Test_json_nil_or_empty_slice(t *testing.T) {
 		Badges: nil,
 	}
 	b1, _ := json.Marshal(a1)
-	assert.Equal(t, `{"badges":null,"balance":null}`, string(b1))
+	assert.Equal(t, `{"badges":[],"balance":null}`, string(b1))
 
 	a2 = Account{
 		Badges: []string{},
@@ -106,12 +106,12 @@ func Test_json_nil_or_empty_slice(t *testing.T) {
 	_, e := json.Marshal(Transaction{
 		Amount: math.NaN(),
 	})
-	assert.Equal(t, "json: unsupported value: NaN", e.Error())
+	assert.Equal(t, `json: cannot marshal from Go float64 within "/amount": unsupported value: NaN`, e.Error())
 	// Inf
 	_, e = json.Marshal(Transaction{
 		Amount: math.Inf(0),
 	})
-	assert.Equal(t, "json: unsupported value: +Inf", e.Error())
+	assert.Equal(t, `json: cannot marshal from Go float64 within "/amount": unsupported value: +Inf`, e.Error())
 
 	var list1 []Account
 	text := `[{}]`
@@ -130,7 +130,7 @@ func Test_omitempty(t *testing.T) {
 		Badges []string `json:"badges,omitempty"`
 	}
 	a, _ := json.Marshal(A{})
-	assert.Equal(t, `{}`, string(a))
+	assert.Equal(t, `{"age":0,"valid":false,"score":0}`, string(a))
 
 	type B struct {
 		Badges []string `json:"badges,omitempty"`
